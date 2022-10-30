@@ -1,153 +1,51 @@
 package client
 
 import (
-	"errors"
-	"log"
-	"os"
-	"path/filepath"
-
-	"github.com/joho/godotenv"
-	"github.com/sonr-io/sonr/internal/projectpath"
-	mt "github.com/sonr-io/sonr/third_party/types/motor/api/v1"
-)
-
-const (
-	// -- Local Blockchain --
-	BLOCKCHAIN_REST_LOCAL   = "http://0.0.0.0:26657"
-	BLOCKCHAIN_FAUCET_LOCAL = "http://0.0.0.0:4500"
-	BLOCKCHAIN_RPC_LOCAL    = "127.0.0.1:9090"
-
-	// -- Dev Blockchain --
-	BLOCKCHAIN_REST_DEV   = "http://143.198.29.209:1317"
-	BLOCKCHAIN_FAUCET_DEV = "http://143.198.29.209:8000"
-	BLOCKCHAIN_RPC_DEV    = "143.198.29.209:9090"
-
-	// -- Beta Blockchain --
-	BLOCKCHAIN_REST_BETA   = "http://137.184.190.146:1317"
-	BLOCKCHAIN_FAUCET_BETA = "http://137.184.190.146:8000"
-	BLOCKCHAIN_RPC_BETA    = "137.184.190.146:9090"
-
-	// -- Services --
-	IPFS_ADDRESS      = "https://ipfs.sonr.ws"
-	IPFS_API_ADDRESS  = "https://api.ipfs.sonr.ws"
-	VAULT_API_ADDRESS = "http://164.92.99.233"
+	"github.com/sonr-io/sonr/pkg/client/api"
+	"github.com/sonr-io/sonr/pkg/client/config"
+	"github.com/sonr-io/sonr/pkg/crypto/wallet"
 )
 
 type Client struct {
-	clientMode mt.ClientMode
+	*config.Config
+	api.BucketAPI
+	api.RegistryAPI
+	api.SchemaAPI
+	api.PaymentsAPI
 }
 
-func NewClient(mode mt.ClientMode) *Client {
+func NewClient(options ...config.Option) *Client {
+	cnfg := config.New(options...)
 	return &Client{
-		clientMode: mode,
+		Config:      cnfg,
+		BucketAPI:   api.NewBucketAPI(cnfg),
+		RegistryAPI: api.NewRegistryAPI(cnfg),
+		SchemaAPI:   api.NewSchemaAPI(cnfg),
+		PaymentsAPI: api.NewPaymentsAPI(cnfg),
 	}
 }
 
 func (c *Client) GetFaucetAddress() string {
-	env_path := filepath.Join(projectpath.Root, ".env")
-
-	// by default use .env if it exists
-	_, err := os.Stat(env_path)
-	if errors.Is(err, os.ErrNotExist) {
-		// .env does not exist, use preset client mode
-		switch c.clientMode {
-		case mt.ClientMode_ENDPOINT_BETA:
-			return BLOCKCHAIN_FAUCET_BETA
-		case mt.ClientMode_ENDPOINT_DEV:
-			return BLOCKCHAIN_FAUCET_DEV
-		case mt.ClientMode_ENDPOINT_LOCAL:
-			return BLOCKCHAIN_FAUCET_LOCAL
-		}
-	}
-
-	err = godotenv.Load(env_path)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	return os.Getenv("BLOCKCHAIN_FAUCET")
+	return c.Config.GetFaucetAddress()
 }
 
 func (c *Client) GetRPCAddress() string {
-	env_path := filepath.Join(projectpath.Root, ".env")
-
-	// by default use .env if it exists
-	_, err := os.Stat(env_path)
-	if errors.Is(err, os.ErrNotExist) {
-		// .env does not exist, use preset client mode
-		switch c.clientMode {
-		case mt.ClientMode_ENDPOINT_BETA:
-			return BLOCKCHAIN_RPC_BETA
-		case mt.ClientMode_ENDPOINT_DEV:
-			return BLOCKCHAIN_RPC_DEV
-		case mt.ClientMode_ENDPOINT_LOCAL:
-			return BLOCKCHAIN_RPC_LOCAL
-		}
-	}
-
-	err = godotenv.Load(env_path)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	return os.Getenv("BLOCKCHAIN_RPC")
+	return c.Config.GetRPCAddress()
 }
 
 func (c *Client) GetAPIAddress() string {
-	env_path := filepath.Join(projectpath.Root, ".env")
-
-	// by default use .env if it exists
-	_, err := os.Stat(env_path)
-	if errors.Is(err, os.ErrNotExist) {
-		// .env does not exist, use preset client mode
-		switch c.clientMode {
-		case mt.ClientMode_ENDPOINT_BETA:
-			return BLOCKCHAIN_REST_BETA
-		case mt.ClientMode_ENDPOINT_DEV:
-			return BLOCKCHAIN_REST_DEV
-		case mt.ClientMode_ENDPOINT_LOCAL:
-			return BLOCKCHAIN_REST_LOCAL
-		}
-	}
-
-	err = godotenv.Load(env_path)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	return os.Getenv("BLOCKCHAIN_REST")
+	return c.Config.GetAPIAddress()
 }
 
 func (c *Client) GetIPFSAddress() string {
-	env_path := filepath.Join(projectpath.Root, ".env")
-
-	// by default use .env if it exists
-	_, err := os.Stat(env_path)
-	if errors.Is(err, os.ErrNotExist) {
-		return IPFS_ADDRESS
-	}
-
-	err = godotenv.Load(env_path)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	return os.Getenv("IPFS_ADDRESS")
+	return c.Config.GetIPFSAddress()
 }
 
 func (c *Client) GetIPFSApiAddress() string {
-	env_path := filepath.Join(projectpath.Root, ".env")
+	return c.Config.GetIPFSApiAddress()
+}
 
-	// by default use .env if it exists
-	_, err := os.Stat(env_path)
-	if errors.Is(err, os.ErrNotExist) {
-		return IPFS_API_ADDRESS
-	}
-
-	err = godotenv.Load(env_path)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	return os.Getenv("IPFS_API_ADDRESS")
+func (c *Client) SetWallet(w wallet.EDCSAWallet) {
+	c.Config.Wallet = w
+	c.Config.HasWallet = true
 }

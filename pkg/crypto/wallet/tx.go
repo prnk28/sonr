@@ -1,14 +1,13 @@
-package tx
+package wallet
 
 import (
 	codectypes "github.com/cosmos/cosmos-sdk/codec/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	txtypes "github.com/cosmos/cosmos-sdk/types/tx"
-	"github.com/sonr-io/sonr/pkg/crypto/mpc"
 )
 
 // SignTx constructs a TxRaw from the given message and signs it.
-func SignTxWithWallet(w *mpc.Wallet, typeUrl string, msgs ...sdk.Msg) ([]byte, error) {
+func SignTxWithWallet(w EDCSAWallet, typeUrl string, msgs ...sdk.Msg) ([]byte, error) {
 	txb, err := BuildTx(w, typeUrl, msgs...)
 	if err != nil {
 		return nil, err
@@ -36,7 +35,7 @@ func SignTxWithWallet(w *mpc.Wallet, typeUrl string, msgs ...sdk.Msg) ([]byte, e
 }
 
 // BuildTx builds a transaction from the given inputs.
-func BuildTx(w *mpc.Wallet, typeUrl string, msgs ...sdk.Msg) (*txtypes.TxBody, error) {
+func BuildTx(w EDCSAWallet, typeUrl string, msgs ...sdk.Msg) (*txtypes.TxBody, error) {
 	// func BuildTx(w *crypto.MPCWallet, msgs ...sdk.Msg) (*txtypes.TxBody, error) {
 	// Create Any for each message
 	anyMsgs := make([]*codectypes.Any, len(msgs))
@@ -86,7 +85,7 @@ func CreateRawTxBytes(txBody *txtypes.TxBody, sig []byte, authInfo *txtypes.Auth
 }
 
 // getAuthInfoSingle returns the authentication information for the given message.
-func GetAuthInfoSingle(w *mpc.Wallet, gas int) (*txtypes.AuthInfo, error) {
+func GetAuthInfoSingle(w EDCSAWallet, gas int) (*txtypes.AuthInfo, error) {
 	addr, err := w.Address()
 	if err != nil {
 		return nil, err

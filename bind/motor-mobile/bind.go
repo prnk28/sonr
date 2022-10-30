@@ -3,6 +3,7 @@ package motor
 import (
 	"fmt"
 
+	bt "github.com/cosmos/cosmos-sdk/x/bank/types"
 	mtr "github.com/sonr-io/sonr/pkg/motor"
 	"github.com/sonr-io/sonr/pkg/motor/x/document"
 	ct "github.com/sonr-io/sonr/third_party/types/common"
@@ -131,18 +132,18 @@ func Connect() error {
 	return instance.Connect()
 }
 
-// IssuePayment creates a send/receive token request to the specified address.
-func IssuePayment(buf []byte) ([]byte, error) {
+// SendTokens sends the specified amount of tokens to the specified address.
+func SendTokens(buf []byte) ([]byte, error) {
 	if instance == nil {
 		return nil, ct.ErrMotorWalletNotInitialized
 	}
 
-	var request mt.PaymentRequest
+	var request bt.MsgSend
 	if err := request.Unmarshal(buf); err != nil {
 		return nil, fmt.Errorf("unmarshal request: %s", err)
 	}
 
-	if res, err := instance.SendTokens(request); err == nil {
+	if res, err := instance.GetClient().SendTokens(&request); err == nil {
 		return res.Marshal()
 	} else {
 		return nil, err
@@ -182,7 +183,7 @@ func BuyAlias(buf []byte) ([]byte, error) {
 		return nil, fmt.Errorf("unmarshal request: %s", err)
 	}
 
-	resp, err := instance.BuyAlias(request)
+	resp, err := instance.GetClient().BuyAlias(&request)
 	if err != nil {
 		return nil, err
 	}
@@ -200,7 +201,7 @@ func SellAlias(buf []byte) ([]byte, error) {
 		return nil, fmt.Errorf("unmarshal request: %s", err)
 	}
 
-	resp, err := instance.SellAlias(request)
+	resp, err := instance.GetClient().SellAlias(&request)
 	if err != nil {
 		return nil, err
 	}
@@ -218,7 +219,7 @@ func TransferAlias(buf []byte) ([]byte, error) {
 		return nil, fmt.Errorf("unmarshal request: %s", err)
 	}
 
-	resp, err := instance.TransferAlias(request)
+	resp, err := instance.GetClient().TransferAlias(&request)
 	if err != nil {
 		return nil, err
 	}

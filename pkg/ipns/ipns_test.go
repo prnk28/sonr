@@ -18,6 +18,7 @@ import (
 	"github.com/stretchr/testify/suite"
 
 	mt "github.com/sonr-io/sonr/third_party/types/motor/api/v1"
+	"github.com/sonr-io/sonr/x/schema/types"
 	st "github.com/sonr-io/sonr/x/schema/types"
 )
 
@@ -43,29 +44,48 @@ func (suite *IPNSTestSuite) SetupSuite() {
 	}
 
 	// create document
-	// create schema
-	createSchemaRequest := mt.CreateSchemaRequest{
+	createSchemaRequest := &st.MsgCreateSchema{
 		Label: "TestUser",
-		Fields: map[string]*st.SchemaFieldKind{
-			"email": {
-				Kind: st.Kind_STRING,
+		Fields: []*st.SchemaField{
+			{
+				Name: "email",
+				FieldKind: &st.SchemaFieldKind{
+					Kind: st.Kind_STRING,
+				},
 			},
-			"firstName": {
-				Kind: st.Kind_STRING,
+			{
+				Name: "firstName",
+				FieldKind: &st.SchemaFieldKind{
+					Kind: st.Kind_STRING,
+				},
 			},
-			"age": {
-				Kind: st.Kind_INT,
+			{
+				Name: "age",
+				FieldKind: &st.SchemaFieldKind{
+					Kind: st.Kind_INT,
+				},
 			},
 		},
 	}
 
-	resp, err := suite.motorNode.CreateSchema(createSchemaRequest)
+	resp, err := suite.motorNode.GetClient().CreateSchema(createSchemaRequest)
+	if err != nil {
+		fmt.Printf("Failed to create schema: %s\n", err)
+	}
 
 	// query WhatIs so it's cached
-	_, err = suite.motorNode.QueryWhatIsByDid(resp.WhatIs.Did)
+	_, err = suite.motorNode.GetClient().QueryWhatIsByDid(&types.QueryWhatIsByDidRequest{
+		Did: resp.WhatIs.Did,
+	})
+	if err != nil {
+		fmt.Printf("Failed to query whatis: %s\n", err)
+	}
 
 	// upload object
 	builder, err := suite.motorNode.NewDocumentBuilder(resp.WhatIs.Did)
+	if err != nil {
+		fmt.Printf("Failed to create document builder: %s\n", err)
+	}
 
 	builder.SetLabel("Player 1")
 	builder.Set("email", "test_email")
@@ -78,6 +98,9 @@ func (suite *IPNSTestSuite) SetupSuite() {
 	}
 
 	result, err := builder.Upload()
+	if err != nil {
+		fmt.Printf("Failed to upload document: %s\n", err)
+	}
 	if "Player 1" != result.Document.Label {
 		fmt.Println("Failed to upload document")
 	}

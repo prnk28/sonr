@@ -5,6 +5,7 @@ import (
 
 	ct "github.com/sonr-io/sonr/third_party/types/common"
 	mt "github.com/sonr-io/sonr/third_party/types/motor/api/v1"
+	"github.com/sonr-io/sonr/x/schema/types"
 	_ "golang.org/x/mobile/bind"
 )
 
@@ -18,7 +19,10 @@ func QuerySchema(buf []byte) ([]byte, error) {
 		return nil, fmt.Errorf("unmarshal request: %s", err)
 	}
 
-	res, err := instance.QueryWhatIs(request)
+	res, err := instance.GetClient().QueryWhatIs(&types.QueryWhatIsRequest{
+		Did:     request.Did,
+		Creator: request.Creator,
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -35,7 +39,9 @@ func QuerySchemaByCreator(buf []byte) ([]byte, error) {
 		return nil, fmt.Errorf("unmarshal request: %s", err)
 	}
 
-	res, err := instance.QueryWhatIsByCreator(request)
+	res, err := instance.GetClient().QueryWhatIsByCreator(&types.QueryWhatIsCreatorRequest{
+		Creator: request.Creator,
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -47,7 +53,9 @@ func QuerySchemaByDid(did string) ([]byte, error) {
 		return nil, ct.ErrMotorWalletNotInitialized
 	}
 
-	res, err := instance.QueryWhatIsByDid(did)
+	res, err := instance.GetClient().QueryWhatIsByDid(&types.QueryWhatIsByDidRequest{
+		Did: did,
+	})
 	if err != nil {
 		return nil, err
 	}

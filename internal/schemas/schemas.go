@@ -33,7 +33,7 @@ type SchemaImpl struct {
 }
 
 /*
-	Default initialization with a local client instance created in scope
+Default initialization with a local client instance created in scope
 */
 func New(store *ReadStoreImpl, whatIs *st.WhatIs) *SchemaImpl {
 	asi := &SchemaImpl{
@@ -49,7 +49,7 @@ func New(store *ReadStoreImpl, whatIs *st.WhatIs) *SchemaImpl {
 }
 
 /*
-	Initialize with a instance of pkg/client
+Initialize with a instance of pkg/client
 */
 func NewWithClient(client *client.Client, whatIs *st.WhatIs) *SchemaImpl {
 	asi := &SchemaImpl{

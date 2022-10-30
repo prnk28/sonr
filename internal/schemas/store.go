@@ -6,6 +6,7 @@ import (
 
 	"github.com/ipld/go-ipld-prime/storage"
 	"github.com/sonr-io/sonr/pkg/client"
+	"github.com/sonr-io/sonr/x/schema/types"
 )
 
 type ReadableStore interface {
@@ -54,7 +55,7 @@ func (rs *ReadStoreImpl) Get(ctx context.Context, key string) ([]byte, error) {
 		return rs.cache[key], nil
 	}
 
-	wi, err := rs.Client.QueryWhatIsByDid(key)
+	wi, err := rs.Client.QueryWhatIsByDid(&types.QueryWhatIsByDidRequest{Did: key})
 	if err != nil {
 		return nil, err
 	}

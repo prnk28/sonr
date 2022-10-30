@@ -2,7 +2,7 @@ package motor
 
 import (
 	"fmt"
-
+	st "github.com/sonr-io/sonr/x/schema/types"
 	ct "github.com/sonr-io/sonr/third_party/types/common"
 	mt "github.com/sonr-io/sonr/third_party/types/motor/api/v1"
 	_ "golang.org/x/mobile/bind"
@@ -13,12 +13,12 @@ func CreateSchema(buf []byte) ([]byte, error) {
 		return nil, ct.ErrMotorWalletNotInitialized
 	}
 
-	var request mt.CreateSchemaRequest
+	var request st.MsgCreateSchema
 	if err := request.Unmarshal(buf); err != nil {
 		return nil, fmt.Errorf("unmarshal request: %s", err)
 	}
 
-	if res, err := instance.CreateSchema(request); err == nil {
+	if res, err := instance.GetClient().CreateSchema(&request); err == nil {
 		return res.Marshal()
 	} else {
 		return nil, err

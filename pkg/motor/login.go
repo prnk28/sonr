@@ -48,7 +48,7 @@ func (mtr *motorNodeImpl) LoginWithKeys(request mt.LoginWithKeysRequest) (mt.Log
 	}
 
 	// Create Client instance
-	mtr.Cosmos = client.NewClient(mtr.clientMode)
+	mtr.Cosmos = client.NewClient()
 
 	// if the given ID is an alias, first fetch the address
 	var (
@@ -56,7 +56,7 @@ func (mtr *motorNodeImpl) LoginWithKeys(request mt.LoginWithKeysRequest) (mt.Log
 		err   error
 	)
 	if strings.HasSuffix(request.AccountId, ".snr") {
-		whoIsResp, err := mtr.QueryWhoIsByAlias(mt.QueryWhoIsByAliasRequest{
+		whoIsResp, err := mtr.GetClient().QueryWhoIsByAlias(&rt.QueryWhoIsAliasRequest{
 			Alias: request.AccountId,
 		})
 		if err != nil {
@@ -64,7 +64,7 @@ func (mtr *motorNodeImpl) LoginWithKeys(request mt.LoginWithKeysRequest) (mt.Log
 		}
 		whoIs = whoIsResp.WhoIs
 	} else {
-		whoIsResp, err := mtr.QueryWhoIs(mt.QueryWhoIsRequest{
+		whoIsResp, err := mtr.GetClient().QueryWhoIs(&rt.QueryWhoIsRequest{
 			Did: request.AccountId,
 		})
 		if err != nil {
@@ -76,7 +76,6 @@ func (mtr *motorNodeImpl) LoginWithKeys(request mt.LoginWithKeysRequest) (mt.Log
 	// setup encryption key
 	mtr.encryptionKey = request.AesPskKey
 
-	// TODO: this is a hacky workaround for the Id not being populated in the DID document
 	whoIs.DidDocument.Id = did.CreateDIDFromAccount(whoIs.Owner)
 	mtr.DIDDocument, err = whoIs.DidDocument.ToPkgDoc()
 	if err != nil {
@@ -112,7 +111,6 @@ func (mtr *motorNodeImpl) LoginWithKeys(request mt.LoginWithKeysRequest) (mt.Log
 	mtr.sharedShard = shards.PskShard
 	mtr.recoveryShard = shards.RecoveryShard
 	mtr.unusedShards = destructureShards(shards.ShardBank)
-	// TODO: Breaking (bind.ios) mtr.callback.OnMotorEvent("Logged into account successfully!", true)
 	return mt.LoginResponse{
 		Success: true,
 	}, nil

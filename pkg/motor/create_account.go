@@ -8,7 +8,6 @@ import (
 	"github.com/sonr-io/sonr/pkg/crypto/mpc"
 	"github.com/sonr-io/sonr/pkg/did"
 	"github.com/sonr-io/sonr/pkg/did/ssi"
-	"github.com/sonr-io/sonr/pkg/tx"
 	"github.com/sonr-io/sonr/pkg/vault"
 	"github.com/sonr-io/sonr/third_party/types/common"
 	mt "github.com/sonr-io/sonr/third_party/types/motor/api/v1"
@@ -59,7 +58,7 @@ func (mtr *motorNodeImpl) CreateAccount(request mt.CreateAccountRequest) (mt.Cre
 // CreateAccountWithKeys allows PSK and DSC to be provided manually
 func (mtr *motorNodeImpl) CreateAccountWithKeys(request mt.CreateAccountWithKeysRequest) (mt.CreateAccountWithKeysResponse, error) {
 	// Create Client instance
-	mtr.Cosmos = client.NewClient(mtr.clientMode)
+	mtr.Cosmos = client.NewClient()
 
 	// set encryption key, based on preshared key
 	mtr.encryptionKey = request.AesPskKey
@@ -246,22 +245,11 @@ func createWhoIs(m *motorNodeImpl) (*rt.MsgCreateWhoIsResponse, error) {
 	}
 
 	msg1 := rt.NewMsgCreateWhoIs(m.Address, m.PubKey, docBz, rt.WhoIsType_USER)
-	txRaw, err := tx.SignTxWithWallet(m.Wallet, "/sonrio.sonr.registry.MsgCreateWhoIs", msg1)
+	res, err := m.GetClient().CreateWhoIs(msg1)
 	if err != nil {
 		return nil, err
 	}
-
-	resp, err := m.Cosmos.BroadcastTx(txRaw)
-	if err != nil {
-		return nil, err
-	}
-
-	cwir := &rt.MsgCreateWhoIsResponse{}
-	if err := client.DecodeTxResponseData(resp.TxResponse.Data, cwir); err != nil {
-		return nil, err
-	}
-
-	return cwir, nil
+	return res, nil
 }
 
 func updateWhoIs(m MotorNode) (*rt.MsgUpdateWhoIsResponse, error) {
@@ -271,20 +259,9 @@ func updateWhoIs(m MotorNode) (*rt.MsgUpdateWhoIsResponse, error) {
 	}
 
 	msg1 := rt.NewMsgUpdateWhoIs(m.GetAddress(), docBz)
-	txRaw, err := tx.SignTxWithWallet(m.GetWallet(), "/sonrio.sonr.registry.MsgUpdateWhoIs", msg1)
+	res, err := m.GetClient().UpdateWhoIs(msg1)
 	if err != nil {
 		return nil, err
 	}
-
-	resp, err := m.GetClient().BroadcastTx(txRaw)
-	if err != nil {
-		return nil, err
-	}
-
-	cwir := &rt.MsgUpdateWhoIsResponse{}
-	if err := client.DecodeTxResponseData(resp.TxResponse.Data, cwir); err != nil {
-		return nil, err
-	}
-
-	return cwir, nil
+	return res, nil
 }

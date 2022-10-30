@@ -3,7 +3,6 @@ package motor
 import (
 	"testing"
 
-	mt "github.com/sonr-io/sonr/third_party/types/motor/api/v1"
 	st "github.com/sonr-io/sonr/x/schema/types"
 	"github.com/stretchr/testify/assert"
 )
@@ -12,57 +11,81 @@ func (suite *MotorTestSuite) Test_DocumentBuilder() {
 	suite.T().Run("success", func(t *testing.T) {
 
 		// create schema
-		createAssociateRequest := mt.CreateSchemaRequest{
+		createAssociateRequest := st.MsgCreateSchema{
 			Label: "Associate",
-			Fields: map[string]*st.SchemaFieldKind{
-				"name": {
-					Kind: st.Kind_STRING,
-				},
-			},
-		}
-
-		resp, err := suite.motorWithKeys.CreateSchema(createAssociateRequest)
-		assert.NoError(suite.T(), err, "associate schema created successfully")
-
-		createInmateRequest := mt.CreateSchemaRequest{
-			Label: "Inmate",
-			Fields: map[string]*st.SchemaFieldKind{
-				"name": {
-					Kind: st.Kind_STRING,
-				},
-				"age": {
-					Kind: st.Kind_INT,
-				},
-				"known_aliases": {
-					Kind: st.Kind_LIST,
-					ListKind: &st.SchemaFieldKind{
+			Fields: []*st.SchemaField{
+				{
+					Name: "name",
+					FieldKind: &st.SchemaFieldKind{
 						Kind: st.Kind_STRING,
 					},
 				},
-				"height": {
-					Kind: st.Kind_FLOAT,
-				},
-				"mug_shot": {
-					Kind: st.Kind_BYTES,
-				},
-				"associates": {
-					Kind: st.Kind_LIST,
-					ListKind: &st.SchemaFieldKind{
-						Kind:    st.Kind_LINK,
-						LinkDid: resp.WhatIs.Did,
+			},
+		}
+
+		resp, err := suite.motorWithKeys.GetClient().CreateSchema(&createAssociateRequest)
+		assert.NoError(suite.T(), err, "associate schema created successfully")
+
+		createInmateRequest := st.MsgCreateSchema{
+			Label: "Inmate",
+			Fields: []*st.SchemaField{
+				{
+					Name: "name",
+					FieldKind: &st.SchemaFieldKind{
+						Kind: st.Kind_STRING,
 					},
 				},
-				"at_large": {
-					Kind: st.Kind_BOOL,
+				{
+					Name: "age",
+					FieldKind: &st.SchemaFieldKind{
+						Kind: st.Kind_INT,
+					},
+				},
+				{
+					Name: "associates",
+					FieldKind: &st.SchemaFieldKind{
+						Kind: st.Kind_LIST,
+						ListKind: &st.SchemaFieldKind{
+							Kind:    st.Kind_LINK,
+							LinkDid: resp.WhatIs.Did,
+						},
+					},
+				},
+				{
+					Name: "known_aliases",
+					FieldKind: &st.SchemaFieldKind{
+						Kind: st.Kind_LIST,
+						ListKind: &st.SchemaFieldKind{
+							Kind: st.Kind_STRING,
+						},
+					},
+				},
+				{
+					Name: "height",
+					FieldKind: &st.SchemaFieldKind{
+						Kind: st.Kind_FLOAT,
+					},
+				},
+				{
+					Name: "mug_shot",
+					FieldKind: &st.SchemaFieldKind{
+						Kind: st.Kind_BYTES,
+					},
+				},
+				{
+					Name: "at_large",
+					FieldKind: &st.SchemaFieldKind{
+						Kind: st.Kind_BOOL,
+					},
 				},
 			},
 		}
 
-		resp2, err := suite.motorWithKeys.CreateSchema(createInmateRequest)
+		resp2, err := suite.motorWithKeys.GetClient().CreateSchema(&createInmateRequest)
 		assert.NoError(suite.T(), err, "schema created successfully")
 
 		// query WhatIs so it's cached
-		_, err = suite.motorWithKeys.QueryWhatIsByDid(resp2.WhatIs.Did)
+		_, err = suite.motorWithKeys.GetClient().QueryWhatIsByDid(&st.QueryWhatIsByDidRequest{Did: resp2.WhatIs.Did})
 		assert.NoError(t, err, "query whatis")
 
 		// upload object

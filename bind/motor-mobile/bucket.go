@@ -5,6 +5,7 @@ import (
 
 	ct "github.com/sonr-io/sonr/third_party/types/common"
 	mt "github.com/sonr-io/sonr/third_party/types/motor/api/v1"
+	"github.com/sonr-io/sonr/x/bucket/types"
 	_ "golang.org/x/mobile/bind"
 )
 
@@ -71,7 +72,9 @@ func QueryBuckets(buf []byte) ([]byte, error) {
 		return nil, fmt.Errorf("unmarshal request: %s", err)
 	}
 
-	resp, err := instance.QueryBuckets(request)
+	resp, err := instance.GetClient().QueryBucket(&types.QueryGetBucketRequest{
+		
+	})
 	if err != nil {
 		return nil, err
 	}

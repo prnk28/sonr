@@ -83,7 +83,7 @@ func Test_LoginWithKeyring(t *testing.T) {
 
 	if err == nil {
 		fmt.Println("balance: ", m.GetBalance())
-		fmt.Println("address: ", m.Address)
+		fmt.Println("address: ", m.GetAddress())
 	}
 }
 

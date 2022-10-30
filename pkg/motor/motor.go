@@ -6,7 +6,6 @@ import (
 	"strings"
 
 	"github.com/cosmos/cosmos-sdk/crypto/keys/secp256k1"
-	sdk "github.com/cosmos/cosmos-sdk/types"
 	shell "github.com/ipfs/go-ipfs-api"
 	"github.com/mr-tron/base58"
 	"github.com/sonr-io/multi-party-sig/pkg/party"
@@ -18,7 +17,6 @@ import (
 	"github.com/sonr-io/sonr/pkg/host"
 	"github.com/sonr-io/sonr/pkg/logger"
 	dp "github.com/sonr-io/sonr/pkg/motor/x/discover"
-	"github.com/sonr-io/sonr/pkg/tx"
 	"github.com/sonr-io/sonr/third_party/types/common"
 	mt "github.com/sonr-io/sonr/third_party/types/motor/api/v1"
 )
@@ -63,7 +61,7 @@ type motorNodeImpl struct {
 	logLevel string
 }
 
-func EmptyMotor(r *mt.InitializeRequest, cb common.MotorCallback) (*motorNodeImpl, error) {
+func EmptyMotor(r *mt.InitializeRequest, cb common.MotorCallback) (MotorNode, error) {
 	if r.GetDeviceId() == "" {
 		return nil, fmt.Errorf("DeviceID is required to initialize motor node")
 	}
@@ -94,6 +92,7 @@ func initMotor(mtr *motorNodeImpl, options ...mpc.WalletOption) (err error) {
 	if err != nil {
 		return err
 	}
+	mtr.Cosmos.SetWallet(mtr.Wallet)
 
 	mtr.sh = shell.NewShell(mtr.Cosmos.GetIPFSApiAddress())
 	mtr.Resources = newMotorResources(mtr.Cosmos, mtr.sh)
@@ -189,7 +188,7 @@ func (m *motorNodeImpl) GetHost() host.SonrHost {
 
 // Checking the balance of the wallet.
 func (m *motorNodeImpl) GetBalance() int64 {
-	cs, err := m.Cosmos.CheckBalance(m.Address)
+	cs, err := m.Cosmos.GetBalance(m.Address)
 	if err != nil {
 		return 0
 	}
@@ -258,19 +257,4 @@ func (w *motorNodeImpl) AddCredentialVerificationMethod(id string, cred *did.Cre
 	}
 
 	return nil
-}
-
-func (w *motorNodeImpl) SendTx(routeUrl string, msg sdk.Msg) ([]byte, error) {
-	cleanMsgRoute := strings.TrimLeft(routeUrl, "/")
-	typeUrl := fmt.Sprintf("/sonrio.sonr.%s", cleanMsgRoute)
-	txRaw, err := tx.SignTxWithWallet(w.Wallet, typeUrl, msg)
-	if err != nil {
-		return nil, fmt.Errorf("failed to sign tx (%s) with wallet: %s", typeUrl, err)
-	}
-
-	resp, err := w.Cosmos.BroadcastTx(txRaw)
-	if err != nil {
-		return nil, fmt.Errorf("failed to broadcast tx (%s): %s", typeUrl, err)
-	}
-	return resp.GetTxResponse().Marshal()
 }

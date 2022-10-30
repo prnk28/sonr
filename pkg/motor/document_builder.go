@@ -14,7 +14,9 @@ import (
 )
 
 func (mtr *motorNodeImpl) NewDocumentBuilder(did string) (*document.DocumentBuilder, error) {
-	whatIsResp, err := mtr.QueryWhatIsByDid(did)
+	whatIsResp, err := mtr.GetClient().QueryWhatIsByDid(&st.QueryWhatIsByDidRequest{
+		Did: did,
+	})
 	if err != nil {
 		return nil, fmt.Errorf("could not find WhatIs with did '%s': %s", did, err)
 	}
@@ -41,7 +43,9 @@ func (mtr *motorNodeImpl) GetDocument(req mt.GetDocumentRequest) (*mt.GetDocumen
 		return nil, fmt.Errorf("could not get schema did from DAG")
 	}
 
-	schemaRes, err := mtr.QueryWhatIsByDid(schemaDid)
+	schemaRes, err := mtr.GetClient().QueryWhatIsByDid(&st.QueryWhatIsByDidRequest{
+		Did: schemaDid,
+	})
 	if err != nil {
 		return nil, fmt.Errorf("fetch WhatIs: %s", err)
 	}
@@ -146,4 +150,10 @@ func normalizeDocument(schema id.Schema, doc map[string]interface{}) (map[string
 	}
 
 	return result, nil
+}
+
+func (mtr *motorNodeImpl) queryDocument(cid string) (map[string]interface{}, error) {
+	var dag map[string]interface{}
+	err := mtr.sh.DagGet(cid, &dag)
+	return dag, err
 }

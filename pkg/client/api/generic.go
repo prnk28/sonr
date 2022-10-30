@@ -1,4 +1,4 @@
-package client
+package api
 
 import (
 	"context"
@@ -12,10 +12,10 @@ import (
 )
 
 // BroadcastTx broadcasts a transaction on the Sonr blockchain network
-func (c *Client) BroadcastTx(txRawBytes []byte) (*txtypes.BroadcastTxResponse, error) {
+func BroadcastTx(rpcAddr string, txRawBytes []byte) (*txtypes.BroadcastTxResponse, error) {
 	// Create a connection to the gRPC server.
 	grpcConn, err := grpc.Dial(
-		c.GetRPCAddress(),   // Or your gRPC server address.
+		rpcAddr,   // Or your gRPC server address.
 		grpc.WithInsecure(), // The Cosmos SDK doesn't support any transport security mechanism.
 	)
 	if err != nil {
@@ -48,10 +48,10 @@ func (c *Client) BroadcastTx(txRawBytes []byte) (*txtypes.BroadcastTxResponse, e
 }
 
 // SimulateTx simulates a transaction on the Sonr blockchain network
-func (c *Client) SimulateTx(txRawBytes []byte) (*txtypes.SimulateResponse, error) {
+func  SimulateTx(rpcAddr string, txRawBytes []byte) (*txtypes.SimulateResponse, error) {
 	// Create a connection to the gRPC server.
 	grpcConn, err := grpc.Dial(
-		c.GetRPCAddress(),   // Or your gRPC server address.
+		rpcAddr,   // Or your gRPC server address.
 		grpc.WithInsecure(), // The Cosmos SDK doesn't support any transport security mechanism.
 	)
 	if err != nil {
@@ -75,8 +75,8 @@ func (c *Client) SimulateTx(txRawBytes []byte) (*txtypes.SimulateResponse, error
 	return grpcRes, nil
 }
 
-func DecodeTxResponseData(d string, v proto.Unmarshaler) error {
-	data, err := hex.DecodeString(d)
+func DecodeTxResponseData(resp *txtypes.BroadcastTxResponse, v proto.Unmarshaler) error {
+	data, err := hex.DecodeString(resp.TxResponse.Data)
 	if err != nil {
 		return err
 	}

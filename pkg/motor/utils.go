@@ -29,12 +29,14 @@ func (mtr *motorNodeImpl) fetchBucketConfig(bucket *bt.BucketConfig, uuid, creat
 	}
 
 	if creator != "" && name != "" {
-		configs, err := mtr.Cosmos.QueryBucketsByCreator(creator)
+		resp, err := mtr.Cosmos.QueryBucketByCreator(&bt.QueryGetBucketByCreatorRequest{
+			Creator: creator,
+		})
 		if err != nil {
 			return nil, err
 		}
 
-		for _, config := range configs {
+		for _, config := range resp.Buckets {
 			if config.Name == name {
 				return &config, nil
 			}
@@ -42,11 +44,13 @@ func (mtr *motorNodeImpl) fetchBucketConfig(bucket *bt.BucketConfig, uuid, creat
 	}
 
 	if uuid != "" {
-		config, err := mtr.Cosmos.QueryBucket(uuid)
+		resp, err := mtr.Cosmos.QueryBucket(&bt.QueryGetBucketRequest{
+			Uuid: uuid,
+		})
 		if err != nil {
 			return nil, err
 		}
-		return config, nil
+		return &resp.Bucket, nil
 	}
 	return nil, fmt.Errorf("no bucket config found")
 }
