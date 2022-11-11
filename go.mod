@@ -3,7 +3,6 @@ module github.com/sonr-io/sonr
 go 1.17
 
 require (
-	cosmossdk.io/math v1.0.0-beta.3
 	github.com/99designs/keyring v1.1.6
 	github.com/CosmWasm/wasmd v0.28.0
 	github.com/cosmos/cosmos-sdk v0.45.5

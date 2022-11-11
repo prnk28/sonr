@@ -36,6 +36,12 @@ bind.tar:
 	TAR_COMPRESS=true && sh $(SCRIPTS_DIR)/bind.sh -i
 	TAR_COMPRESS=true && sh $(SCRIPTS_DIR)/bind.sh -w
 
+## build       :   Builds Blockchain Node for Sonr
+build:
+	env GOOS=linux GOARCH=amd64 go build -o ./build/sonr_linux_amd64 ./cmd/sonrd/main.go
+	env GOOS=linux GOARCH=arm64 go build -o ./build/sonr_linux_arm64 ./cmd/sonrd/main.go
+	env GOOS=darwin GOARCH=arm64 go build -o ./build/sonr_darwin_amd64 ./cmd/sonrd/main.go
+
 ## proto       :   Compiles Go Proto Files and pushes to Buf.Build
 proto: proto.go proto.buf
 
