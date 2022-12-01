@@ -1,0 +1,62 @@
+{
+  "name": "Sonr",
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg"
+  },
+  "favicon": "/favicon.png",
+  "colors": {
+    "primary": "#AB1CFC",
+    "light": "#C854FF",
+    "dark": "#9015D9",
+    "ultraLight": "#F8EEFE",
+    "ultraDark": "#6A06A5",
+    "background": {
+      "dark": "#121212"
+    },
+    "anchors": {
+      "from": "#7C34FF",
+      "to": "#FE9195"
+    }
+  },
+  "topbarCtaButton": {
+    "type": "github",
+    "url": "https://snr.la/gh-sonr"
+  },
+  "anchors": [
+    {
+      "name": "Discord",
+      "icon": "discord",
+      "url": "https://snr.la/dev-chat"
+    },
+    {
+      "name": "GitHub",
+      "icon": "github",
+      "url": "https://snr.la/gh"
+    }
+  ],
+  "navigation": [
+    {
+      "group": "Introduction",
+      "pages": [
+        "introduction/about",
+        "introduction/concepts",
+        "introduction/install"
+      ]
+    },
+    {
+      "group": "Modules",
+      "pages": [
+        "modules/registry",
+        "modules/schemas",
+        "modules/documents",
+        "modules/buckets"
+      ]
+    }
+  ],
+  "footerSocials": {
+    "discord": "https://snr.la/dev-chat",
+    "github": "https://snr.la/gh-sonr"
+  },
+  "backgroundImage": "/images/lightbackground.png"
+}
