@@ -1,8 +1,9 @@
 swagger: '2.0'
 info:
-  title: HTTP API Console
-  name: ''
-  description: ''
+  title: Sonr API
+  description: 'Reference for the Sonr Blockchain API'
+  version: v0.2.0
+
 paths:
   /cosmos/auth/v1beta1/accounts:
     get:
@@ -459,7 +460,9 @@ paths:
           required: false
           type: boolean
       tags:
-        - Query
+        - Cosmos
+          - Auth
+            - Query
   /cosmos/auth/v1beta1/accounts/{address}:
     get:
       summary: Account returns account details based on address.
@@ -834,7 +837,9 @@ paths:
           required: true
           type: string
       tags:
-        - Query
+        - Cosmos
+          - Auth
+            - Query
   /cosmos/auth/v1beta1/address_by_id/{id}:
     get:
       summary: AccountAddressByID returns account address based on account number.
@@ -1048,7 +1053,9 @@ paths:
           type: string
           format: int64
       tags:
-        - Query
+        - Cosmos
+          - Auth
+            - Query
   /cosmos/auth/v1beta1/bech32:
     get:
       summary: Bech32Prefix queries bech32Prefix
@@ -1254,7 +1261,9 @@ paths:
                           "value": "1.212s"
                         }
       tags:
-        - Query
+        - Cosmos
+          - Auth
+            - Query
   /cosmos/auth/v1beta1/bech32/{address_bytes}:
     get:
       summary: AddressBytesToString converts Account Address bytes to string
@@ -1466,219 +1475,9 @@ paths:
           type: string
           format: byte
       tags:
-        - Query
-  /cosmos/auth/v1beta1/bech32/{address_string}:
-    get:
-      summary: AddressStringToBytes converts Address string to bytes
-      description: 'Since: cosmos-sdk 0.46'
-      operationId: CosmosAuthV1Beta1AddressStringToBytes
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-            properties:
-              address_bytes:
-                type: string
-                format: byte
-            description: >-
-              AddressStringToBytesResponse is the response type for AddressBytes
-              rpc method.
-
-
-              Since: cosmos-sdk 0.46
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                      description: >-
-                        A URL/resource name that uniquely identifies the type of
-                        the serialized
-
-                        protocol buffer message. This string must contain at
-                        least
-
-                        one "/" character. The last segment of the URL's path
-                        must represent
-
-                        the fully qualified name of the type (as in
-
-                        `path/google.protobuf.Duration`). The name should be in
-                        a canonical form
-
-                        (e.g., leading "." is not accepted).
-
-
-                        In practice, teams usually precompile into the binary
-                        all types that they
-
-                        expect it to use in the context of Any. However, for
-                        URLs which use the
-
-                        scheme `http`, `https`, or no scheme, one can optionally
-                        set up a type
-
-                        server that maps type URLs to message definitions as
-                        follows:
-
-
-                        * If no scheme is provided, `https` is assumed.
-
-                        * An HTTP GET on the URL must yield a
-                        [google.protobuf.Type][]
-                          value in binary format, or produce an error.
-                        * Applications are allowed to cache lookup results based
-                        on the
-                          URL, or have them precompiled into a binary to avoid any
-                          lookup. Therefore, binary compatibility needs to be preserved
-                          on changes to types. (Use versioned type names to manage
-                          breaking changes.)
-
-                        Note: this functionality is not currently available in
-                        the official
-
-                        protobuf release, and it is not used for type URLs
-                        beginning with
-
-                        type.googleapis.com.
-
-
-                        Schemes other than `http`, `https` (or the empty scheme)
-                        might be
-
-                        used with implementation specific semantics.
-                  additionalProperties: {}
-                  description: >-
-                    `Any` contains an arbitrary serialized protocol buffer
-                    message along with a
-
-                    URL that describes the type of the serialized message.
-
-
-                    Protobuf library provides support to pack/unpack Any values
-                    in the form
-
-                    of utility functions or additional generated methods of the
-                    Any type.
-
-
-                    Example 1: Pack and unpack a message in C++.
-
-                        Foo foo = ...;
-                        Any any;
-                        any.PackFrom(foo);
-                        ...
-                        if (any.UnpackTo(&foo)) {
-                          ...
-                        }
-
-                    Example 2: Pack and unpack a message in Java.
-
-                        Foo foo = ...;
-                        Any any = Any.pack(foo);
-                        ...
-                        if (any.is(Foo.class)) {
-                          foo = any.unpack(Foo.class);
-                        }
-
-                     Example 3: Pack and unpack a message in Python.
-
-                        foo = Foo(...)
-                        any = Any()
-                        any.Pack(foo)
-                        ...
-                        if any.Is(Foo.DESCRIPTOR):
-                          any.Unpack(foo)
-                          ...
-
-                     Example 4: Pack and unpack a message in Go
-
-                         foo := &pb.Foo{...}
-                         any, err := anypb.New(foo)
-                         if err != nil {
-                           ...
-                         }
-                         ...
-                         foo := &pb.Foo{}
-                         if err := any.UnmarshalTo(foo); err != nil {
-                           ...
-                         }
-
-                    The pack methods provided by protobuf library will by
-                    default use
-
-                    'type.googleapis.com/full.type.name' as the type URL and the
-                    unpack
-
-                    methods only use the fully qualified type name after the
-                    last '/'
-
-                    in the type URL, for example "foo.bar.com/x/y.z" will yield
-                    type
-
-                    name "y.z".
-
-
-
-                    JSON
-
-                    ====
-
-                    The JSON representation of an `Any` value uses the regular
-
-                    representation of the deserialized, embedded message, with
-                    an
-
-                    additional field `@type` which contains the type URL.
-                    Example:
-
-                        package google.profile;
-                        message Person {
-                          string first_name = 1;
-                          string last_name = 2;
-                        }
-
-                        {
-                          "@type": "type.googleapis.com/google.profile.Person",
-                          "firstName": <string>,
-                          "lastName": <string>
-                        }
-
-                    If the embedded message type is well-known and has a custom
-                    JSON
-
-                    representation, that representation will be embedded adding
-                    a field
-
-                    `value` which holds the custom JSON in addition to the
-                    `@type`
-
-                    field. Example (for message [google.protobuf.Duration][]):
-
-                        {
-                          "@type": "type.googleapis.com/google.protobuf.Duration",
-                          "value": "1.212s"
-                        }
-      parameters:
-        - name: address_string
-          in: path
-          required: true
-          type: string
-      tags:
-        - Query
+        - Cosmos
+          - Auth
+            - Query
   /cosmos/auth/v1beta1/module_accounts:
     get:
       summary: ModuleAccounts returns all the existing module accounts.
@@ -2057,7 +1856,9 @@ paths:
                           "value": "1.212s"
                         }
       tags:
-        - Query
+        - Cosmos
+          - Auth
+            - Query
   /cosmos/auth/v1beta1/params:
     get:
       summary: Params queries all parameters.
@@ -2276,7 +2077,9 @@ paths:
                           "value": "1.212s"
                         }
       tags:
-        - Query
+        - Cosmos
+          - Auth
+            - Query
   /cosmos/authz/v1beta1/grants:
     get:
       summary: Returns list of `Authorization`, granted to the grantee by the granter.
@@ -2764,7 +2567,9 @@ paths:
           required: false
           type: boolean
       tags:
-        - Query
+        - Cosmos
+          - Authz
+            - Query
   /cosmos/authz/v1beta1/grants/grantee/{grantee}:
     get:
       summary: GranteeGrants returns a list of `GrantAuthorization` by grantee.
@@ -3238,7 +3043,9 @@ paths:
           required: false
           type: boolean
       tags:
-        - Query
+        - Cosmos
+          - Authz
+            - Query
   /cosmos/authz/v1beta1/grants/granter/{granter}:
     get:
       summary: GranterGrants returns list of `GrantAuthorization`, granted by granter.
@@ -3712,7 +3519,9 @@ paths:
           required: false
           type: boolean
       tags:
-        - Query
+        - Cosmos
+          - Authz
+            - Query
   /cosmos/bank/v1beta1/balances/{address}:
     get:
       summary: AllBalances queries the balance of all coins for a single account.
@@ -3846,7 +3655,9 @@ paths:
           required: false
           type: boolean
       tags:
-        - Query
+        - Cosmos
+          - Bank
+            - Query
   /cosmos/bank/v1beta1/balances/{address}/by_denom:
     get:
       summary: Balance queries the balance of a single coin for a single account.
@@ -3905,7 +3716,9 @@ paths:
           required: false
           type: string
       tags:
-        - Query
+        - Cosmos
+          - Bank
+            - Query
   /cosmos/bank/v1beta1/denom_owners/{denom}:
     get:
       summary: >-
@@ -4065,7 +3878,9 @@ paths:
           required: false
           type: boolean
       tags:
-        - Query
+        - Cosmos
+          - Bank
+            - Query
   /cosmos/bank/v1beta1/denoms_metadata:
     get:
       summary: |-
@@ -4272,7 +4087,9 @@ paths:
           required: false
           type: boolean
       tags:
-        - Query
+        - Cosmos
+          - Bank
+            - Query
   /cosmos/bank/v1beta1/denoms_metadata/{denom}:
     get:
       summary: DenomsMetadata queries the client metadata of a given coin denomination.
@@ -4402,7 +4219,9 @@ paths:
           required: true
           type: string
       tags:
-        - Query
+        - Cosmos
+          - Bank
+            - Query
   /cosmos/bank/v1beta1/params:
     get:
       summary: Params queries the parameters of x/bank module.
@@ -4455,7 +4274,9 @@ paths:
                       type: string
                   additionalProperties: {}
       tags:
-        - Query
+        - Cosmos
+          - Bank
+            - Query
   /cosmos/bank/v1beta1/spendable_balances/{address}:
     get:
       summary: |-
@@ -4595,7 +4416,9 @@ paths:
           required: false
           type: boolean
       tags:
-        - Query
+        - Cosmos
+          - Bank
+            - Query
   /cosmos/bank/v1beta1/supply:
     get:
       summary: TotalSupply queries the total supply of all coins.
@@ -4727,7 +4550,9 @@ paths:
           required: false
           type: boolean
       tags:
-        - Query
+        - Cosmos
+          - Bank
+            - Query
   /cosmos/bank/v1beta1/supply/by_denom:
     get:
       summary: SupplyOf queries the supply of a single coin.
@@ -4781,7 +4606,9 @@ paths:
           required: false
           type: string
       tags:
-        - Query
+        - Cosmos
+          - Bank
+            - Query
   /cosmos/base/tendermint/v1beta1/abci_query:
     get:
       summary: >-
@@ -5076,7 +4903,9 @@ paths:
           required: false
           type: boolean
       tags:
-        - Service
+        - Tendermint
+          - Base
+            - Service
   /cosmos/base/tendermint/v1beta1/blocks/latest:
     get:
       summary: GetLatestBlock returns the latest block.
@@ -6437,7 +6266,9 @@ paths:
                           "value": "1.212s"
                         }
       tags:
-        - Service
+        - Tendermint
+          - Base
+            - Service
   /cosmos/base/tendermint/v1beta1/blocks/{height}:
     get:
       summary: GetBlockByHeight queries block for given height.
@@ -7804,7 +7635,9 @@ paths:
           type: string
           format: int64
       tags:
-        - Service
+        - Tendermint
+          - Base
+            - Service
   /cosmos/base/tendermint/v1beta1/node_info:
     get:
       summary: GetNodeInfo queries the current node info.
@@ -8075,7 +7908,9 @@ paths:
                           "value": "1.212s"
                         }
       tags:
-        - Service
+        - Tendermint
+          - Base
+            - Service
   /cosmos/base/tendermint/v1beta1/syncing:
     get:
       summary: GetSyncing queries node syncing.
@@ -8277,7 +8112,9 @@ paths:
                           "value": "1.212s"
                         }
       tags:
-        - Service
+        - Tendermint
+          - Base
+            - Service
   /cosmos/base/tendermint/v1beta1/validatorsets/latest:
     get:
       summary: GetLatestValidatorSet queries latest validator-set.
@@ -8745,7 +8582,9 @@ paths:
           required: false
           type: boolean
       tags:
-        - Service
+        - Tendermint
+          - Base
+            - Service
   /cosmos/base/tendermint/v1beta1/validatorsets/{height}:
     get:
       summary: GetValidatorSetByHeight queries validator-set at a given height.
@@ -9218,7 +9057,9 @@ paths:
           required: false
           type: boolean
       tags:
-        - Service
+        - Tendermint
+          - Base
+            - Service
   /cosmos/distribution/v1beta1/community_pool:
     get:
       summary: CommunityPool queries the community pool coins.
@@ -9272,7 +9113,9 @@ paths:
                       type: string
                   additionalProperties: {}
       tags:
-        - Query
+        - Cosmos
+          - Distribution
+            - Query
   /cosmos/distribution/v1beta1/delegators/{delegator_address}/rewards:
     get:
       summary: |-
@@ -9361,7 +9204,9 @@ paths:
           required: true
           type: string
       tags:
-        - Query
+        - Cosmos
+          - Distribution
+            - Query
   /cosmos/distribution/v1beta1/delegators/{delegator_address}/rewards/{validator_address}:
     get:
       summary: DelegationRewards queries the total rewards accrued by a delegation.
@@ -9424,7 +9269,9 @@ paths:
           required: true
           type: string
       tags:
-        - Query
+        - Cosmos
+          - Distribution
+            - Query
   /cosmos/distribution/v1beta1/delegators/{delegator_address}/validators:
     get:
       summary: DelegatorValidators queries the validators of a delegator.
@@ -9470,7 +9317,9 @@ paths:
           required: true
           type: string
       tags:
-        - Query
+        - Cosmos
+          - Distribution
+            - Query
   /cosmos/distribution/v1beta1/delegators/{delegator_address}/withdraw_address:
     get:
       summary: DelegatorWithdrawAddress queries withdraw address of a delegator.
@@ -9512,7 +9361,9 @@ paths:
           required: true
           type: string
       tags:
-        - Query
+        - Cosmos
+          - Distribution
+            - Query
   /cosmos/distribution/v1beta1/params:
     get:
       summary: Params queries params of the distribution module.
@@ -9557,7 +9408,9 @@ paths:
                       type: string
                   additionalProperties: {}
       tags:
-        - Query
+        - Cosmos
+          - Distribution
+            - Query
   /cosmos/distribution/v1beta1/validators/{validator_address}/commission:
     get:
       summary: ValidatorCommission queries accumulated commission for a validator.
@@ -9618,7 +9471,9 @@ paths:
           required: true
           type: string
       tags:
-        - Query
+        - Cosmos
+          - Distribution
+            - Query
   /cosmos/distribution/v1beta1/validators/{validator_address}/outstanding_rewards:
     get:
       summary: ValidatorOutstandingRewards queries rewards of a validator address.
@@ -9686,7 +9541,9 @@ paths:
           required: true
           type: string
       tags:
-        - Query
+        - Cosmos
+          - Distribution
+            - Query
   /cosmos/distribution/v1beta1/validators/{validator_address}/slashes:
     get:
       summary: ValidatorSlashes queries slash events of a validator.
@@ -9837,7 +9694,9 @@ paths:
           required: false
           type: boolean
       tags:
-        - Query
+        - Cosmos
+          - Distribution
+            - Query
   /cosmos/evidence/v1beta1/evidence:
     get:
       summary: AllEvidence queries all evidence.
@@ -10291,7 +10150,9 @@ paths:
           required: false
           type: boolean
       tags:
-        - Query
+        - Cosmos
+          - Evidence
+            - Query
   /cosmos/evidence/v1beta1/evidence/{evidence_hash}:
     get:
       summary: Evidence queries evidence based on evidence hash.
@@ -10667,7 +10528,9 @@ paths:
           type: string
           format: byte
       tags:
-        - Query
+        - Cosmos
+          - Evidence
+            - Query
   /cosmos/feegrant/v1beta1/allowance/{granter}/{grantee}:
     get:
       summary: Allowance returns fee granted to the grantee by the granter.
@@ -10964,7 +10827,9 @@ paths:
           required: true
           type: string
       tags:
-        - Query
+        - Cosmos
+          - Feegrant
+            - Query
   /cosmos/feegrant/v1beta1/allowances/{grantee}:
     get:
       summary: Allowances returns all the grants for address.
@@ -11328,7 +11193,9 @@ paths:
           required: false
           type: boolean
       tags:
-        - Query
+        - Cosmos
+          - Feegrant
+            - Query
   /cosmos/feegrant/v1beta1/issued/{granter}:
     get:
       summary: AllowancesByGranter returns all the grants given by an address
@@ -11696,7 +11563,9 @@ paths:
           required: false
           type: boolean
       tags:
-        - Query
+        - Cosmos
+          - Feegrant
+            - Query
   /cosmos/gov/v1/params/{params_type}:
     get:
       summary: Params queries all parameters of the gov module.
@@ -11962,7 +11831,9 @@ paths:
           required: true
           type: string
       tags:
-        - Query
+        - Cosmos
+          - Gov
+            - Query
   /cosmos/gov/v1/proposals:
     get:
       summary: Proposals queries all proposals based on given status.
@@ -12543,7 +12414,9 @@ paths:
           required: false
           type: boolean
       tags:
-        - Query
+        - Cosmos
+          - Gov
+            - Query
   /cosmos/gov/v1/proposals/{proposal_id}:
     get:
       summary: Proposal queries proposal details based on ProposalID.
@@ -13014,7 +12887,9 @@ paths:
           type: string
           format: uint64
       tags:
-        - Query
+        - Cosmos
+          - Gov
+            - Query
   /cosmos/gov/v1/proposals/{proposal_id}/deposits:
     get:
       summary: Deposits queries all deposits of a single proposal.
@@ -13329,7 +13204,9 @@ paths:
           required: false
           type: boolean
       tags:
-        - Query
+        - Cosmos
+          - Gov
+            - Query
   /cosmos/gov/v1/proposals/{proposal_id}/deposits/{depositor}:
     get:
       summary: >-
@@ -13573,7 +13450,9 @@ paths:
           required: true
           type: string
       tags:
-        - Query
+        - Cosmos
+          - Gov
+            - Query
   /cosmos/gov/v1/proposals/{proposal_id}/tally:
     get:
       summary: TallyResult queries the tally of a proposal vote.
@@ -13792,7 +13671,9 @@ paths:
           type: string
           format: uint64
       tags:
-        - Query
+        - Cosmos
+          - Gov
+            - Query
   /cosmos/gov/v1/proposals/{proposal_id}/votes:
     get:
       summary: Votes queries votes of a given proposal.
@@ -14123,7 +14004,9 @@ paths:
           required: false
           type: boolean
       tags:
-        - Query
+        - Cosmos
+          - Gov
+            - Query
   /cosmos/gov/v1/proposals/{proposal_id}/votes/{voter}:
     get:
       summary: Vote queries voted information based on proposalID, voterAddr.
@@ -14381,7 +14264,9 @@ paths:
           required: true
           type: string
       tags:
-        - Query
+        - Cosmos
+          - Gov
+            - Query
   /cosmos/gov/v1beta1/params/{params_type}:
     get:
       summary: Params queries all parameters of the gov module.
@@ -14650,7 +14535,9 @@ paths:
           required: true
           type: string
       tags:
-        - Query
+        - Cosmos
+          - Gov
+            - Query
   /cosmos/gov/v1beta1/proposals:
     get:
       summary: Proposals queries all proposals based on given status.
@@ -15224,7 +15111,9 @@ paths:
           required: false
           type: boolean
       tags:
-        - Query
+        - Cosmos
+          - Gov
+            - Query
   /cosmos/gov/v1beta1/proposals/{proposal_id}:
     get:
       summary: Proposal queries proposal details based on ProposalID.
@@ -15686,7 +15575,9 @@ paths:
           type: string
           format: uint64
       tags:
-        - Query
+        - Cosmos
+          - Gov
+            - Query
   /cosmos/gov/v1beta1/proposals/{proposal_id}/deposits:
     get:
       summary: Deposits queries all deposits of a single proposal.
@@ -16001,7 +15892,9 @@ paths:
           required: false
           type: boolean
       tags:
-        - Query
+        - Cosmos
+          - Gov
+            - Query
   /cosmos/gov/v1beta1/proposals/{proposal_id}/deposits/{depositor}:
     get:
       summary: >-
@@ -16245,7 +16138,9 @@ paths:
           required: true
           type: string
       tags:
-        - Query
+        - Cosmos
+          - Gov
+            - Query
   /cosmos/gov/v1beta1/proposals/{proposal_id}/tally:
     get:
       summary: TallyResult queries the tally of a proposal vote.
@@ -16464,7 +16359,9 @@ paths:
           type: string
           format: uint64
       tags:
-        - Query
+        - Cosmos
+          - Gov
+            - Query
   /cosmos/gov/v1beta1/proposals/{proposal_id}/votes:
     get:
       summary: Votes queries votes of a given proposal.
@@ -16812,7 +16709,9 @@ paths:
           required: false
           type: boolean
       tags:
-        - Query
+        - Cosmos
+          - Gov
+            - Query
   /cosmos/gov/v1beta1/proposals/{proposal_id}/votes/{voter}:
     get:
       summary: Vote queries voted information based on proposalID, voterAddr.
@@ -17087,7 +16986,9 @@ paths:
           required: true
           type: string
       tags:
-        - Query
+        - Cosmos
+          - Gov
+            - Query
   /cosmos/group/v1/group_info/{group_id}:
     get:
       summary: GroupInfo queries group info based on group id.
@@ -17332,7 +17233,9 @@ paths:
           type: string
           format: uint64
       tags:
-        - Query
+        - Cosmos
+          - Group
+            - Query
   /cosmos/group/v1/group_members/{group_id}:
     get:
       summary: GroupMembers queries members of a group
@@ -17650,7 +17553,9 @@ paths:
           required: false
           type: boolean
       tags:
-        - Query
+        - Cosmos
+          - Group
+            - Query
   /cosmos/group/v1/group_policies_by_admin/{admin}:
     get:
       summary: GroupsByAdmin queries group policies by admin address.
@@ -18146,7 +18051,9 @@ paths:
           required: false
           type: boolean
       tags:
-        - Query
+        - Cosmos
+          - Group
+            - Query
   /cosmos/group/v1/group_policies_by_group/{group_id}:
     get:
       summary: GroupPoliciesByGroup queries group policies by group id.
@@ -18643,7 +18550,9 @@ paths:
           required: false
           type: boolean
       tags:
-        - Query
+        - Cosmos
+          - Group
+            - Query
   /cosmos/group/v1/group_policy_info/{address}:
     get:
       summary: >-
@@ -19059,7 +18968,9 @@ paths:
           required: true
           type: string
       tags:
-        - Query
+        - Cosmos
+          - Group
+            - Query
   /cosmos/group/v1/groups_by_admin/{admin}:
     get:
       summary: GroupsByAdmin queries groups by admin address.
@@ -19385,7 +19296,9 @@ paths:
           required: false
           type: boolean
       tags:
-        - Query
+        - Cosmos
+          - Group
+            - Query
   /cosmos/group/v1/groups_by_member/{address}:
     get:
       summary: GroupsByMember queries groups by member address.
@@ -19711,7 +19624,9 @@ paths:
           required: false
           type: boolean
       tags:
-        - Query
+        - Cosmos
+          - Group
+            - Query
   /cosmos/group/v1/proposal/{proposal_id}:
     get:
       summary: Proposal queries a proposal based on proposal id.
@@ -20213,7 +20128,9 @@ paths:
           type: string
           format: uint64
       tags:
-        - Query
+        - Cosmos
+          - Group
+            - Query
   /cosmos/group/v1/proposals/{proposal_id}/tally:
     get:
       summary: >-
@@ -20444,7 +20361,9 @@ paths:
           type: string
           format: uint64
       tags:
-        - Query
+        - Cosmos
+          - Group
+            - Query
   /cosmos/group/v1/proposals_by_group_policy/{address}:
     get:
       summary: >-
@@ -21039,7 +20958,9 @@ paths:
           required: false
           type: boolean
       tags:
-        - Query
+        - Cosmos
+          - Group
+            - Query
   /cosmos/group/v1/vote_by_proposal_voter/{proposal_id}/{voter}:
     get:
       summary: VoteByProposalVoter queries a vote by proposal id and voter.
@@ -21281,7 +21202,9 @@ paths:
           required: true
           type: string
       tags:
-        - Query
+        - Cosmos
+          - Group
+            - Query
   /cosmos/group/v1/votes_by_proposal/{proposal_id}:
     get:
       summary: VotesByProposal queries a vote by proposal.
@@ -21598,7 +21521,9 @@ paths:
           required: false
           type: boolean
       tags:
-        - Query
+        - Cosmos
+          - Group
+            - Query
   /cosmos/group/v1/votes_by_voter/{voter}:
     get:
       summary: VotesByVoter queries a vote by voter.
@@ -21912,7 +21837,9 @@ paths:
           required: false
           type: boolean
       tags:
-        - Query
+        - Cosmos
+          - Group
+            - Query
   /cosmos/mint/v1beta1/annual_provisions:
     get:
       summary: AnnualProvisions current minting annual provisions value.
@@ -21951,7 +21878,9 @@ paths:
                       type: string
                   additionalProperties: {}
       tags:
-        - Query
+        - Cosmos
+          - Mint
+            - Query
   /cosmos/mint/v1beta1/inflation:
     get:
       summary: Inflation returns the current minting inflation value.
@@ -21990,7 +21919,9 @@ paths:
                       type: string
                   additionalProperties: {}
       tags:
-        - Query
+        - Cosmos
+          - Mint
+            - Query
   /cosmos/mint/v1beta1/params:
     get:
       summary: Params returns the total set of minting parameters.
@@ -22046,7 +21977,9 @@ paths:
                       type: string
                   additionalProperties: {}
       tags:
-        - Query
+        - Cosmos
+          - Mint
+            - Query
   /cosmos/nft/v1beta1/balance/{owner}/{class_id}:
     get:
       summary: >-
@@ -22260,7 +22193,9 @@ paths:
           required: true
           type: string
       tags:
-        - Query
+        - Cosmos
+          - NFT
+            - Query
   /cosmos/nft/v1beta1/classes:
     get:
       summary: Classes queries all NFT classes
@@ -22761,7 +22696,9 @@ paths:
           required: false
           type: boolean
       tags:
-        - Query
+        - Cosmos
+          - NFT
+            - Query
   /cosmos/nft/v1beta1/classes/{class_id}:
     get:
       summary: Class queries an NFT class based on its id
@@ -23176,7 +23113,9 @@ paths:
           required: true
           type: string
       tags:
-        - Query
+        - Cosmos
+          - NFT
+            - Query
   /cosmos/nft/v1beta1/nfts:
     get:
       summary: >-
@@ -23669,7 +23608,9 @@ paths:
           required: false
           type: boolean
       tags:
-        - Query
+        - Cosmos
+          - NFT
+            - Query
   /cosmos/nft/v1beta1/nfts/{class_id}/{id}:
     get:
       summary: NFT queries an NFT based on its class and id.
@@ -24068,7 +24009,9 @@ paths:
           required: true
           type: string
       tags:
-        - Query
+        - Cosmos
+          - NFT
+            - Query
   /cosmos/nft/v1beta1/owner/{class_id}/{id}:
     get:
       summary: >-
@@ -24281,7 +24224,9 @@ paths:
           required: true
           type: string
       tags:
-        - Query
+        - Cosmos
+          - NFT
+            - Query
   /cosmos/nft/v1beta1/supply/{class_id}:
     get:
       summary: >-
@@ -24491,7 +24436,9 @@ paths:
           required: true
           type: string
       tags:
-        - Query
+        - Cosmos
+          - NFT
+            - Query
   /cosmos/params/v1beta1/params:
     get:
       summary: |-
@@ -24547,7 +24494,9 @@ paths:
           required: false
           type: string
       tags:
-        - Query
+        - Cosmos
+          - Params
+            - Query
   /cosmos/params/v1beta1/subspaces:
     get:
       summary: >-
@@ -24607,7 +24556,9 @@ paths:
                       type: string
                   additionalProperties: {}
       tags:
-        - Query
+        - Cosmos
+          - Params
+            - Query
   /cosmos/slashing/v1beta1/params:
     get:
       summary: Params queries the parameters of slashing module
@@ -24660,7 +24611,9 @@ paths:
                       type: string
                   additionalProperties: {}
       tags:
-        - Query
+        - Cosmos
+          - Slashing
+            - Query
   /cosmos/slashing/v1beta1/signing_infos:
     get:
       summary: SigningInfos queries signing info of all validators
@@ -24833,7 +24786,9 @@ paths:
           required: false
           type: boolean
       tags:
-        - Query
+        - Cosmos
+          - Slashing
+            - Query
   /cosmos/slashing/v1beta1/signing_infos/{cons_address}:
     get:
       summary: SigningInfo queries the signing info of given cons address
@@ -24927,7 +24882,9 @@ paths:
           required: true
           type: string
       tags:
-        - Query
+        - Cosmos
+          - Slashing
+            - Query
   /cosmos/staking/v1beta1/delegations/{delegator_addr}:
     get:
       summary: >-
@@ -25263,7 +25220,9 @@ paths:
           required: false
           type: boolean
       tags:
-        - Query
+        - Cosmos
+          - Staking
+            - Query
   /cosmos/staking/v1beta1/delegators/{delegator_addr}/redelegations:
     get:
       summary: Redelegations queries redelegations of given address.
@@ -25672,7 +25631,9 @@ paths:
           required: false
           type: boolean
       tags:
-        - Query
+        - Cosmos
+          - Staking
+            - Query
   /cosmos/staking/v1beta1/delegators/{delegator_addr}/unbonding_delegations:
     get:
       summary: >-
@@ -26013,7 +25974,9 @@ paths:
           required: false
           type: boolean
       tags:
-        - Query
+        - Cosmos
+          - Staking
+            - Query
   /cosmos/staking/v1beta1/delegators/{delegator_addr}/validators:
     get:
       summary: |-
@@ -26610,7 +26573,9 @@ paths:
           required: false
           type: boolean
       tags:
-        - Query
+        - Cosmos
+          - Staking
+            - Query
   /cosmos/staking/v1beta1/delegators/{delegator_addr}/validators/{validator_addr}:
     get:
       summary: |-
@@ -27131,7 +27096,9 @@ paths:
           required: true
           type: string
       tags:
-        - Query
+        - Cosmos
+          - Staking
+            - Query
   /cosmos/staking/v1beta1/historical_info/{height}:
     get:
       summary: HistoricalInfo queries the historical info for given height.
@@ -27747,7 +27714,9 @@ paths:
           type: string
           format: int64
       tags:
-        - Query
+        - Cosmos
+          - Staking
+            - Query
   /cosmos/staking/v1beta1/params:
     get:
       summary: Parameters queries the staking parameters.
@@ -27978,7 +27947,9 @@ paths:
                           "value": "1.212s"
                         }
       tags:
-        - Query
+        - Cosmos
+          - Staking
+            - Query
   /cosmos/staking/v1beta1/pool:
     get:
       summary: Pool queries the pool info.
@@ -28184,7 +28155,9 @@ paths:
                           "value": "1.212s"
                         }
       tags:
-        - Query
+        - Cosmos
+          - Staking
+            - Query
   /cosmos/staking/v1beta1/validators:
     get:
       summary: Validators queries all validators that match the given status.
@@ -28779,7 +28752,9 @@ paths:
           required: false
           type: boolean
       tags:
-        - Query
+        - Cosmos
+          - Staking
+            - Query
   /cosmos/staking/v1beta1/validators/{validator_addr}:
     get:
       summary: Validator queries validator info for given validator address.
@@ -29293,7 +29268,9 @@ paths:
           required: true
           type: string
       tags:
-        - Query
+        - Cosmos
+          - Staking
+            - Query
   /cosmos/staking/v1beta1/validators/{validator_addr}/delegations:
     get:
       summary: ValidatorDelegations queries delegate info for given validator.
@@ -29624,7 +29601,9 @@ paths:
           required: false
           type: boolean
       tags:
-        - Query
+        - Cosmos
+          - Staking
+            - Query
   /cosmos/staking/v1beta1/validators/{validator_addr}/delegations/{delegator_addr}:
     get:
       summary: Delegation queries delegate info for given validator delegator pair.
@@ -29883,7 +29862,9 @@ paths:
           required: true
           type: string
       tags:
-        - Query
+        - Cosmos
+          - Staking
+            - Query
   /cosmos/staking/v1beta1/validators/{validator_addr}/delegations/{delegator_addr}/unbonding_delegation:
     get:
       summary: |-
@@ -30148,7 +30129,9 @@ paths:
           required: true
           type: string
       tags:
-        - Query
+        - Cosmos
+          - Staking
+            - Query
   /cosmos/staking/v1beta1/validators/{validator_addr}/unbonding_delegations:
     get:
       summary: >-
@@ -30487,7 +30470,9 @@ paths:
           required: false
           type: boolean
       tags:
-        - Query
+        - Cosmos
+          - Staking
+            - Query
   /cosmos/tx/v1beta1/simulate:
     post:
       summary: Simulate simulates executing a transaction for estimating gas usage.
@@ -30953,7 +30938,9 @@ paths:
           schema:
             $ref: '#/definitions/cosmos.tx.v1beta1.SimulateRequest'
       tags:
-        - Service
+        - Cosmos
+          - Tx
+            - Service
   /cosmos/tx/v1beta1/txs:
     get:
       summary: GetTxsEvent fetches txs by event.
@@ -31245,7 +31232,9 @@ paths:
           type: string
           format: uint64
       tags:
-        - Service
+        - Cosmos
+          - Tx
+            - Service
     post:
       summary: BroadcastTx broadcast transaction.
       operationId: CosmosTxV1Beta1BroadcastTx
@@ -31805,7 +31794,9 @@ paths:
 
               RPC method.
       tags:
-        - Service
+        - Cosmos
+          - Tx
+            - Service
   /cosmos/tx/v1beta1/txs/block/{height}:
     get:
       summary: GetBlockWithTxs fetches a block with decoded txs.
@@ -32065,7 +32056,9 @@ paths:
           required: false
           type: boolean
       tags:
-        - Service
+        - Cosmos
+          - Tx
+            - Service
   /cosmos/tx/v1beta1/txs/{hash}:
     get:
       summary: GetTx fetches a tx by hash.
@@ -32267,7 +32260,9 @@ paths:
           required: true
           type: string
       tags:
-        - Service
+        - Cosmos
+          - Tx
+            - Service
   /cosmos/upgrade/v1beta1/applied_plan/{name}:
     get:
       summary: AppliedPlan queries a previously applied upgrade plan by its name.
@@ -32479,7 +32474,9 @@ paths:
           required: true
           type: string
       tags:
-        - Query
+        - Cosmos
+          - Upgrade
+            - Query
   /cosmos/upgrade/v1beta1/authority:
     get:
       summary: Returns the account with authority to conduct upgrades
@@ -32681,7 +32678,9 @@ paths:
                           "value": "1.212s"
                         }
       tags:
-        - Query
+        - Cosmos
+          - Upgrade
+            - Query
   /cosmos/upgrade/v1beta1/current_plan:
     get:
       summary: CurrentPlan queries the current upgrade plan.
@@ -33106,7 +33105,9 @@ paths:
                           "value": "1.212s"
                         }
       tags:
-        - Query
+        - Cosmos
+          - Upgrade
+            - Query
   /cosmos/upgrade/v1beta1/module_versions:
     get:
       summary: ModuleVersions queries the list of module versions from state.
@@ -33340,7 +33341,9 @@ paths:
           required: false
           type: string
       tags:
-        - Query
+        - Cosmos
+          - Upgrade
+            - Query
   /cosmos/upgrade/v1beta1/upgraded_consensus_state/{last_height}:
     get:
       summary: >-
@@ -33566,7 +33569,9 @@ paths:
           type: string
           format: int64
       tags:
-        - Query
+        - Cosmos
+          - Upgrade
+            - Query
   /ibc/apps/interchain_accounts/controller/v1/owners/{owner}/connections/{connection_id}:
     get:
       summary: >-
@@ -33612,7 +33617,9 @@ paths:
           required: true
           type: string
       tags:
-        - Query
+        - IBC
+          - Apps
+            - Query
   /ibc/apps/interchain_accounts/controller/v1/params:
     get:
       summary: Params queries all parameters of the ICA controller submodule.
@@ -33654,7 +33661,9 @@ paths:
                       type: string
                   additionalProperties: {}
       tags:
-        - Query
+        - IBC
+          - Apps
+            - Query
   /ibc/apps/interchain_accounts/host/v1/params:
     get:
       summary: Params queries all parameters of the ICA host submodule.
@@ -33701,7 +33710,9 @@ paths:
                       type: string
                   additionalProperties: {}
       tags:
-        - Query
+        - IBC
+          - Apps
+            - Query
   /ibc/apps/transfer/v1/channels/{channel_id}/ports/{port_id}/escrow_address:
     get:
       summary: >-
@@ -33917,7 +33928,9 @@ paths:
           required: true
           type: string
       tags:
-        - Query
+        - IBC
+          - Apps
+            - Query
   /ibc/apps/transfer/v1/denom_hashes/{trace}:
     get:
       summary: DenomHash queries a denomination hash information.
@@ -34128,7 +34141,9 @@ paths:
           required: true
           type: string
       tags:
-        - Query
+        - IBC
+          - Apps
+            - Query
   /ibc/apps/transfer/v1/denom_traces:
     get:
       summary: DenomTraces queries all denomination traces.
@@ -34427,7 +34442,9 @@ paths:
           required: false
           type: boolean
       tags:
-        - Query
+        - IBC
+          - Apps
+            - Query
   /ibc/apps/transfer/v1/denom_traces/{hash}:
     get:
       summary: DenomTrace queries a denomination trace information.
@@ -34655,7 +34672,9 @@ paths:
           required: true
           type: string
       tags:
-        - Query
+         - IBC
+          - Apps
+            - Query
   /ibc/apps/transfer/v1/params:
     get:
       summary: Params queries all parameters of the ibc-transfer module.
@@ -34873,7 +34892,9 @@ paths:
                           "value": "1.212s"
                         }
       tags:
-        - Query
+         - IBC
+          - Apps
+            - Query
   /ibc/core/channel/v1/channels:
     get:
       summary: Channels queries all the IBC channels of a chain.
@@ -35268,7 +35289,9 @@ paths:
           required: false
           type: boolean
       tags:
-        - Query
+        - IBC
+          - Core
+            - Query
   /ibc/core/channel/v1/channels/{channel_id}/ports/{port_id}:
     get:
       summary: Channel queries an IBC Channel.
@@ -35591,7 +35614,9 @@ paths:
           required: true
           type: string
       tags:
-        - Query
+        - IBC
+          - Core
+            - Query
   /ibc/core/channel/v1/channels/{channel_id}/ports/{port_id}/client_state:
     get:
       summary: >-
@@ -36025,7 +36050,9 @@ paths:
           required: true
           type: string
       tags:
-        - Query
+        - IBC
+          - Core
+            - Query
   /ibc/core/channel/v1/channels/{channel_id}/ports/{port_id}/consensus_state/revision/{revision_number}/height/{revision_height}:
     get:
       summary: |-
@@ -36456,7 +36483,9 @@ paths:
           type: string
           format: uint64
       tags:
-        - Query
+        - IBC
+          - Core
+            - Query
   /ibc/core/channel/v1/channels/{channel_id}/ports/{port_id}/next_sequence:
     get:
       summary: >-
@@ -36706,7 +36735,9 @@ paths:
           required: true
           type: string
       tags:
-        - Query
+        - IBC
+          - Core
+            - Query
   /ibc/core/channel/v1/channels/{channel_id}/ports/{port_id}/packet_acknowledgements:
     get:
       summary: >-
@@ -37073,7 +37104,9 @@ paths:
             format: uint64
           collectionFormat: multi
       tags:
-        - Query
+        - IBC
+          - Core
+            - Query
   /ibc/core/channel/v1/channels/{channel_id}/ports/{port_id}/packet_acks/{sequence}:
     get:
       summary: PacketAcknowledgement queries a stored packet acknowledgement hash.
@@ -37331,7 +37364,9 @@ paths:
           type: string
           format: uint64
       tags:
-        - Query
+        - IBC
+          - Core
+            - Query
   /ibc/core/channel/v1/channels/{channel_id}/ports/{port_id}/packet_commitments:
     get:
       summary: |-
@@ -37687,7 +37722,9 @@ paths:
           required: false
           type: boolean
       tags:
-        - Query
+        - IBC
+          - Core
+            - Query
   /ibc/core/channel/v1/channels/{channel_id}/ports/{port_id}/packet_commitments/{packet_ack_sequences}/unreceived_acks:
     get:
       summary: >-
@@ -37947,7 +37984,9 @@ paths:
           collectionFormat: csv
           minItems: 1
       tags:
-        - Query
+        - IBC
+          - Core
+            - Query
   /ibc/core/channel/v1/channels/{channel_id}/ports/{port_id}/packet_commitments/{packet_commitment_sequences}/unreceived_packets:
     get:
       summary: >-
@@ -38207,7 +38246,9 @@ paths:
           collectionFormat: csv
           minItems: 1
       tags:
-        - Query
+        - IBC
+          - Core
+            - Query
   /ibc/core/channel/v1/channels/{channel_id}/ports/{port_id}/packet_commitments/{sequence}:
     get:
       summary: PacketCommitment queries a stored packet commitment hash.
@@ -38466,7 +38507,9 @@ paths:
           type: string
           format: uint64
       tags:
-        - Query
+        - IBC
+          - Core
+            - Query
   /ibc/core/channel/v1/channels/{channel_id}/ports/{port_id}/packet_receipts/{sequence}:
     get:
       summary: >-
@@ -38728,7 +38771,9 @@ paths:
           type: string
           format: uint64
       tags:
-        - Query
+        - IBC
+          - Core
+            - Query
   /ibc/core/channel/v1/connections/{connection}/channels:
     get:
       summary: |-
@@ -39130,7 +39175,9 @@ paths:
           required: false
           type: boolean
       tags:
-        - Query
+        - IBC
+          - Core
+            - Query
   /ibc/client/v1/params:
     get:
       summary: ClientParams queries all parameters of the ibc client.
@@ -39343,7 +39390,9 @@ paths:
                           "value": "1.212s"
                         }
       tags:
-        - Query
+        - IBC
+          - Core
+            - Query
   /ibc/core/client/v1/client_states:
     get:
       summary: ClientStates queries all the IBC light clients of a chain.
@@ -39821,7 +39870,9 @@ paths:
           required: false
           type: boolean
       tags:
-        - Query
+        - IBC
+          - Core
+            - Query
   /ibc/core/client/v1/client_states/{client_id}:
     get:
       summary: ClientState queries an IBC light client.
@@ -40235,7 +40286,9 @@ paths:
           required: true
           type: string
       tags:
-        - Query
+        - IBC
+          - Core
+            - Query
   /ibc/core/client/v1/client_status/{client_id}:
     get:
       summary: Status queries the status of an IBC client.
@@ -40445,7 +40498,9 @@ paths:
           required: true
           type: string
       tags:
-        - Query
+        - IBC
+          - Core
+            - Query
   /ibc/core/client/v1/consensus_states/{client_id}:
     get:
       summary: |-
@@ -40954,7 +41009,9 @@ paths:
           required: false
           type: boolean
       tags:
-        - Query
+        - IBC
+          - Core
+            - Query
   /ibc/core/client/v1/consensus_states/{client_id}/heights:
     get:
       summary: >-
@@ -41285,7 +41342,9 @@ paths:
           required: false
           type: boolean
       tags:
-        - Query
+        - IBC
+          - Core
+            - Query
   /ibc/core/client/v1/consensus_states/{client_id}/revision/{revision_number}/height/{revision_height}:
     get:
       summary: >-
@@ -41729,7 +41788,9 @@ paths:
           required: false
           type: boolean
       tags:
-        - Query
+        - IBC
+          - Core
+            - Query
   /ibc/core/client/v1/upgraded_client_states:
     get:
       summary: UpgradedClientState queries an Upgraded IBC light client.
@@ -42099,7 +42160,9 @@ paths:
                           "value": "1.212s"
                         }
       tags:
-        - Query
+        - IBC
+          - Core
+            - Query
   /ibc/core/client/v1/upgraded_consensus_states:
     get:
       summary: UpgradedConsensusState queries an Upgraded IBC consensus state.
@@ -42469,7 +42532,9 @@ paths:
                           "value": "1.212s"
                         }
       tags:
-        - Query
+        - IBC
+          - Core
+            - Query
   /ibc/core/connection/v1/client_connections/{client_id}:
     get:
       summary: |-
@@ -42715,7 +42780,9 @@ paths:
           required: true
           type: string
       tags:
-        - Query
+        - IBC
+          - Core
+            - Query
   /ibc/core/connection/v1/connections:
     get:
       summary: Connections queries all the IBC connections of a chain.
@@ -43119,7 +43186,9 @@ paths:
           required: false
           type: boolean
       tags:
-        - Query
+        - IBC
+          - Core
+            - Query
   /ibc/core/connection/v1/connections/{connection_id}:
     get:
       summary: Connection queries an IBC connection end.
@@ -43456,7 +43525,9 @@ paths:
           required: true
           type: string
       tags:
-        - Query
+        - IBC
+          - Core
+            - Query
   /ibc/core/connection/v1/connections/{connection_id}/client_state:
     get:
       summary: |-
@@ -43883,7 +43954,9 @@ paths:
           required: true
           type: string
       tags:
-        - Query
+        - IBC
+          - Core
+            - Query
   /ibc/core/connection/v1/connections/{connection_id}/consensus_state/revision/{revision_number}/height/{revision_height}:
     get:
       summary: |-
@@ -44307,7 +44380,9 @@ paths:
           type: string
           format: uint64
       tags:
-        - Query
+        - IBC
+          - Core
+            - Query
   /sonr-io/sonr/identity/did:
     get:
       summary: Queries a list of DidDocument items.
@@ -44726,7 +44801,9 @@ paths:
           required: false
           type: boolean
       tags:
-        - Query
+        - Sonr
+          - Identity
+            - Query
   /sonr-io/sonr/identity/did/{did}:
     get:
       summary: Queries a DidDocument by index.
@@ -45062,7 +45139,9 @@ paths:
           required: true
           type: string
       tags:
-        - Query
+        - Sonr
+          - Identity
+            - Query
   /sonr-io/sonr/identity/params:
     get:
       summary: Parameters queries the parameters of the module.
@@ -45107,7 +45186,9 @@ paths:
                       type: string
                   additionalProperties: {}
       tags:
-        - Query
+        - Sonr
+          - Identity
+            - Query
 definitions:
   cosmos.auth.v1beta1.AddressBytesToStringResponse:
     type: object
@@ -66923,7 +67004,6 @@ definitions:
     properties:
       tx:
         $ref: '#/definitions/cosmos.tx.v1beta1.Tx'
-        description: tx is the queried transaction.
       tx_response:
         type: object
         properties:
@@ -67660,7 +67740,6 @@ definitions:
               Since: cosmos-sdk 0.45.2
       multi:
         $ref: '#/definitions/cosmos.tx.v1beta1.ModeInfo.Multi'
-        title: multi represents a nested multisig signer
     description: ModeInfo describes the signing mode of a single or nested multisig signer.
   cosmos.tx.v1beta1.ModeInfo.Multi:
     type: object
@@ -67940,9 +68019,6 @@ definitions:
               }
       mode_info:
         $ref: '#/definitions/cosmos.tx.v1beta1.ModeInfo'
-        title: |-
-          mode_info describes the signing mode of the signer and is a nested
-          structure to support nested multisig pubkey's
       sequence:
         type: string
         format: uint64
@@ -67961,9 +68037,6 @@ definitions:
     properties:
       tx:
         $ref: '#/definitions/cosmos.tx.v1beta1.Tx'
-        description: |-
-          tx is the transaction to simulate.
-          Deprecated. Send raw tx bytes instead.
       tx_bytes:
         type: string
         format: byte
@@ -68822,9 +68895,6 @@ definitions:
         description: TxBody is the body of a transaction that all signers sign over.
       auth_info:
         $ref: '#/definitions/cosmos.tx.v1beta1.AuthInfo'
-        title: |-
-          auth_info is the authorization related content of the transaction,
-          specifically signers, signer modes and fee
       signatures:
         type: array
         items:

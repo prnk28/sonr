@@ -8,13 +8,7 @@ The Motor SDK is a set of developer tools for building decentralized application
 
 Motor Flutter is a Flutter library designed to help developers utilize Sonr in their apps. You can find the package at [motor.build](https://motor.build).
 
-## Install Speedway
-
-Install the Speedway CLI and (optionally) UI following [Install Speedway CLI](/docs/tools/speedway/install) and [running Speedway UI](/docs/tools/speedway/webui).
-
-## Install Motor SDK
-
-> Select your target platform to get started and setup a new Motor integrated project.
+## Using Motor SDK
 
 The Motor Flutter SDK uses the [GetX](https://pub.dev/packages/get) package to
 manage state. This means that you must wrap the `MotorFlutter` service into
@@ -55,9 +49,12 @@ Future<void> main() async {
 
 ## Start the Motor Node
 
-> Spawning a new Motor instance is the first step in using the SDK. This is where you'll configure your app's connection to the Sonr network.
+Spawning a new Motor instance is the first step in using the SDK. This is where you'll configure your app's connection to the Sonr network.
 
-There should exist only one instance of `Motor` throughout the lifetime of your application.
+<Note>
+  There should exist only one instance of `Motor` throughout the lifetime of
+  your application.
+</Note>
 
 ```go
 import (
@@ -130,13 +127,3 @@ loginResponse, err := mtr.Login(mt.LoginRequest{
     AesPskKey: pskKey,
 })
 ```
-
-## Next Steps
-
-You're ready to start using Motor in your app! Check out one of the guides for next steps.
-
-- [Register an Account](/docs/guides/auth/register.mdx)
-- [Define Schemas](/docs/guides/data/schemas.mdx)
-- [Upload Documents](/docs/guides/data/documents.mdx)
-- [Create Buckets](/docs/guides/storage/buckets.mdx)
-- [CLI Reference](/docs/tools/speedway/cli.mdx)

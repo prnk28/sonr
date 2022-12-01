@@ -1,8 +1,8 @@
 {
   "name": "Sonr",
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "light": "/images/logo.svg",
+    "dark": "/images/logo-dark.svg"
   },
   "favicon": "/favicon.png",
   "colors": {
@@ -21,7 +21,7 @@
   },
   "topbarCtaButton": {
     "type": "github",
-    "url": "https://snr.la/gh-sonr"
+    "url": "https://github.com/sonr-io/sonr"
   },
   "anchors": [
     {
@@ -58,5 +58,5 @@
     "discord": "https://snr.la/dev-chat",
     "github": "https://snr.la/gh-sonr"
   },
-  "backgroundImage": "/images/lightbackground.png"
+  "backgroundImage": "/images/background.png"
 }
