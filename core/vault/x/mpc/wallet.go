@@ -12,6 +12,7 @@ import (
 	"github.com/sonr-io/multi-party-sig/pkg/party"
 	"github.com/sonr-io/multi-party-sig/pkg/pool"
 	"github.com/sonr-io/multi-party-sig/protocols/cmp"
+	"github.com/sonr-io/sonr/internal/node"
 )
 
 type Wallet struct {
@@ -20,9 +21,14 @@ type Wallet struct {
 	threshold int
 }
 
-func NewWallet(idx party.ID, ids party.IDSlice, options ...WalletOption) (*Wallet, error) {
-	w := makeWallet(idx, options...)
-	network := getNetwork(ids)
+func NewWallet(n node.Node, ids node.IDSlice, options ...WalletOption) (*Wallet, error) {
+	id, err := n.ID()
+	if err != nil {
+		return nil, err
+	}
+
+	w := makeWallet(id.GetPartyID(), options...)
+
 	var wg sync.WaitGroup
 	for _, id := range ids {
 		wg.Add(1)
