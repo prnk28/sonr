@@ -28,14 +28,14 @@
   },
   "anchors": [
     {
-      "name": "Community",
-      "icon": "discord",
-      "url": "https://snr.la/dev-chat"
-    },
-    {
       "name": "Roadmap",
       "icon": "map",
       "url": "https://snr.la/token"
+    },
+    {
+      "name": "Community",
+      "icon": "discord",
+      "url": "https://snr.la/dev-chat"
     },
     {
       "name": "GitHub",
@@ -138,7 +138,9 @@
   ],
   "footerSocials": {
     "discord": "https://snr.la/dev-chat",
-    "github": "https://snr.la/gh-sonr"
+    "github": "https://snr.la/gh-sonr",
+    "twitter": "https://snr.la/tw",
+    "youtube": "https://snr.la/yt"
   },
   "backgroundImage": "/images/background.png"
 }
