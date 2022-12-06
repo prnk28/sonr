@@ -1,0 +1,10 @@
+_id: ut_fe881145133140eea14421a18f53d9b3
+type: UnitTest
+parentId: uts_86fcf67835e04b65b08d927ffe02a07d
+modified: 1670339711123
+created: 1670339679844
+requestId: SonrioSonrIdentityV1DidAll
+name: Returns 200
+code: |-
+  const response1 = await insomnia.send();
+  expect(response1.status).to.equal(200);

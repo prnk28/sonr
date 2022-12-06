@@ -1,0 +1,22 @@
+_id: CosmosDistributionV1Beta1ValidatorOutstandingRewards
+type: Request
+parentId: fld_wrk_006c30a63329481790739506959817d8a618b4be
+modified: 1669842795095
+created: 1669842795095
+url: "{{ base_url }}/cosmos/distribution/v1beta1/validators/{{ validator_address
+  }}/outstanding_rewards"
+name: ValidatorOutstandingRewards queries rewards of a validator address.
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1669842795095
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

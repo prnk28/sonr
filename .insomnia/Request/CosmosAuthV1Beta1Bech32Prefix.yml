@@ -1,0 +1,21 @@
+_id: CosmosAuthV1Beta1Bech32Prefix
+type: Request
+parentId: fld_wrk_006c30a63329481790739506959817d8a618b4be
+modified: 1669842795105
+created: 1669842795105
+url: "{{ base_url }}/cosmos/auth/v1beta1/bech32"
+name: Bech32Prefix queries bech32Prefix
+description: "Since: cosmos-sdk 0.46"
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1669842795105
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

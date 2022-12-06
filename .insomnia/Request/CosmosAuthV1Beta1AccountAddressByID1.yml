@@ -1,0 +1,21 @@
+_id: CosmosAuthV1Beta1AccountAddressByID1
+type: Request
+parentId: fld_wrk_006c30a63329481790739506959817d8b1cdcb55
+modified: 1669843655706
+created: 1669843655706
+url: "{{ base_url }}/cosmos/auth/v1beta1/address_by_id/{{ id }}"
+name: AccountAddressByID returns account address based on account number.
+description: "Since: cosmos-sdk 0.46.2"
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1669843655706
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

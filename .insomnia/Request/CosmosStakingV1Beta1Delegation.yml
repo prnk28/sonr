@@ -1,0 +1,22 @@
+_id: CosmosStakingV1Beta1Delegation
+type: Request
+parentId: fld_wrk_006c30a63329481790739506959817d8a618b4be
+modified: 1669842795072
+created: 1669842795072
+url: "{{ base_url }}/cosmos/staking/v1beta1/validators/{{ validator_addr
+  }}/delegations/{{ delegator_addr }}"
+name: Delegation queries delegate info for given validator delegator pair.
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1669842795072
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

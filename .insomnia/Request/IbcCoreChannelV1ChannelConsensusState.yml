@@ -1,0 +1,25 @@
+_id: IbcCoreChannelV1ChannelConsensusState
+type: Request
+parentId: fld_wrk_006c30a63329481790739506959817d8a618b4be
+modified: 1669842795062
+created: 1669842795062
+url: "{{ base_url }}/ibc/core/channel/v1/channels/{{ channel_id }}/ports/{{
+  port_id }}/consensus_state/revision/{{ revision_number }}/height/{{
+  revision_height }}"
+name: |-
+  ChannelConsensusState queries for the consensus state for the channel
+  associated with the provided channel identifiers.
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1669842795062
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

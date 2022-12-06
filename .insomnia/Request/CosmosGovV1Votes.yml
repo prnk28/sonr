@@ -1,0 +1,36 @@
+_id: CosmosGovV1Votes
+type: Request
+parentId: fld_wrk_006c30a63329481790739506959817d8a618b4be
+modified: 1669842795090
+created: 1669842795090
+url: "{{ base_url }}/cosmos/gov/v1/proposals/{{ proposal_id }}/votes"
+name: Votes queries votes of a given proposal.
+description: ""
+method: GET
+body: {}
+parameters:
+  - name: pagination.key
+    disabled: true
+    value: ZXhhbXBsZQ==
+  - name: pagination.offset
+    disabled: true
+    value: string
+  - name: pagination.limit
+    disabled: true
+    value: string
+  - name: pagination.count_total
+    disabled: true
+    value: "true"
+  - name: pagination.reverse
+    disabled: true
+    value: "true"
+headers: []
+authentication: {}
+metaSortKey: -1669842795090
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

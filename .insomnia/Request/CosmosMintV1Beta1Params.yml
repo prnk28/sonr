@@ -1,0 +1,21 @@
+_id: CosmosMintV1Beta1Params
+type: Request
+parentId: fld_wrk_006c30a63329481790739506959817d8a618b4be
+modified: 1669842795082
+created: 1669842795082
+url: "{{ base_url }}/cosmos/mint/v1beta1/params"
+name: Params returns the total set of minting parameters.
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1669842795082
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

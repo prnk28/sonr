@@ -1,0 +1,24 @@
+_id: IbcCoreChannelV1ChannelClientState
+type: Request
+parentId: fld_wrk_006c30a63329481790739506959817d8a618b4be
+modified: 1669842795063
+created: 1669842795063
+url: "{{ base_url }}/ibc/core/channel/v1/channels/{{ channel_id }}/ports/{{
+  port_id }}/client_state"
+name: |-
+  ChannelClientState queries for the client state for the channel associated
+  with the provided channel identifiers.
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1669842795063
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

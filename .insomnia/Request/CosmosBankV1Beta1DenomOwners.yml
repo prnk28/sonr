@@ -1,0 +1,38 @@
+_id: CosmosBankV1Beta1DenomOwners
+type: Request
+parentId: fld_wrk_006c30a63329481790739506959817d8a618b4be
+modified: 1669842795102
+created: 1669842795102
+url: "{{ base_url }}/cosmos/bank/v1beta1/denom_owners/{{ denom }}"
+name: |-
+  DenomOwners queries for all account addresses that own a particular token
+  denomination.
+description: "Since: cosmos-sdk 0.46"
+method: GET
+body: {}
+parameters:
+  - name: pagination.key
+    disabled: true
+    value: ZXhhbXBsZQ==
+  - name: pagination.offset
+    disabled: true
+    value: string
+  - name: pagination.limit
+    disabled: true
+    value: string
+  - name: pagination.count_total
+    disabled: true
+    value: "true"
+  - name: pagination.reverse
+    disabled: true
+    value: "true"
+headers: []
+authentication: {}
+metaSortKey: -1669842795102
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

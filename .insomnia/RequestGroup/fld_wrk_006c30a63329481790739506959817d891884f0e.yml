@@ -1,0 +1,10 @@
+_id: fld_wrk_006c30a63329481790739506959817d891884f0e
+type: RequestGroup
+parentId: wrk_006c30a63329481790739506959817d8
+modified: 1669859945020
+created: 1669859945020
+name: Cosmos - Params - Query
+description: ""
+environment: {}
+environmentPropertyOrder: null
+metaSortKey: -1669859945020
