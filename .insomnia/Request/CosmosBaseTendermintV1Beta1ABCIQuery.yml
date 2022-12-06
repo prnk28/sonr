@@ -1,0 +1,36 @@
+_id: CosmosBaseTendermintV1Beta1ABCIQuery
+type: Request
+parentId: fld_wrk_006c30a63329481790739506959817d8329cb8b6
+modified: 1669842795099
+created: 1669842795099
+url: "{{ base_url }}/cosmos/base/tendermint/v1beta1/abci_query"
+name: |-
+  ABCIQuery defines a query handler that supports ABCI queries directly to
+  the application, bypassing Tendermint completely. The ABCI query must
+  contain a valid and supported path, including app, custom, p2p, and store.
+description: "Since: cosmos-sdk 0.46"
+method: GET
+body: {}
+parameters:
+  - name: data
+    disabled: true
+    value: ZXhhbXBsZQ==
+  - name: path
+    disabled: true
+    value: string
+  - name: height
+    disabled: true
+    value: string
+  - name: prove
+    disabled: true
+    value: "true"
+headers: []
+authentication: {}
+metaSortKey: -1669842795099
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

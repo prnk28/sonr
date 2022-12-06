@@ -1,0 +1,22 @@
+_id: IbcCoreChannelV1PacketCommitment
+type: Request
+parentId: fld_wrk_006c30a63329481790739506959817d8a618b4be
+modified: 1669842795059
+created: 1669842795059
+url: "{{ base_url }}/ibc/core/channel/v1/channels/{{ channel_id }}/ports/{{
+  port_id }}/packet_commitments/{{ sequence }}"
+name: PacketCommitment queries a stored packet commitment hash.
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1669842795059
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

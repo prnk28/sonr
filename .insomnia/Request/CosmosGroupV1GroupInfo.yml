@@ -1,0 +1,21 @@
+_id: CosmosGroupV1GroupInfo
+type: Request
+parentId: fld_wrk_006c30a63329481790739506959817d8a618b4be
+modified: 1669842795087
+created: 1669842795087
+url: "{{ base_url }}/cosmos/group/v1/group_info/{{ group_id }}"
+name: GroupInfo queries group info based on group id.
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1669842795087
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

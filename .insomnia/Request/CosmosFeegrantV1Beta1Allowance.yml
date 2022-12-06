@@ -1,0 +1,21 @@
+_id: CosmosFeegrantV1Beta1Allowance
+type: Request
+parentId: fld_wrk_006c30a63329481790739506959817d8a618b4be
+modified: 1669842795094
+created: 1669842795094
+url: "{{ base_url }}/cosmos/feegrant/v1beta1/allowance/{{ granter }}/{{ grantee }}"
+name: Allowance returns fee granted to the grantee by the granter.
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1669842795094
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

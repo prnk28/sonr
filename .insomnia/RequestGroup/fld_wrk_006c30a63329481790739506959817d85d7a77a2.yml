@@ -1,0 +1,10 @@
+_id: fld_wrk_006c30a63329481790739506959817d85d7a77a2
+type: RequestGroup
+parentId: wrk_006c30a63329481790739506959817d8
+modified: 1669859945018
+created: 1669859945018
+name: Cosmos - Slashing - Query
+description: ""
+environment: {}
+environmentPropertyOrder: null
+metaSortKey: -1669859945018

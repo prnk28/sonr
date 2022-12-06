@@ -1,0 +1,29 @@
+_id: CosmosParamsV1Beta1Params
+type: Request
+parentId: fld_wrk_006c30a63329481790739506959817d8a618b4be
+modified: 1669842795078
+created: 1669842795078
+url: "{{ base_url }}/cosmos/params/v1beta1/params"
+name: |-
+  Params queries a specific parameter of a module, given its subspace and
+  key.
+description: ""
+method: GET
+body: {}
+parameters:
+  - name: subspace
+    disabled: true
+    value: string
+  - name: key
+    disabled: true
+    value: string
+headers: []
+authentication: {}
+metaSortKey: -1669842795078
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

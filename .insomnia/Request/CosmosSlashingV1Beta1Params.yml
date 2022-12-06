@@ -1,0 +1,21 @@
+_id: CosmosSlashingV1Beta1Params
+type: Request
+parentId: fld_wrk_006c30a63329481790739506959817d8a618b4be
+modified: 1669842795077
+created: 1669842795077
+url: "{{ base_url }}/cosmos/slashing/v1beta1/params"
+name: Params queries the parameters of slashing module
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1669842795077
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

@@ -1,0 +1,21 @@
+_id: IbcCoreClientV1ClientState
+type: Request
+parentId: fld_wrk_006c30a63329481790739506959817d8a618b4be
+modified: 1669842795056
+created: 1669842795056
+url: "{{ base_url }}/ibc/core/client/v1/client_states/{{ client_id }}"
+name: ClientState queries an IBC light client.
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1669842795056
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

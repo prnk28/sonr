@@ -1,0 +1,10 @@
+_id: fld_wrk_006c30a63329481790739506959817d8c51b9686
+type: RequestGroup
+parentId: wrk_006c30a63329481790739506959817d8
+modified: 1669859945016
+created: 1669859945016
+name: Cosmos - Staking - Query
+description: ""
+environment: {}
+environmentPropertyOrder: null
+metaSortKey: -1669859945016

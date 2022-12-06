@@ -1,0 +1,14 @@
+_id: env_env_f48d31f5c2e17a7fe871e1e93ae109e646c4b3c4_sub
+type: Environment
+parentId: env_f48d31f5c2e17a7fe871e1e93ae109e646c4b3c4
+modified: 1669842795108
+created: 1669842795108
+name: Swagger env
+data:
+  base_path: ""
+  scheme: http
+  host: ""
+dataPropertyOrder: null
+color: null
+isPrivate: false
+metaSortKey: 1669842795108

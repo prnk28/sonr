@@ -1,0 +1,23 @@
+_id: IbcCoreConnectionV1ClientConnections
+type: Request
+parentId: fld_wrk_006c30a63329481790739506959817d8a618b4be
+modified: 1669842795053
+created: 1669842795053
+url: "{{ base_url }}/ibc/core/connection/v1/client_connections/{{ client_id }}"
+name: |-
+  ClientConnections queries the connection paths associated with a client
+  state.
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1669842795053
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

@@ -1,0 +1,22 @@
+_id: CosmosDistributionV1Beta1ValidatorCommission
+type: Request
+parentId: fld_wrk_006c30a63329481790739506959817d8a618b4be
+modified: 1669842795095
+created: 1669842795095
+url: "{{ base_url }}/cosmos/distribution/v1beta1/validators/{{ validator_address
+  }}/commission"
+name: ValidatorCommission queries accumulated commission for a validator.
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1669842795095
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

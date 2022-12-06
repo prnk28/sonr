@@ -1,0 +1,22 @@
+_id: IbcCoreChannelV1NextSequenceReceive
+type: Request
+parentId: fld_wrk_006c30a63329481790739506959817d8a618b4be
+modified: 1669842795062
+created: 1669842795062
+url: "{{ base_url }}/ibc/core/channel/v1/channels/{{ channel_id }}/ports/{{
+  port_id }}/next_sequence"
+name: NextSequenceReceive returns the next receive sequence for a given channel.
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1669842795062
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

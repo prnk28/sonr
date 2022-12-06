@@ -1,0 +1,21 @@
+_id: IbcCoreClientV1UpgradedClientState
+type: Request
+parentId: fld_wrk_006c30a63329481790739506959817d8a618b4be
+modified: 1669842795054
+created: 1669842795054
+url: "{{ base_url }}/ibc/core/client/v1/upgraded_client_states"
+name: UpgradedClientState queries an Upgraded IBC light client.
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1669842795054
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global
