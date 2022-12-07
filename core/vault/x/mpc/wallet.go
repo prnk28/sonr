@@ -28,11 +28,11 @@ func NewWallet(n node.Node, ids node.IDSlice, options ...WalletOption) (*Wallet,
 	}
 
 	w := makeWallet(id.GetPartyID(), options...)
-
+	
 	var wg sync.WaitGroup
 	for _, id := range ids {
 		wg.Add(1)
-		go func(id party.ID) {
+		go func(id node.ID) {
 			pl := pool.NewPool(0)
 			defer pl.TearDown()
 			conf, err := cmpKeygen(id, ids, network, w.threshold, &wg, pl)
