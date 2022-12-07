@@ -57,7 +57,7 @@
           "pages": ["content/2/clients/flutter/1", "content/2/clients/ts/1"]
         },
         {
-          "group": "Guides & Tutorials",
+          "group": "Usage Guides",
           "pages": ["content/2/guides/1", "content/2/guides/2"]
         }
       ]
