@@ -39,4 +39,14 @@ enum ProofType {
   ProofType_RSA_SIGNATURE_2018 = 4;
 }
 
+// ServiceType is the type of service used to provide a DID document.
+enum ServiceType {
+  // No service type specified
+  ServiceType_UNSPECIFIED = 0;
 
+  // DIDCommMessaging is the DIDCommMessaging service type as specified here: https://identity.foundation/didcomm-messaging/spec/
+  ServiceType_DID_COMM_MESSAGING = 1;
+
+  // EncryptedDataVault is the EncryptedDataVault service type as specified here: https://identity.foundation/edv-spec/
+  ServiceType_ENCRYPTED_DATA_VAULT = 2;
+}

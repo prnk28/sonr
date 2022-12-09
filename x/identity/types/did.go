@@ -329,7 +329,7 @@ func (d *DidDocument) AddAlias(alias string) {
 func (d *DidDocument) ResolveEndpointURL(serviceType string) (endpointID string, endpointURL string, err error) {
 	var services []*Service
 	for _, service := range d.Service.Data {
-		if service.Type == serviceType {
+		if service.Type.FormatString() == serviceType {
 			services = append(services, service)
 		}
 	}

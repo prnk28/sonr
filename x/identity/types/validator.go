@@ -168,10 +168,10 @@ func (s serviceValidator) Validate(document *DidDocument) error {
 		if len(strings.TrimSpace(service.ID)) == 0 {
 			return makeValidationError(ErrInvalidService)
 		}
-		if len(strings.TrimSpace(service.Type)) == 0 {
+		if service.Type == 0 {
 			return makeValidationError(ErrInvalidService)
 		}
-		if len(strings.TrimSpace(service.ServiceEndpoint)) == 0{
+		if len(strings.TrimSpace(service.ServiceEndpoint)) == 0 {
 			return makeValidationError(ErrInvalidService)
 		}
 	}

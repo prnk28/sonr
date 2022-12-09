@@ -97,7 +97,7 @@ func TestW3CSpecValidator(t *testing.T) {
 		})
 		t.Run("invalid type", func(t *testing.T) {
 			input := document()
-			input.Service.Data[0].Type = ""
+			input.Service.Data[0].Type = ServiceType_ServiceType_UNSPECIFIED
 			assertIsError(t, ErrInvalidService, W3CSpecValidator{}.Validate(input))
 		})
 		t.Run("endpoint is nil", func(t *testing.T) {
@@ -143,20 +143,20 @@ func document() *DidDocument {
 	vm, _ := NewVerificationMethod("did:test:12345", KeyType_KeyType_JSON_WEB_KEY_2020, "", privateKey.Public())
 	srv := &Service{
 		ID:              "did:test:12345",
-		Type:            "awesome-service",
+		Type:            ServiceType_ServiceType_UNSPECIFIED,
 		ServiceEndpoint: "tcp://awesome-service",
 	}
 	doc := &DidDocument{
-		Context:    []string{DIDContextV1URI().String()},
-		ID:         "did:test:12345",
+		Context: []string{DIDContextV1URI().String()},
+		ID:      "did:test:12345",
 		VerificationMethod: &VerificationMethods{
 			Data: []*VerificationMethod{vm},
 		},
-		Authentication: &VerificationRelationships{},
-		AssertionMethod: &VerificationRelationships{},
+		Authentication:       &VerificationRelationships{},
+		AssertionMethod:      &VerificationRelationships{},
 		CapabilityInvocation: &VerificationRelationships{},
 		CapabilityDelegation: &VerificationRelationships{},
-		KeyAgreement: &VerificationRelationships{},
+		KeyAgreement:         &VerificationRelationships{},
 		Service: &Services{
 			Data: []*Service{srv},
 		},
