@@ -6,12 +6,12 @@
   },
   "favicon": "/images/favicon.png",
   "api": {
-    "baseUrl": "https://v1.sonr.ws"
+    "baseUrl": "http://142.93.1.89:1317/"
   },
   "colors": {
     "primary": "#1792FF",
     "light": "#1792FF",
-    "dark": "#5123B2",
+    "dark": "#1792FF",
     "ultraLight": "#DEDDE4",
     "ultraDark": "#4F4A60",
     "background": {
@@ -28,14 +28,14 @@
   },
   "anchors": [
     {
-      "name": "Roadmap",
-      "icon": "map",
-      "url": "https://snr.la/token"
-    },
-    {
       "name": "Community",
       "icon": "discord",
       "url": "https://snr.la/dev-chat"
+    },
+    {
+      "name": "Roadmap",
+      "icon": "map",
+      "url": "https://snr.la/token"
     },
     {
       "name": "GitHub",
@@ -96,7 +96,24 @@
       "pages": [
         {
           "group": "Accounts",
-          "pages": ["content/4/accounts/main"]
+          "pages": [
+            "content/4/accounts/main",
+            "content/4/accounts/api/1",
+            "content/4/accounts/api/2",
+            "content/4/accounts/api/3"
+          ]
+        },
+        {
+          "group": "Bank",
+          "pages": [
+            "content/4/bank/main",
+            "content/4/bank/api/1",
+            "content/4/bank/api/2",
+            "content/4/bank/api/3",
+            "content/4/bank/api/4",
+            "content/4/bank/api/5",
+            "content/4/bank/api/6"
+          ]
         },
         {
           "group": "Identity",
@@ -142,5 +159,10 @@
     "twitter": "https://snr.la/tw",
     "youtube": "https://snr.la/yt"
   },
-  "backgroundImage": "/images/background.png"
+  "backgroundImage": "/images/background.png",
+  "analytics": {
+    "ga4": {
+      "measurementId": "G-FY0WZBSGH8"
+    }
+  }
 }

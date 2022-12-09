@@ -1,8 +1,12 @@
 ---
-title: List DID Documents
-api: GET https://v1-beta.sonr.ws/sonr-io/sonr/registry/who_is
-description: Get all DID documents in the registry.
+title: Get Spendable Balance
+api: "GET /cosmos/bank/v1beta1/spendable_balances"
+description: SpendableBalances queries the spendable balance of all coins for a single account.
 ---
+
+<ParamField path="address" type="string" required>
+  address is the address to query balances for.
+</ParamField>
 
 <ParamField path="pagination.key" type="string">
   key is a value returned in PageResponse.next_key to begin querying the next
