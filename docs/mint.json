@@ -1,0 +1,146 @@
+{
+  "name": "Sonr",
+  "logo": {
+    "light": "/images/logo.svg",
+    "dark": "/images/logo-dark.svg"
+  },
+  "favicon": "/images/favicon.png",
+  "api": {
+    "baseUrl": "https://v1.sonr.ws"
+  },
+  "colors": {
+    "primary": "#1792FF",
+    "light": "#1792FF",
+    "dark": "#5123B2",
+    "ultraLight": "#DEDDE4",
+    "ultraDark": "#4F4A60",
+    "background": {
+      "dark": "#0E0C14"
+    },
+    "anchors": {
+      "from": "#003066",
+      "to": "#F2F8FF"
+    }
+  },
+  "topbarCtaButton": {
+    "type": "github",
+    "url": "https://github.com/sonr-io/sonr"
+  },
+  "anchors": [
+    {
+      "name": "Roadmap",
+      "icon": "map",
+      "url": "https://snr.la/token"
+    },
+    {
+      "name": "Community",
+      "icon": "discord",
+      "url": "https://snr.la/dev-chat"
+    },
+    {
+      "name": "GitHub",
+      "icon": "github",
+      "url": "https://snr.la/gh"
+    }
+  ],
+  "navigation": [
+    {
+      "group": "Learn the Basics",
+      "pages": ["content/1/main", "content/1/technology", "content/1/faq"]
+    },
+    {
+      "group": "Build Apps",
+      "pages": [
+        "content/2/main",
+        {
+          "group": "Installation",
+          "pages": ["content/2/clients/flutter/1", "content/2/clients/ts/1"]
+        },
+        {
+          "group": "Usage Guides",
+          "pages": ["content/2/guides/1", "content/2/guides/2"]
+        }
+      ]
+    },
+    {
+      "group": "Run Nodes",
+      "pages": [
+        "content/3/main",
+        {
+          "group": "Setup Locally",
+          "pages": ["content/3/local/1", "content/3/local/2"]
+        },
+        {
+          "group": "Token Economics",
+          "pages": [
+            "content/3/token/1",
+            {
+              "group": "Fundamentals",
+              "pages": [
+                "content/3/token/2",
+                "content/3/token/3",
+                "content/3/token/4",
+                "content/3/token/5"
+              ]
+            },
+            {
+              "group": "Supply",
+              "pages": ["content/3/token/6", "content/3/token/7"]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "group": "API Reference",
+      "pages": [
+        {
+          "group": "Accounts",
+          "pages": ["content/4/accounts/main"]
+        },
+        {
+          "group": "Identity",
+          "pages": [
+            "content/4/identity/main",
+            "content/4/identity/api/1",
+            "content/4/identity/api/2",
+            "content/4/identity/api/3"
+          ]
+        },
+        {
+          "group": "Tendermint",
+          "pages": [
+            "content/4/tendermint/main",
+            "content/4/tendermint/api/1",
+            "content/4/tendermint/api/2",
+            "content/4/tendermint/api/3",
+            "content/4/tendermint/api/4",
+            "content/4/tendermint/api/5",
+            "content/4/tendermint/api/6",
+            "content/4/tendermint/api/9",
+            "content/4/tendermint/api/10",
+            "content/4/tendermint/api/7",
+            "content/4/tendermint/api/8"
+          ]
+        },
+        {
+          "group": "WebAuthn",
+          "pages": [
+            "content/4/webauthn/main",
+            "content/4/webauthn/api/1",
+            "content/4/webauthn/api/2",
+            "content/4/webauthn/api/3",
+            "content/4/webauthn/api/4"
+          ]
+        }
+      ]
+    }
+  ],
+  "footerSocials": {
+    "discord": "https://snr.la/dev-chat",
+    "github": "https://snr.la/gh-sonr",
+    "twitter": "https://snr.la/tw",
+    "youtube": "https://snr.la/yt"
+  },
+  "backgroundImage": "/images/background.png"
+}
