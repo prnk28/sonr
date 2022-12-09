@@ -31,7 +31,7 @@ service Query {
 		option (google.api.http).get = "/sonr-io/sonr/identity/service/{service_id}";
 	}
 
-    //Queries a DIDDocument for the matching key 
+    //Queries a DIDDocument for the matching key
 	rpc QueryByKeyID(QueryByKeyIDRequest) returns (QueryByKeyIDResponse) {
 		option (google.api.http).get = "/sonr-io/sonr/identity/key/{key_id}";
 	}
@@ -41,7 +41,7 @@ service Query {
 		option (google.api.http).get = "/sonr-io/sonr/identity/aka/{aka_id}";
 	}
 
-    //Queries a list of DIDDocument for the matching method 
+    //Queries a list of DIDDocument for the matching method
     rpc QueryByMethod(QueryByMethodRequest) returns (QueryByMethodResponse) {
 		option (google.api.http).get = "/sonr-io/sonr/identity/method/{method_id}";
 	}

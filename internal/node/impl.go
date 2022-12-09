@@ -17,7 +17,6 @@ import (
 
 	"github.com/libp2p/go-libp2p/p2p/discovery/mdns"
 	dscrouting "github.com/libp2p/go-libp2p/p2p/discovery/routing"
-	"github.com/libp2p/go-msgio"
 )
 
 // Host returns the host of the node
@@ -166,8 +165,6 @@ func (n *hostImpl) NewStream(ctx context.Context, pid peer.ID, pids ...protocol.
 	return n.host.NewStream(ctx, pid, pids...)
 }
 
-
-
 // Router returns the host node Peer Routing Function
 func (hn *hostImpl) Router(h host.Host) (routing.PeerRouting, error) {
 	// Create DHT
@@ -197,26 +194,6 @@ func (hn *hostImpl) Routing() routing.Routing {
 // SetStreamHandler sets the handler for a given protocol
 func (n *hostImpl) SetStreamHandler(protocol protocol.ID, handler network.StreamHandler) {
 	n.host.SetStreamHandler(protocol, handler)
-}
-
-// SendMessage writes a protobuf go data object to a network stream
-func (h *hostImpl) Send(id peer.ID, p protocol.ID, data []byte) error {
-	if !h.HasRouting() {
-		return fmt.Errorf("Host does not have routing")
-	}
-
-	s, err := h.NewStream(h.ctx, id, p)
-	if err != nil {
-		return err
-	}
-	defer s.Close()
-
-	// Create Writer and write data to stream
-	w := msgio.NewWriter(s)
-	if err := w.WriteMsg(data); err != nil {
-		return err
-	}
-	return nil
 }
 
 type HostStat struct {
