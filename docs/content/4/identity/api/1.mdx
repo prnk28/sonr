@@ -1,8 +1,10 @@
 ---
 title: List DID Documents
-api: GET https://v1-beta.sonr.ws/sonr-io/sonr/registry/who_is
+api: GET /sonr-io/sonr/identity/did
 description: Get all DID documents in the registry.
 ---
+
+### Parameters
 
 <ParamField path="pagination.key" type="string">
   key is a value returned in PageResponse.next_key to begin querying the next
@@ -29,3 +31,156 @@ description: Get all DID documents in the registry.
 <ParamField path="pagination.reverse" type="boolean">
   reverse is set to true if results are to be returned in the descending order.
 </ParamField>
+
+<ResponseExample>
+
+```json Response (200)
+{
+  "didDocument": [
+    {
+      "context": ["string"],
+      "creator": "string",
+      "iD": "string",
+      "controller": ["string"],
+      "verification_method": {
+        "data": [
+          {
+            "iD": "string",
+            "type": "KeyType_UNSPECIFIED",
+            "controller": "string",
+            "public_key_jwk": {
+              "additionalProp1": "string",
+              "additionalProp2": "string",
+              "additionalProp3": "string"
+            },
+            "public_key_multibase": "string"
+          }
+        ]
+      },
+      "authentication": {
+        "data": [
+          {
+            "verification_method": {
+              "iD": "string",
+              "type": "KeyType_UNSPECIFIED",
+              "controller": "string",
+              "public_key_jwk": {
+                "additionalProp1": "string",
+                "additionalProp2": "string",
+                "additionalProp3": "string"
+              },
+              "public_key_multibase": "string"
+            },
+            "reference": "string"
+          }
+        ]
+      },
+      "assertion_method": {
+        "data": [
+          {
+            "verification_method": {
+              "iD": "string",
+              "type": "KeyType_UNSPECIFIED",
+              "controller": "string",
+              "public_key_jwk": {
+                "additionalProp1": "string",
+                "additionalProp2": "string",
+                "additionalProp3": "string"
+              },
+              "public_key_multibase": "string"
+            },
+            "reference": "string"
+          }
+        ]
+      },
+      "capability_invocation": {
+        "data": [
+          {
+            "verification_method": {
+              "iD": "string",
+              "type": "KeyType_UNSPECIFIED",
+              "controller": "string",
+              "public_key_jwk": {
+                "additionalProp1": "string",
+                "additionalProp2": "string",
+                "additionalProp3": "string"
+              },
+              "public_key_multibase": "string"
+            },
+            "reference": "string"
+          }
+        ]
+      },
+      "capability_delegation": {
+        "data": [
+          {
+            "verification_method": {
+              "iD": "string",
+              "type": "KeyType_UNSPECIFIED",
+              "controller": "string",
+              "public_key_jwk": {
+                "additionalProp1": "string",
+                "additionalProp2": "string",
+                "additionalProp3": "string"
+              },
+              "public_key_multibase": "string"
+            },
+            "reference": "string"
+          }
+        ]
+      },
+      "key_agreement": {
+        "data": [
+          {
+            "verification_method": {
+              "iD": "string",
+              "type": "KeyType_UNSPECIFIED",
+              "controller": "string",
+              "public_key_jwk": {
+                "additionalProp1": "string",
+                "additionalProp2": "string",
+                "additionalProp3": "string"
+              },
+              "public_key_multibase": "string"
+            },
+            "reference": "string"
+          }
+        ]
+      },
+      "service": {
+        "data": [
+          {
+            "iD": "string",
+            "type": "string",
+            "service_endpoint": "string",
+            "service_endpoints": {
+              "additionalProp1": "string",
+              "additionalProp2": "string",
+              "additionalProp3": "string"
+            }
+          }
+        ]
+      },
+      "also_known_as": ["string"]
+    }
+  ],
+  "pagination": {
+    "next_key": "string",
+    "total": "string"
+  }
+}
+```
+
+```json Error
+{
+  "code": 0,
+  "message": "string",
+  "details": [
+    {
+      "@type": "string"
+    }
+  ]
+}
+```
+
+</ResponseExample>

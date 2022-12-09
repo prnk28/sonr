@@ -1,5 +1,5 @@
 {
-  "name": "Sonr",
+  "name": "Sonr Docs",
   "logo": {
     "light": "/images/logo.svg",
     "dark": "/images/logo-dark.svg"
@@ -18,8 +18,8 @@
       "dark": "#0E0C14"
     },
     "anchors": {
-      "from": "#003066",
-      "to": "#F2F8FF"
+      "from": "#1792FF",
+      "to": "#0053B5"
     }
   },
   "topbarCtaButton": {
@@ -33,9 +33,9 @@
       "url": "https://snr.la/dev-chat"
     },
     {
-      "name": "Roadmap",
-      "icon": "map",
-      "url": "https://snr.la/token"
+      "name": "Research",
+      "icon": "microscope",
+      "url": "https://snr.la/b"
     },
     {
       "name": "GitHub",
