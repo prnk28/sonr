@@ -54,7 +54,7 @@
         "content/2/main",
         {
           "group": "Installation",
-          "pages": ["content/2/clients/flutter/1", "content/2/clients/ts/1"]
+          "pages": ["content/2/install/1", "content/2/install/2"]
         },
         {
           "group": "Usage Guides",
@@ -83,10 +83,7 @@
                 "content/3/token/5"
               ]
             },
-            {
-              "group": "Supply",
-              "pages": ["content/3/token/6", "content/3/token/7"]
-            }
+            "content/3/token/6"
           ]
         }
       ]

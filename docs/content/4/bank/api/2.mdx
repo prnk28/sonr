@@ -1,12 +1,8 @@
 ---
-title: Get Spendable Balance
-api: "GET /cosmos/bank/v1beta1/spendable_balances"
-description: SpendableBalances queries the spendable balance of all coins for a single account.
+title: List All Tokens
+api: "GET /cosmos/bank/v1beta1/denoms_metadata"
+description: DenomsMetadata queries the client metadata for all registered coin denominations.
 ---
-
-<ParamField path="address" type="string" required>
-  address is the address to query balances for.
-</ParamField>
 
 <ParamField path="pagination.key" type="string">
   key is a value returned in PageResponse.next_key to begin querying the next
