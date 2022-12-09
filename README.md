@@ -1,7 +1,9 @@
 
-<h1 align="center"><bold>Sonr</bold></h1>
+- Cosmos SDK: v0.46.3
+- Ignite CLI: v0.25.1
+- Golang: 1.18.8 darwin/arm64
 
-<div align="center">
+## Get started
 
 [![CodeFactor](https://www.codefactor.io/repository/github/sonr-io/sonr/badge)](https://www.codefactor.io/repository/github/sonr-io/sonr)
   [![Status](https://img.shields.io/badge/status-active-success.svg)](https://sonr.io)
