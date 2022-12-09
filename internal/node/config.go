@@ -8,7 +8,9 @@ import (
 	"github.com/libp2p/go-libp2p-core/network"
 	"github.com/libp2p/go-libp2p-core/protocol"
 	"github.com/libp2p/go-libp2p/core/crypto"
+	"github.com/libp2p/go-libp2p/core/peer"
 	"github.com/libp2p/go-libp2p/p2p/net/connmgr"
+	"github.com/multiformats/go-multiaddr"
 	"github.com/sonr-io/sonr/pkg/common"
 )
 
@@ -19,6 +21,8 @@ type NodeOption func(*NodeConfig) error
 type NodeConfig struct {
 	// privateKey for Identity
 	privateKey crypto.PrivKey
+
+	BootstrapPeers []peer.AddrInfo
 
 	// EnableRelay for the node to enable relay
 	EnableAutoRelay bool
@@ -49,13 +53,44 @@ type NodeConfig struct {
 func defaultNodeConfig() *NodeConfig {
 	// Create Connection Manager
 	connmgr, _ := connmgr.NewConnManager(
-		100, // Lowwater
-		400, // HighWater,
-		connmgr.WithGracePeriod(time.Minute),
+		10, // Lowwater
+		20, // HighWater,
+		connmgr.WithGracePeriod(time.Second*4),
 	)
+
+	// Define the default bootstrappers
+	bootstrapAddrStrs := []string{
+		"/dnsaddr/bootstrap.libp2p.io/p2p/QmNnooDu7bfjPFoTZYxMNLWUQJyrVwtbZg5gBMjTezGAJN",
+		"/dnsaddr/bootstrap.libp2p.io/p2p/QmQCU2EcMqAqQPR2i9bChDtGNJchTbq5TbXJJ16u19uLTa",
+		"/dnsaddr/bootstrap.libp2p.io/p2p/QmbLHAnMoJPWSCR5Zhtx6BHJX9KiKNN6tpvbUcqanj75Nb",
+		"/dnsaddr/bootstrap.libp2p.io/p2p/QmcZf59bWwK5XFi76CZX8cbJ4BhTzzA3gU1ZjYZcYW3dwt",
+		"/ip4/104.131.131.82/tcp/4001/p2p/QmaCpDMGvV2BGHeYERUEnRQAwe3N8SzbUtfsmvsqQLuvuJ",
+		"/ip4/104.131.131.82/udp/4001/quic/p2p/QmaCpDMGvV2BGHeYERUEnRQAwe3N8SzbUtfsmvsqQLuvuJ",
+	}
+
+	// Create Bootstrapper List
+	var bootstrappers []multiaddr.Multiaddr
+	for _, s := range bootstrapAddrStrs {
+		ma, err := multiaddr.NewMultiaddr(s)
+		if err != nil {
+			continue
+		}
+		bootstrappers = append(bootstrappers, ma)
+	}
+
+	// Create Address Info List
+	ds := make([]peer.AddrInfo, 0, len(bootstrappers))
+	for i := range bootstrappers {
+		info, err := peer.AddrInfoFromP2pAddr(bootstrappers[i])
+		if err != nil {
+			continue
+		}
+		ds = append(ds, *info)
+	}
 
 	return &NodeConfig{
 		privateKey:            nil,
+		BootstrapPeers:        ds,
 		EnableAutoRelay:       true,
 		EnableMDNS:            false,
 		IPFSAPIURL:            "https://api.ipfs.sonr.ws",

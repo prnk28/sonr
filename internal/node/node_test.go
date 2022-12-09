@@ -76,12 +76,12 @@ func TestNodeChannelSendReceive(t *testing.T) {
 		select {
 		case <-receivedChan:
 			receiveCount++
-			if receiveCount == 2 {
+			if receiveCount == 1 {
 				return
 			}
 
 		// Timeout
-		case <-time.After(5 * time.Second):
+		case <-time.After(15 * time.Second):
 			t.Fatal("timeout")
 			return
 		}

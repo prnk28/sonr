@@ -18,6 +18,7 @@ import (
 type Wallet struct {
 	cmp.Config
 	id        party.ID
+	node      node.Node
 	threshold int
 }
 
@@ -28,22 +29,20 @@ func NewWallet(n node.Node, ids node.IDSlice, options ...WalletOption) (*Wallet,
 	}
 
 	w := makeWallet(id.GetPartyID(), options...)
-	
-	var wg sync.WaitGroup
-	for _, id := range ids {
-		wg.Add(1)
-		go func(id node.ID) {
-			pl := pool.NewPool(0)
-			defer pl.TearDown()
-			conf, err := cmpKeygen(id, ids, network, w.threshold, &wg, pl)
-			if err != nil {
-				return
-			}
-			w.Config = *conf
-		}(id)
+	w.node = n
+	ch, err := n.Join("test")
+	if err != nil {
+		return nil, err
 	}
 
-	wg.Wait()
+	var wg sync.WaitGroup
+	pl := pool.NewPool(8)
+	defer pl.TearDown()
+	conf, err := cmpKeygen(id.GetPartyID(), ids, ch, w.threshold, &wg, pl)
+	if err != nil {
+		panic(err)
+	}
+	w.Config = *conf
 	return w, nil
 }
 
@@ -93,71 +92,79 @@ func (w *Wallet) Save(password string) (string, error) {
 }
 
 func (w *Wallet) Refresh() (*Wallet, error) {
-	network := getNetwork(w.PartyIDs())
-	var wg sync.WaitGroup
-	for _, id := range w.PartyIDs() {
-		wg.Add(1)
-		go func(id party.ID) {
-			pl := pool.NewPool(0)
-			defer pl.TearDown()
-			conf, err := cmpRefresh(&w.Config, network, &wg, pl)
-			if err != nil {
-				return
-			}
-			w.Config = *conf
-		}(id)
+	ch, err := w.node.Join("test")
+	if err != nil {
+		return nil, err
 	}
+	var wg sync.WaitGroup
+	wg.Add(1)
+	go func(channel *node.Channel) {
+		pl := pool.NewPool(0)
+		defer pl.TearDown()
+		conf, err := cmpRefresh(&w.Config, channel, &wg, pl)
+		if err != nil {
+			return
+		}
+		w.Config = *conf
+	}(ch)
 	wg.Wait()
 	return w, nil
 }
 
 func (w *Wallet) GetPreSignature() (*ecdsa.PreSignature, error) {
-	network := getNetwork(w.PartyIDs())
+	ch, err := w.node.Join("test")
+	if err != nil {
+		return nil, err
+	}
 	var wg sync.WaitGroup
 	var preSignature *ecdsa.PreSignature
-	for _, id := range w.PartyIDs() {
-		wg.Add(1)
-		go func(id party.ID) {
-			pl := pool.NewPool(0)
-			defer pl.TearDown()
-			res, err := cmpPreSign(&w.Config, w.PartyIDs(), network, &wg, pl)
-			if err != nil {
-				return
-			}
-			preSignature = res
-		}(id)
-	}
+	wg.Add(1)
+
+	go func(channel *node.Channel) {
+		pl := pool.NewPool(0)
+		defer pl.TearDown()
+		res, err := cmpPreSign(&w.Config, w.PartyIDs(), channel, &wg, pl)
+		if err != nil {
+			return
+		}
+		preSignature = res
+	}(ch)
 	wg.Wait()
 	return preSignature, nil
 }
 
 func (w *Wallet) SignWithPreSignature(m []byte, preSignature *ecdsa.PreSignature) ([]byte, error) {
-	network := getNetwork(w.PartyIDs())
+	ch, err := w.node.Join("test")
+	if err != nil {
+		return nil, err
+	}
 	var wg sync.WaitGroup
 	var signature *ecdsa.Signature
-	for _, id := range w.PartyIDs() {
-		wg.Add(1)
-		go func(id party.ID) {
-			pl := pool.NewPool(0)
-			defer pl.TearDown()
-			res, err := cmpPreSignOnline(&w.Config, preSignature, m, network, &wg, pl)
-			if err != nil {
-				return
-			}
-			signature = res
-		}(id)
-	}
+	wg.Add(1)
+	go func(channel *node.Channel) {
+		pl := pool.NewPool(0)
+		defer pl.TearDown()
+		res, err := cmpPreSignOnline(&w.Config, preSignature, m, channel, &wg, pl)
+		if err != nil {
+			return
+		}
+		signature = res
+	}(ch)
+
 	wg.Wait()
 	return SerializeSignature(signature)
 }
 
 func (w *Wallet) Sign(m []byte) ([]byte, error) {
-	network := getNetwork(w.PartyIDs())
+	ch, err := w.node.Join("test")
+	if err != nil {
+		return nil, err
+	}
 	var wg sync.WaitGroup
 	pl := pool.NewPool(0)
 	defer pl.TearDown()
 	wg.Add(1)
-	res, err := cmpSign(&w.Config, m, w.PartyIDs(), network, &wg, pl)
+	res, err := cmpSign(&w.Config, m, w.PartyIDs(), ch, &wg, pl)
 	if err != nil {
 		return nil, err
 	}

@@ -42,7 +42,7 @@ func (n *hostImpl) Join(name string, opts ...ChannelOption) (*Channel, error) {
 	}
 
 	// Call Underlying Pubsub to Connect
-	t, err := n.newPSTopic(name, config.psOptions...)
+	t, err := n.JoinTopic(name, config.psOptions...)
 	if err != nil {
 		return nil, err
 	}

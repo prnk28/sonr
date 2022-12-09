@@ -24,30 +24,26 @@ var (
 func TestCreateSaveLoadWallet(t *testing.T) {
 	// Create 2 nodes
 	n1, err := node.New(context.Background())
-	if err != nil {
-		t.Fatal(err)
-	}
-	_, err = node.New(context.Background())
-	if err != nil {
-		t.Fatal(err)
-	}
+	check(t, err)
+	n2, err := node.New(context.Background())
+	check(t, err)
 
-	// Create a Channel for the nodes to communicate on
-	c1, err := n1.Join("test")
-	if err != nil {
-		t.Fatal(err)
-	}
-	pids := c1.ListPeers()
-	n, err := node.New(context.Background())
-	w, err := mpc.NewWallet(n, pids)
-	if err != nil {
-		t.Fatal(err)
-	}
-	_, err = w.Save(password)
-	if err != nil {
-		t.Fatal(err)
-	}
-	_, err = mpc.NewWalletFromDisk(path, password)
+	// Make Node 2 join Test channel
+	_, err = n2.Join("test")
+	check(t, err)
+
+	// Fetch their IDs
+	id1, err := n1.ID()
+	check(t, err)
+	id2, err := n2.ID()
+	check(t, err)
+
+	// Create a wallet on node 1
+	_, err = mpc.NewWallet(n1, node.IDSlice{id1, id2})
+	check(t, err)
+}
+
+func check(t *testing.T, err error) {
 	if err != nil {
 		t.Fatal(err)
 	}
