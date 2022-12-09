@@ -97,6 +97,8 @@ import (
 	ibchost "github.com/cosmos/ibc-go/v5/modules/core/24-host"
 	ibckeeper "github.com/cosmos/ibc-go/v5/modules/core/keeper"
 	"github.com/ignite/cli/ignite/pkg/openapiconsole"
+	"github.com/kataras/golog"
+	webauthnapi "github.com/sonr-io/sonr/pkg/webauthn"
 	"github.com/spf13/cast"
 	abci "github.com/tendermint/tendermint/abci/types"
 	tmjson "github.com/tendermint/tendermint/libs/json"
@@ -107,6 +109,7 @@ import (
 	identitymodule "github.com/sonr-io/sonr/x/identity"
 	identitymodulekeeper "github.com/sonr-io/sonr/x/identity/keeper"
 	identitymoduletypes "github.com/sonr-io/sonr/x/identity/types"
+
 	// this line is used by starport scaffolding # stargate/app/moduleImport
 
 	appparams "github.com/sonr-io/sonr/app/params"
@@ -831,8 +834,16 @@ func (app *App) RegisterAPIRoutes(apiSvr *api.Server, apiConfig config.APIConfig
 	ModuleBasics.RegisterGRPCGatewayRoutes(clientCtx, apiSvr.GRPCGatewayRouter)
 
 	// register app's OpenAPI routes.
-	apiSvr.Router.Handle("/static/openapi.yml", http.FileServer(http.FS(docs.Docs)))
-	apiSvr.Router.HandleFunc("/", openapiconsole.Handler(Name, "/static/openapi.yml"))
+	apiSvr.Router.Handle("/static/openapi.yaml", http.FileServer(http.FS(docs.Docs)))
+	apiSvr.Router.HandleFunc("/", openapiconsole.Handler(Name, "/static/openapi.yaml"))
+
+	// Register webauthn server routes.
+	webauthnapi.Init()
+	golog.Println("WebAuthn API enabled")
+	apiSvr.Router.HandleFunc("/webauthn/register/begin", webauthnapi.BeginRegistration).Methods("GET")
+	apiSvr.Router.HandleFunc("/webauthn/register/finish", webauthnapi.FinishRegistration).Methods("POST")
+	apiSvr.Router.HandleFunc("/webauthn/login/begin", webauthnapi.BeginLogin).Methods("GET")
+	apiSvr.Router.HandleFunc("/webauthn/login/finish", webauthnapi.FinishLogin).Methods("POST")
 }
 
 // RegisterTxService implements the Application.RegisterTxService method.

@@ -57,9 +57,6 @@ type Node interface {
 	// Routing returns the routing.Routing
 	Routing() rt.Routing
 
-	// Send(ctx context.Context, target string, data interface{}, protocol protocol.ID) error
-	Send(id peer.ID, p protocol.ID, data []byte) error
-
 	// SetStreamHandler sets the handler for a protocol
 	SetStreamHandler(protocol protocol.ID, handler network.StreamHandler)
 }
