@@ -1,11 +1,12 @@
 syntax = "proto3";
-package sonrio.sonr.identity.v1;
+package sonrio.sonr.identity;
 
 import "gogoproto/gogo.proto";
 import "google/api/annotations.proto";
 import "cosmos/base/query/v1beta1/pagination.proto";
-import "sonr/identity/v1/params.proto";
-import "sonr/identity/v1/did.proto";
+import "sonr/identity/params.proto";
+import "sonr/identity/did.proto";
+import "sonr/identity/vc.proto";
 // this line is used by starport scaffolding # 1
 
 option go_package = "github.com/sonr-io/sonr/x/identity/types";
@@ -46,10 +47,40 @@ service Query {
 		option (google.api.http).get = "/sonr-io/sonr/identity/method/{method_id}";
 	}
 
-    //Queries Content metadata from IPFS for a given CID
-	//rpc QueryMetadataByCID(QueryMetadataByCIDRequest) returns (QueryMetadataByCIDResponse) {
-	//	option (google.api.http).get = "/sonr-io/sonr/identity/ipfs_metadata/{cid}";
-	//}
+	// Queries a list of QueryByNetwork items.
+	rpc QueryByNetwork(QueryByNetworkRequest) returns (QueryByNetworkResponse) {
+		option (google.api.http).get = "/sonr-io/sonr/identity/network/{network_id}";
+	}
+
+	// Request a Webauthn credential registration returns a VM and Credential
+	rpc WebauthnRegistrationBegin(QueryWebauthnRegisterBeginRequest) returns (QueryWebauthnRegisterBeginResponse) {
+		option (google.api.http) = {
+			get: "/sonr-io/sonr/webauthn/register/begin"
+		};
+	}
+
+	// Queries a list of VerifyWebauthnCredential items.
+	rpc WebauthnRegistrationFinish(QueryWebauthnRegisterFinishRequest) returns (QueryWebauthnRegisterFinishResponse) {
+		option (google.api.http) = {
+			post: "/sonr-io/sonr/webauthn/register/finish"
+			body: "*"
+		};
+	}
+
+	// Request a Webauthn credential registration returns a VM and Credential
+	rpc WebauthnLoginBegin(QueryWebauthnLoginBeginRequest) returns (QueryWebauthnLoginBeginResponse) {
+		option (google.api.http) = {
+			get: "/sonr-io/sonr/webauthn/login/begin"
+		};
+	}
+
+	// Queries a list of VerifyWebauthnCredential items.
+	rpc WebauthnLoginFinish(QueryWebauthnLoginFinishRequest) returns (QueryWebauthnLoginFinishResponse) {
+		option (google.api.http) = {
+			post: "/sonr-io/sonr/webauthn/login/finish"
+			body: "*"
+		};
+	}
 // this line is used by starport scaffolding # 2
 }
 
@@ -112,5 +143,48 @@ message QueryAllDidResponse {
 	repeated DidDocument didDocument = 1 [(gogoproto.nullable) = false];
 	cosmos.base.query.v1beta1.PageResponse pagination = 2;
 }
+
+message QueryByNetworkRequest {
+	string network_id = 1;
+}
+
+message QueryByNetworkResponse {
+	repeated DidDocument didDocument = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryWebauthnRegisterBeginRequest {
+	string uuid = 1;
+}
+
+message QueryWebauthnRegisterBeginResponse {
+	bytes response = 1;
+}
+
+message QueryWebauthnRegisterFinishRequest {
+	string uuid = 1;
+	bytes generated_credential = 2;
+}
+
+message QueryWebauthnRegisterFinishResponse {
+	WebauthnCredential credential = 1;
+}
+
+message QueryWebauthnLoginBeginRequest {
+	string uuid = 1;
+}
+
+message QueryWebauthnLoginBeginResponse {
+	bytes response = 1;
+}
+
+message QueryWebauthnLoginFinishRequest {
+	string uuid = 1;
+}
+
+message QueryWebauthnLoginFinishResponse {
+	DidDocument didDocument = 1;
+}
+
 
 // this line is used by starport scaffolding # 3

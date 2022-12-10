@@ -1,5 +1,5 @@
 syntax = "proto3";
-package sonrio.sonr.identity.v1;
+package sonrio.sonr.identity;
 
 import "gogoproto/gogo.proto";
 
@@ -10,6 +10,11 @@ message Params {
   option (gogoproto.goproto_stringer) = false;
   string did_base_context = 1;
   string did_implementation_context = 2;
-  string ipfs_gateway = 3;
-  string ipfs_api = 4;
+  string did_method_name = 3;
+  string ipfs_gateway = 4;
+  string ipfs_api = 5;
+  string rp_display_name = 6;
+  string rp_id = 7;
+  string rp_origin = 8;
+  string rp_icon = 9;
 }

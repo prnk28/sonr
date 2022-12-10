@@ -47,14 +47,15 @@ func (AppModule) GenerateGenesisState(simState *module.SimulationState) {
 	}
 	identityGenesis := types.GenesisState{
 		Params: types.DefaultParams(),
+
 		DidDocumentList: []types.DidDocument{
 			{
 				Creator: sample.AccAddress(),
-				ID:     "0",
+				ID:      "0",
 			},
 			{
 				Creator: sample.AccAddress(),
-				ID:     "1",
+				ID:      "1",
 			},
 		},
 		// this line is used by starport scaffolding # simapp/module/genesisState

@@ -1,9 +1,9 @@
 syntax = "proto3";
-package sonrio.sonr.identity.v1;
+package sonrio.sonr.identity;
 
 import "gogoproto/gogo.proto";
-import "sonr/identity/v1/params.proto";
-import "sonr/identity/v1/did.proto";
+import "sonr/identity/params.proto";
+import "sonr/identity/did.proto";
 // this line is used by starport scaffolding # genesis/proto/import
 
 option go_package = "github.com/sonr-io/sonr/x/identity/types";

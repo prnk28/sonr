@@ -118,7 +118,11 @@
             "content/4/identity/main",
             "content/4/identity/api/1",
             "content/4/identity/api/2",
-            "content/4/identity/api/3"
+            "content/4/identity/api/3",
+            "content/4/identity/api/9",
+            "content/4/identity/api/10",
+            "content/4/identity/api/11",
+            "content/4/identity/api/12"
           ]
         },
         {
@@ -135,16 +139,6 @@
             "content/4/tendermint/api/10",
             "content/4/tendermint/api/7",
             "content/4/tendermint/api/8"
-          ]
-        },
-        {
-          "group": "WebAuthn",
-          "pages": [
-            "content/4/webauthn/main",
-            "content/4/webauthn/api/1",
-            "content/4/webauthn/api/2",
-            "content/4/webauthn/api/3",
-            "content/4/webauthn/api/4"
           ]
         }
       ]

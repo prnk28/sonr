@@ -4,7 +4,7 @@ import (
 	"testing"
 
 	"github.com/sonr-io/multi-party-sig/pkg/party"
-	"github.com/sonr-io/sonr/core/protocol/vault/x/mpc"
+	"github.com/sonr-io/sonr/pkg/protocol/vault/x/mpc"
 )
 
 const (
