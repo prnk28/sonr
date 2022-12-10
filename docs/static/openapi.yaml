@@ -44311,7 +44311,7 @@ paths:
   /sonr-io/sonr/identity/aka/{aka_id}:
     get:
       summary: Queries a DIDDocument for the matching AlsoKnownAs
-      operationId: SonrioSonrIdentityV1QueryByAlsoKnownAs
+      operationId: SonrioSonrIdentityQueryByAlsoKnownAs
       responses:
         '200':
           description: A successful response.
@@ -44371,7 +44371,11 @@ paths:
                               type: object
                               additionalProperties:
                                 type: string
+                              title: optional
                             public_key_multibase:
+                              type: string
+                              title: optional
+                            blockchain_account_id:
                               type: string
                               title: optional
                   authentication:
@@ -44413,7 +44417,11 @@ paths:
                                   type: object
                                   additionalProperties:
                                     type: string
+                                  title: optional
                                 public_key_multibase:
+                                  type: string
+                                  title: optional
+                                blockchain_account_id:
                                   type: string
                                   title: optional
                             reference:
@@ -44457,7 +44465,11 @@ paths:
                                   type: object
                                   additionalProperties:
                                     type: string
+                                  title: optional
                                 public_key_multibase:
+                                  type: string
+                                  title: optional
+                                blockchain_account_id:
                                   type: string
                                   title: optional
                             reference:
@@ -44501,7 +44513,11 @@ paths:
                                   type: object
                                   additionalProperties:
                                     type: string
+                                  title: optional
                                 public_key_multibase:
+                                  type: string
+                                  title: optional
+                                blockchain_account_id:
                                   type: string
                                   title: optional
                             reference:
@@ -44545,7 +44561,11 @@ paths:
                                   type: object
                                   additionalProperties:
                                     type: string
+                                  title: optional
                                 public_key_multibase:
+                                  type: string
+                                  title: optional
+                                blockchain_account_id:
                                   type: string
                                   title: optional
                             reference:
@@ -44589,7 +44609,11 @@ paths:
                                   type: object
                                   additionalProperties:
                                     type: string
+                                  title: optional
                                 public_key_multibase:
+                                  type: string
+                                  title: optional
+                                blockchain_account_id:
                                   type: string
                                   title: optional
                             reference:
@@ -44607,6 +44631,18 @@ paths:
                               type: string
                             type:
                               type: string
+                              enum:
+                                - ServiceType_UNSPECIFIED
+                                - ServiceType_DID_COMM_MESSAGING
+                                - ServiceType_ENCRYPTED_DATA_VAULT
+                              default: ServiceType_UNSPECIFIED
+                              description: >-
+                                ServiceType is the type of service used to
+                                provide a DID document.
+
+                                 - ServiceType_UNSPECIFIED: No service type specified
+                                 - ServiceType_DID_COMM_MESSAGING: DIDCommMessaging is the DIDCommMessaging service type as specified here: https://identity.foundation/didcomm-messaging/spec/
+                                 - ServiceType_ENCRYPTED_DATA_VAULT: EncryptedDataVault is the EncryptedDataVault service type as specified here: https://identity.foundation/edv-spec/
                             service_endpoint:
                               type: string
                             service_endpoints:
@@ -44647,7 +44683,7 @@ paths:
   /sonr-io/sonr/identity/did:
     get:
       summary: Queries a list of DidDocument items.
-      operationId: SonrioSonrIdentityV1DidAll
+      operationId: SonrioSonrIdentityDidAll
       responses:
         '200':
           description: A successful response.
@@ -44710,7 +44746,11 @@ paths:
                                 type: object
                                 additionalProperties:
                                   type: string
+                                title: optional
                               public_key_multibase:
+                                type: string
+                                title: optional
+                              blockchain_account_id:
                                 type: string
                                 title: optional
                     authentication:
@@ -44752,7 +44792,11 @@ paths:
                                     type: object
                                     additionalProperties:
                                       type: string
+                                    title: optional
                                   public_key_multibase:
+                                    type: string
+                                    title: optional
+                                  blockchain_account_id:
                                     type: string
                                     title: optional
                               reference:
@@ -44796,7 +44840,11 @@ paths:
                                     type: object
                                     additionalProperties:
                                       type: string
+                                    title: optional
                                   public_key_multibase:
+                                    type: string
+                                    title: optional
+                                  blockchain_account_id:
                                     type: string
                                     title: optional
                               reference:
@@ -44840,7 +44888,11 @@ paths:
                                     type: object
                                     additionalProperties:
                                       type: string
+                                    title: optional
                                   public_key_multibase:
+                                    type: string
+                                    title: optional
+                                  blockchain_account_id:
                                     type: string
                                     title: optional
                               reference:
@@ -44884,7 +44936,11 @@ paths:
                                     type: object
                                     additionalProperties:
                                       type: string
+                                    title: optional
                                   public_key_multibase:
+                                    type: string
+                                    title: optional
+                                  blockchain_account_id:
                                     type: string
                                     title: optional
                               reference:
@@ -44928,7 +44984,11 @@ paths:
                                     type: object
                                     additionalProperties:
                                       type: string
+                                    title: optional
                                   public_key_multibase:
+                                    type: string
+                                    title: optional
+                                  blockchain_account_id:
                                     type: string
                                     title: optional
                               reference:
@@ -44946,6 +45006,18 @@ paths:
                                 type: string
                               type:
                                 type: string
+                                enum:
+                                  - ServiceType_UNSPECIFIED
+                                  - ServiceType_DID_COMM_MESSAGING
+                                  - ServiceType_ENCRYPTED_DATA_VAULT
+                                default: ServiceType_UNSPECIFIED
+                                description: >-
+                                  ServiceType is the type of service used to
+                                  provide a DID document.
+
+                                   - ServiceType_UNSPECIFIED: No service type specified
+                                   - ServiceType_DID_COMM_MESSAGING: DIDCommMessaging is the DIDCommMessaging service type as specified here: https://identity.foundation/didcomm-messaging/spec/
+                                   - ServiceType_ENCRYPTED_DATA_VAULT: EncryptedDataVault is the EncryptedDataVault service type as specified here: https://identity.foundation/edv-spec/
                               service_endpoint:
                                 type: string
                               service_endpoints:
@@ -45066,7 +45138,7 @@ paths:
   /sonr-io/sonr/identity/did/{did}:
     get:
       summary: Queries a DidDocument by index.
-      operationId: SonrioSonrIdentityV1Did
+      operationId: SonrioSonrIdentityDid
       responses:
         '200':
           description: A successful response.
@@ -45126,7 +45198,11 @@ paths:
                               type: object
                               additionalProperties:
                                 type: string
+                              title: optional
                             public_key_multibase:
+                              type: string
+                              title: optional
+                            blockchain_account_id:
                               type: string
                               title: optional
                   authentication:
@@ -45168,7 +45244,11 @@ paths:
                                   type: object
                                   additionalProperties:
                                     type: string
+                                  title: optional
                                 public_key_multibase:
+                                  type: string
+                                  title: optional
+                                blockchain_account_id:
                                   type: string
                                   title: optional
                             reference:
@@ -45212,7 +45292,11 @@ paths:
                                   type: object
                                   additionalProperties:
                                     type: string
+                                  title: optional
                                 public_key_multibase:
+                                  type: string
+                                  title: optional
+                                blockchain_account_id:
                                   type: string
                                   title: optional
                             reference:
@@ -45256,7 +45340,11 @@ paths:
                                   type: object
                                   additionalProperties:
                                     type: string
+                                  title: optional
                                 public_key_multibase:
+                                  type: string
+                                  title: optional
+                                blockchain_account_id:
                                   type: string
                                   title: optional
                             reference:
@@ -45300,7 +45388,11 @@ paths:
                                   type: object
                                   additionalProperties:
                                     type: string
+                                  title: optional
                                 public_key_multibase:
+                                  type: string
+                                  title: optional
+                                blockchain_account_id:
                                   type: string
                                   title: optional
                             reference:
@@ -45344,7 +45436,11 @@ paths:
                                   type: object
                                   additionalProperties:
                                     type: string
+                                  title: optional
                                 public_key_multibase:
+                                  type: string
+                                  title: optional
+                                blockchain_account_id:
                                   type: string
                                   title: optional
                             reference:
@@ -45362,6 +45458,18 @@ paths:
                               type: string
                             type:
                               type: string
+                              enum:
+                                - ServiceType_UNSPECIFIED
+                                - ServiceType_DID_COMM_MESSAGING
+                                - ServiceType_ENCRYPTED_DATA_VAULT
+                              default: ServiceType_UNSPECIFIED
+                              description: >-
+                                ServiceType is the type of service used to
+                                provide a DID document.
+
+                                 - ServiceType_UNSPECIFIED: No service type specified
+                                 - ServiceType_DID_COMM_MESSAGING: DIDCommMessaging is the DIDCommMessaging service type as specified here: https://identity.foundation/didcomm-messaging/spec/
+                                 - ServiceType_ENCRYPTED_DATA_VAULT: EncryptedDataVault is the EncryptedDataVault service type as specified here: https://identity.foundation/edv-spec/
                             service_endpoint:
                               type: string
                             service_endpoints:
@@ -45402,7 +45510,7 @@ paths:
   /sonr-io/sonr/identity/key/{key_id}:
     get:
       summary: Queries a DIDDocument for the matching key
-      operationId: SonrioSonrIdentityV1QueryByKeyID
+      operationId: SonrioSonrIdentityQueryByKeyID
       responses:
         '200':
           description: A successful response.
@@ -45462,7 +45570,11 @@ paths:
                               type: object
                               additionalProperties:
                                 type: string
+                              title: optional
                             public_key_multibase:
+                              type: string
+                              title: optional
+                            blockchain_account_id:
                               type: string
                               title: optional
                   authentication:
@@ -45504,7 +45616,11 @@ paths:
                                   type: object
                                   additionalProperties:
                                     type: string
+                                  title: optional
                                 public_key_multibase:
+                                  type: string
+                                  title: optional
+                                blockchain_account_id:
                                   type: string
                                   title: optional
                             reference:
@@ -45548,7 +45664,11 @@ paths:
                                   type: object
                                   additionalProperties:
                                     type: string
+                                  title: optional
                                 public_key_multibase:
+                                  type: string
+                                  title: optional
+                                blockchain_account_id:
                                   type: string
                                   title: optional
                             reference:
@@ -45592,7 +45712,11 @@ paths:
                                   type: object
                                   additionalProperties:
                                     type: string
+                                  title: optional
                                 public_key_multibase:
+                                  type: string
+                                  title: optional
+                                blockchain_account_id:
                                   type: string
                                   title: optional
                             reference:
@@ -45636,7 +45760,11 @@ paths:
                                   type: object
                                   additionalProperties:
                                     type: string
+                                  title: optional
                                 public_key_multibase:
+                                  type: string
+                                  title: optional
+                                blockchain_account_id:
                                   type: string
                                   title: optional
                             reference:
@@ -45680,7 +45808,11 @@ paths:
                                   type: object
                                   additionalProperties:
                                     type: string
+                                  title: optional
                                 public_key_multibase:
+                                  type: string
+                                  title: optional
+                                blockchain_account_id:
                                   type: string
                                   title: optional
                             reference:
@@ -45698,6 +45830,18 @@ paths:
                               type: string
                             type:
                               type: string
+                              enum:
+                                - ServiceType_UNSPECIFIED
+                                - ServiceType_DID_COMM_MESSAGING
+                                - ServiceType_ENCRYPTED_DATA_VAULT
+                              default: ServiceType_UNSPECIFIED
+                              description: >-
+                                ServiceType is the type of service used to
+                                provide a DID document.
+
+                                 - ServiceType_UNSPECIFIED: No service type specified
+                                 - ServiceType_DID_COMM_MESSAGING: DIDCommMessaging is the DIDCommMessaging service type as specified here: https://identity.foundation/didcomm-messaging/spec/
+                                 - ServiceType_ENCRYPTED_DATA_VAULT: EncryptedDataVault is the EncryptedDataVault service type as specified here: https://identity.foundation/edv-spec/
                             service_endpoint:
                               type: string
                             service_endpoints:
@@ -45738,7 +45882,7 @@ paths:
   /sonr-io/sonr/identity/method/{method_id}:
     get:
       summary: Queries a list of DIDDocument for the matching method
-      operationId: SonrioSonrIdentityV1QueryByMethod
+      operationId: SonrioSonrIdentityQueryByMethod
       responses:
         '200':
           description: A successful response.
@@ -45801,7 +45945,11 @@ paths:
                                 type: object
                                 additionalProperties:
                                   type: string
+                                title: optional
                               public_key_multibase:
+                                type: string
+                                title: optional
+                              blockchain_account_id:
                                 type: string
                                 title: optional
                     authentication:
@@ -45843,7 +45991,11 @@ paths:
                                     type: object
                                     additionalProperties:
                                       type: string
+                                    title: optional
                                   public_key_multibase:
+                                    type: string
+                                    title: optional
+                                  blockchain_account_id:
                                     type: string
                                     title: optional
                               reference:
@@ -45887,7 +46039,11 @@ paths:
                                     type: object
                                     additionalProperties:
                                       type: string
+                                    title: optional
                                   public_key_multibase:
+                                    type: string
+                                    title: optional
+                                  blockchain_account_id:
                                     type: string
                                     title: optional
                               reference:
@@ -45931,7 +46087,11 @@ paths:
                                     type: object
                                     additionalProperties:
                                       type: string
+                                    title: optional
                                   public_key_multibase:
+                                    type: string
+                                    title: optional
+                                  blockchain_account_id:
                                     type: string
                                     title: optional
                               reference:
@@ -45975,7 +46135,11 @@ paths:
                                     type: object
                                     additionalProperties:
                                       type: string
+                                    title: optional
                                   public_key_multibase:
+                                    type: string
+                                    title: optional
+                                  blockchain_account_id:
                                     type: string
                                     title: optional
                               reference:
@@ -46019,7 +46183,11 @@ paths:
                                     type: object
                                     additionalProperties:
                                       type: string
+                                    title: optional
                                   public_key_multibase:
+                                    type: string
+                                    title: optional
+                                  blockchain_account_id:
                                     type: string
                                     title: optional
                               reference:
@@ -46037,6 +46205,18 @@ paths:
                                 type: string
                               type:
                                 type: string
+                                enum:
+                                  - ServiceType_UNSPECIFIED
+                                  - ServiceType_DID_COMM_MESSAGING
+                                  - ServiceType_ENCRYPTED_DATA_VAULT
+                                default: ServiceType_UNSPECIFIED
+                                description: >-
+                                  ServiceType is the type of service used to
+                                  provide a DID document.
+
+                                   - ServiceType_UNSPECIFIED: No service type specified
+                                   - ServiceType_DID_COMM_MESSAGING: DIDCommMessaging is the DIDCommMessaging service type as specified here: https://identity.foundation/didcomm-messaging/spec/
+                                   - ServiceType_ENCRYPTED_DATA_VAULT: EncryptedDataVault is the EncryptedDataVault service type as specified here: https://identity.foundation/edv-spec/
                               service_endpoint:
                                 type: string
                               service_endpoints:
@@ -46158,10 +46338,413 @@ paths:
           type: boolean
       tags:
         - Query
+  /sonr-io/sonr/identity/network/{network_id}:
+    get:
+      summary: Queries a list of QueryByNetwork items.
+      operationId: SonrioSonrIdentityQueryByNetwork
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              didDocument:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    context:
+                      type: array
+                      items:
+                        type: string
+                      title: optional
+                    creator:
+                      type: string
+                      title: optional
+                    iD:
+                      type: string
+                    controller:
+                      type: array
+                      items:
+                        type: string
+                      title: optional
+                    verification_method:
+                      title: optional
+                      type: object
+                      properties:
+                        data:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              iD:
+                                type: string
+                              type:
+                                type: string
+                                enum:
+                                  - KeyType_UNSPECIFIED
+                                  - KeyType_JSON_WEB_KEY_2020
+                                  - KeyType_ED25519_VERIFICATION_KEY_2018
+                                  - >-
+                                    KeyType_ECDSA_SECP256K1_VERIFICATION_KEY_2019
+                                  - KeyType_RSA_VERIFICATION_KEY_2018
+                                default: KeyType_UNSPECIFIED
+                                description: >-
+                                  KeyType is the type of key used to sign a DID
+                                  document.
+
+                                   - KeyType_UNSPECIFIED: No key type specified
+                                   - KeyType_JSON_WEB_KEY_2020: JsonWebKey2020 is a VerificationMethod type. https://w3c-ccg.github.io/lds-jws2020/
+                                   - KeyType_ED25519_VERIFICATION_KEY_2018: ED25519VerificationKey2018 is the Ed25519VerificationKey2018 verification key type as specified here: https://w3c-ccg.github.io/lds-ed25519-2018/
+                                   - KeyType_ECDSA_SECP256K1_VERIFICATION_KEY_2019: ECDSASECP256K1VerificationKey2019 is the EcdsaSecp256k1VerificationKey2019 verification key type as specified here: https://w3c-ccg.github.io/lds-ecdsa-secp256k1-2019/
+                                   - KeyType_RSA_VERIFICATION_KEY_2018: RSAVerificationKey2018 is the RsaVerificationKey2018 verification key type as specified here: https://w3c-ccg.github.io/lds-rsa2018/
+                              controller:
+                                type: string
+                              public_key_jwk:
+                                type: object
+                                additionalProperties:
+                                  type: string
+                                title: optional
+                              public_key_multibase:
+                                type: string
+                                title: optional
+                              blockchain_account_id:
+                                type: string
+                                title: optional
+                    authentication:
+                      title: optional
+                      type: object
+                      properties:
+                        data:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              verification_method:
+                                type: object
+                                properties:
+                                  iD:
+                                    type: string
+                                  type:
+                                    type: string
+                                    enum:
+                                      - KeyType_UNSPECIFIED
+                                      - KeyType_JSON_WEB_KEY_2020
+                                      - KeyType_ED25519_VERIFICATION_KEY_2018
+                                      - >-
+                                        KeyType_ECDSA_SECP256K1_VERIFICATION_KEY_2019
+                                      - KeyType_RSA_VERIFICATION_KEY_2018
+                                    default: KeyType_UNSPECIFIED
+                                    description: >-
+                                      KeyType is the type of key used to sign a
+                                      DID document.
+
+                                       - KeyType_UNSPECIFIED: No key type specified
+                                       - KeyType_JSON_WEB_KEY_2020: JsonWebKey2020 is a VerificationMethod type. https://w3c-ccg.github.io/lds-jws2020/
+                                       - KeyType_ED25519_VERIFICATION_KEY_2018: ED25519VerificationKey2018 is the Ed25519VerificationKey2018 verification key type as specified here: https://w3c-ccg.github.io/lds-ed25519-2018/
+                                       - KeyType_ECDSA_SECP256K1_VERIFICATION_KEY_2019: ECDSASECP256K1VerificationKey2019 is the EcdsaSecp256k1VerificationKey2019 verification key type as specified here: https://w3c-ccg.github.io/lds-ecdsa-secp256k1-2019/
+                                       - KeyType_RSA_VERIFICATION_KEY_2018: RSAVerificationKey2018 is the RsaVerificationKey2018 verification key type as specified here: https://w3c-ccg.github.io/lds-rsa2018/
+                                  controller:
+                                    type: string
+                                  public_key_jwk:
+                                    type: object
+                                    additionalProperties:
+                                      type: string
+                                    title: optional
+                                  public_key_multibase:
+                                    type: string
+                                    title: optional
+                                  blockchain_account_id:
+                                    type: string
+                                    title: optional
+                              reference:
+                                type: string
+                    assertion_method:
+                      title: optional
+                      type: object
+                      properties:
+                        data:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              verification_method:
+                                type: object
+                                properties:
+                                  iD:
+                                    type: string
+                                  type:
+                                    type: string
+                                    enum:
+                                      - KeyType_UNSPECIFIED
+                                      - KeyType_JSON_WEB_KEY_2020
+                                      - KeyType_ED25519_VERIFICATION_KEY_2018
+                                      - >-
+                                        KeyType_ECDSA_SECP256K1_VERIFICATION_KEY_2019
+                                      - KeyType_RSA_VERIFICATION_KEY_2018
+                                    default: KeyType_UNSPECIFIED
+                                    description: >-
+                                      KeyType is the type of key used to sign a
+                                      DID document.
+
+                                       - KeyType_UNSPECIFIED: No key type specified
+                                       - KeyType_JSON_WEB_KEY_2020: JsonWebKey2020 is a VerificationMethod type. https://w3c-ccg.github.io/lds-jws2020/
+                                       - KeyType_ED25519_VERIFICATION_KEY_2018: ED25519VerificationKey2018 is the Ed25519VerificationKey2018 verification key type as specified here: https://w3c-ccg.github.io/lds-ed25519-2018/
+                                       - KeyType_ECDSA_SECP256K1_VERIFICATION_KEY_2019: ECDSASECP256K1VerificationKey2019 is the EcdsaSecp256k1VerificationKey2019 verification key type as specified here: https://w3c-ccg.github.io/lds-ecdsa-secp256k1-2019/
+                                       - KeyType_RSA_VERIFICATION_KEY_2018: RSAVerificationKey2018 is the RsaVerificationKey2018 verification key type as specified here: https://w3c-ccg.github.io/lds-rsa2018/
+                                  controller:
+                                    type: string
+                                  public_key_jwk:
+                                    type: object
+                                    additionalProperties:
+                                      type: string
+                                    title: optional
+                                  public_key_multibase:
+                                    type: string
+                                    title: optional
+                                  blockchain_account_id:
+                                    type: string
+                                    title: optional
+                              reference:
+                                type: string
+                    capability_invocation:
+                      title: optional
+                      type: object
+                      properties:
+                        data:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              verification_method:
+                                type: object
+                                properties:
+                                  iD:
+                                    type: string
+                                  type:
+                                    type: string
+                                    enum:
+                                      - KeyType_UNSPECIFIED
+                                      - KeyType_JSON_WEB_KEY_2020
+                                      - KeyType_ED25519_VERIFICATION_KEY_2018
+                                      - >-
+                                        KeyType_ECDSA_SECP256K1_VERIFICATION_KEY_2019
+                                      - KeyType_RSA_VERIFICATION_KEY_2018
+                                    default: KeyType_UNSPECIFIED
+                                    description: >-
+                                      KeyType is the type of key used to sign a
+                                      DID document.
+
+                                       - KeyType_UNSPECIFIED: No key type specified
+                                       - KeyType_JSON_WEB_KEY_2020: JsonWebKey2020 is a VerificationMethod type. https://w3c-ccg.github.io/lds-jws2020/
+                                       - KeyType_ED25519_VERIFICATION_KEY_2018: ED25519VerificationKey2018 is the Ed25519VerificationKey2018 verification key type as specified here: https://w3c-ccg.github.io/lds-ed25519-2018/
+                                       - KeyType_ECDSA_SECP256K1_VERIFICATION_KEY_2019: ECDSASECP256K1VerificationKey2019 is the EcdsaSecp256k1VerificationKey2019 verification key type as specified here: https://w3c-ccg.github.io/lds-ecdsa-secp256k1-2019/
+                                       - KeyType_RSA_VERIFICATION_KEY_2018: RSAVerificationKey2018 is the RsaVerificationKey2018 verification key type as specified here: https://w3c-ccg.github.io/lds-rsa2018/
+                                  controller:
+                                    type: string
+                                  public_key_jwk:
+                                    type: object
+                                    additionalProperties:
+                                      type: string
+                                    title: optional
+                                  public_key_multibase:
+                                    type: string
+                                    title: optional
+                                  blockchain_account_id:
+                                    type: string
+                                    title: optional
+                              reference:
+                                type: string
+                    capability_delegation:
+                      title: optional
+                      type: object
+                      properties:
+                        data:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              verification_method:
+                                type: object
+                                properties:
+                                  iD:
+                                    type: string
+                                  type:
+                                    type: string
+                                    enum:
+                                      - KeyType_UNSPECIFIED
+                                      - KeyType_JSON_WEB_KEY_2020
+                                      - KeyType_ED25519_VERIFICATION_KEY_2018
+                                      - >-
+                                        KeyType_ECDSA_SECP256K1_VERIFICATION_KEY_2019
+                                      - KeyType_RSA_VERIFICATION_KEY_2018
+                                    default: KeyType_UNSPECIFIED
+                                    description: >-
+                                      KeyType is the type of key used to sign a
+                                      DID document.
+
+                                       - KeyType_UNSPECIFIED: No key type specified
+                                       - KeyType_JSON_WEB_KEY_2020: JsonWebKey2020 is a VerificationMethod type. https://w3c-ccg.github.io/lds-jws2020/
+                                       - KeyType_ED25519_VERIFICATION_KEY_2018: ED25519VerificationKey2018 is the Ed25519VerificationKey2018 verification key type as specified here: https://w3c-ccg.github.io/lds-ed25519-2018/
+                                       - KeyType_ECDSA_SECP256K1_VERIFICATION_KEY_2019: ECDSASECP256K1VerificationKey2019 is the EcdsaSecp256k1VerificationKey2019 verification key type as specified here: https://w3c-ccg.github.io/lds-ecdsa-secp256k1-2019/
+                                       - KeyType_RSA_VERIFICATION_KEY_2018: RSAVerificationKey2018 is the RsaVerificationKey2018 verification key type as specified here: https://w3c-ccg.github.io/lds-rsa2018/
+                                  controller:
+                                    type: string
+                                  public_key_jwk:
+                                    type: object
+                                    additionalProperties:
+                                      type: string
+                                    title: optional
+                                  public_key_multibase:
+                                    type: string
+                                    title: optional
+                                  blockchain_account_id:
+                                    type: string
+                                    title: optional
+                              reference:
+                                type: string
+                    key_agreement:
+                      title: optional
+                      type: object
+                      properties:
+                        data:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              verification_method:
+                                type: object
+                                properties:
+                                  iD:
+                                    type: string
+                                  type:
+                                    type: string
+                                    enum:
+                                      - KeyType_UNSPECIFIED
+                                      - KeyType_JSON_WEB_KEY_2020
+                                      - KeyType_ED25519_VERIFICATION_KEY_2018
+                                      - >-
+                                        KeyType_ECDSA_SECP256K1_VERIFICATION_KEY_2019
+                                      - KeyType_RSA_VERIFICATION_KEY_2018
+                                    default: KeyType_UNSPECIFIED
+                                    description: >-
+                                      KeyType is the type of key used to sign a
+                                      DID document.
+
+                                       - KeyType_UNSPECIFIED: No key type specified
+                                       - KeyType_JSON_WEB_KEY_2020: JsonWebKey2020 is a VerificationMethod type. https://w3c-ccg.github.io/lds-jws2020/
+                                       - KeyType_ED25519_VERIFICATION_KEY_2018: ED25519VerificationKey2018 is the Ed25519VerificationKey2018 verification key type as specified here: https://w3c-ccg.github.io/lds-ed25519-2018/
+                                       - KeyType_ECDSA_SECP256K1_VERIFICATION_KEY_2019: ECDSASECP256K1VerificationKey2019 is the EcdsaSecp256k1VerificationKey2019 verification key type as specified here: https://w3c-ccg.github.io/lds-ecdsa-secp256k1-2019/
+                                       - KeyType_RSA_VERIFICATION_KEY_2018: RSAVerificationKey2018 is the RsaVerificationKey2018 verification key type as specified here: https://w3c-ccg.github.io/lds-rsa2018/
+                                  controller:
+                                    type: string
+                                  public_key_jwk:
+                                    type: object
+                                    additionalProperties:
+                                      type: string
+                                    title: optional
+                                  public_key_multibase:
+                                    type: string
+                                    title: optional
+                                  blockchain_account_id:
+                                    type: string
+                                    title: optional
+                              reference:
+                                type: string
+                    service:
+                      title: optional
+                      type: object
+                      properties:
+                        data:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              iD:
+                                type: string
+                              type:
+                                type: string
+                                enum:
+                                  - ServiceType_UNSPECIFIED
+                                  - ServiceType_DID_COMM_MESSAGING
+                                  - ServiceType_ENCRYPTED_DATA_VAULT
+                                default: ServiceType_UNSPECIFIED
+                                description: >-
+                                  ServiceType is the type of service used to
+                                  provide a DID document.
+
+                                   - ServiceType_UNSPECIFIED: No service type specified
+                                   - ServiceType_DID_COMM_MESSAGING: DIDCommMessaging is the DIDCommMessaging service type as specified here: https://identity.foundation/didcomm-messaging/spec/
+                                   - ServiceType_ENCRYPTED_DATA_VAULT: EncryptedDataVault is the EncryptedDataVault service type as specified here: https://identity.foundation/edv-spec/
+                              service_endpoint:
+                                type: string
+                              service_endpoints:
+                                type: object
+                                additionalProperties:
+                                  type: string
+                                title: optional
+                    also_known_as:
+                      type: array
+                      items:
+                        type: string
+                      title: optional
+              pagination:
+                type: object
+                properties:
+                  next_key:
+                    type: string
+                    format: byte
+                    description: |-
+                      next_key is the key to be passed to PageRequest.key to
+                      query the next page most efficiently. It will be empty if
+                      there are no more results.
+                  total:
+                    type: string
+                    format: uint64
+                    title: >-
+                      total is total number of results available if
+                      PageRequest.count_total
+
+                      was set, its value is undefined otherwise
+                description: >-
+                  PageResponse is to be embedded in gRPC response messages where
+                  the
+
+                  corresponding request message has used PageRequest.
+
+                   message SomeResponse {
+                           repeated Bar results = 1;
+                           PageResponse page = 2;
+                   }
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: network_id
+          in: path
+          required: true
+          type: string
+      tags:
+        - Query
   /sonr-io/sonr/identity/params:
     get:
       summary: Parameters queries the parameters of the module.
-      operationId: SonrioSonrIdentityV1Params
+      operationId: SonrioSonrIdentityParams
       responses:
         '200':
           description: A successful response.
@@ -46176,9 +46759,19 @@ paths:
                     type: string
                   did_implementation_context:
                     type: string
+                  did_method_name:
+                    type: string
                   ipfs_gateway:
                     type: string
                   ipfs_api:
+                    type: string
+                  rp_display_name:
+                    type: string
+                  rp_id:
+                    type: string
+                  rp_origin:
+                    type: string
+                  rp_icon:
                     type: string
             description: >-
               QueryParamsResponse is response type for the Query/Params RPC
@@ -46206,7 +46799,7 @@ paths:
   /sonr-io/sonr/identity/service/{service_id}:
     get:
       summary: Queries a DIDDocument for the matching service
-      operationId: SonrioSonrIdentityV1QueryByService
+      operationId: SonrioSonrIdentityQueryByService
       responses:
         '200':
           description: A successful response.
@@ -46266,7 +46859,11 @@ paths:
                               type: object
                               additionalProperties:
                                 type: string
+                              title: optional
                             public_key_multibase:
+                              type: string
+                              title: optional
+                            blockchain_account_id:
                               type: string
                               title: optional
                   authentication:
@@ -46308,7 +46905,11 @@ paths:
                                   type: object
                                   additionalProperties:
                                     type: string
+                                  title: optional
                                 public_key_multibase:
+                                  type: string
+                                  title: optional
+                                blockchain_account_id:
                                   type: string
                                   title: optional
                             reference:
@@ -46352,7 +46953,11 @@ paths:
                                   type: object
                                   additionalProperties:
                                     type: string
+                                  title: optional
                                 public_key_multibase:
+                                  type: string
+                                  title: optional
+                                blockchain_account_id:
                                   type: string
                                   title: optional
                             reference:
@@ -46396,7 +47001,11 @@ paths:
                                   type: object
                                   additionalProperties:
                                     type: string
+                                  title: optional
                                 public_key_multibase:
+                                  type: string
+                                  title: optional
+                                blockchain_account_id:
                                   type: string
                                   title: optional
                             reference:
@@ -46440,7 +47049,11 @@ paths:
                                   type: object
                                   additionalProperties:
                                     type: string
+                                  title: optional
                                 public_key_multibase:
+                                  type: string
+                                  title: optional
+                                blockchain_account_id:
                                   type: string
                                   title: optional
                             reference:
@@ -46484,7 +47097,11 @@ paths:
                                   type: object
                                   additionalProperties:
                                     type: string
+                                  title: optional
                                 public_key_multibase:
+                                  type: string
+                                  title: optional
+                                blockchain_account_id:
                                   type: string
                                   title: optional
                             reference:
@@ -46502,6 +47119,18 @@ paths:
                               type: string
                             type:
                               type: string
+                              enum:
+                                - ServiceType_UNSPECIFIED
+                                - ServiceType_DID_COMM_MESSAGING
+                                - ServiceType_ENCRYPTED_DATA_VAULT
+                              default: ServiceType_UNSPECIFIED
+                              description: >-
+                                ServiceType is the type of service used to
+                                provide a DID document.
+
+                                 - ServiceType_UNSPECIFIED: No service type specified
+                                 - ServiceType_DID_COMM_MESSAGING: DIDCommMessaging is the DIDCommMessaging service type as specified here: https://identity.foundation/didcomm-messaging/spec/
+                                 - ServiceType_ENCRYPTED_DATA_VAULT: EncryptedDataVault is the EncryptedDataVault service type as specified here: https://identity.foundation/edv-spec/
                             service_endpoint:
                               type: string
                             service_endpoints:
@@ -46537,6 +47166,134 @@ paths:
           in: path
           required: true
           type: string
+      tags:
+        - Query
+  /sonr-io/sonr/webauthn/login/begin:
+    get:
+      summary: Request a Webauthn credential registration returns a VM and Credential
+      operationId: SonrioSonrIdentityWebauthnLoginBegin
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      tags:
+        - Query
+  /sonr-io/sonr/webauthn/login/finish:
+    post:
+      summary: Queries a list of VerifyWebauthnCredential items.
+      operationId: SonrioSonrIdentityWebauthnLoginFinish
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+      tags:
+        - Query
+  /sonr-io/sonr/webauthn/register/begin:
+    get:
+      summary: Request a Webauthn credential registration returns a VM and Credential
+      operationId: SonrioSonrIdentityWebauthnRegistrationBegin
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      tags:
+        - Query
+  /sonr-io/sonr/webauthn/register/finish:
+    post:
+      summary: Queries a list of VerifyWebauthnCredential items.
+      operationId: SonrioSonrIdentityWebauthnRegistrationFinish
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
       tags:
         - Query
 definitions:
@@ -75924,7 +76681,7 @@ definitions:
     description: |-
       Version defines the versioning scheme used to negotiate the IBC verison in
       the connection handshake.
-  sonrio.sonr.identity.v1.DidDocument:
+  sonrio.sonr.identity.DidDocument:
     type: object
     properties:
       context:
@@ -75976,7 +76733,11 @@ definitions:
                   type: object
                   additionalProperties:
                     type: string
+                  title: optional
                 public_key_multibase:
+                  type: string
+                  title: optional
+                blockchain_account_id:
                   type: string
                   title: optional
       authentication:
@@ -76016,7 +76777,11 @@ definitions:
                       type: object
                       additionalProperties:
                         type: string
+                      title: optional
                     public_key_multibase:
+                      type: string
+                      title: optional
+                    blockchain_account_id:
                       type: string
                       title: optional
                 reference:
@@ -76058,7 +76823,11 @@ definitions:
                       type: object
                       additionalProperties:
                         type: string
+                      title: optional
                     public_key_multibase:
+                      type: string
+                      title: optional
+                    blockchain_account_id:
                       type: string
                       title: optional
                 reference:
@@ -76100,7 +76869,11 @@ definitions:
                       type: object
                       additionalProperties:
                         type: string
+                      title: optional
                     public_key_multibase:
+                      type: string
+                      title: optional
+                    blockchain_account_id:
                       type: string
                       title: optional
                 reference:
@@ -76142,7 +76915,11 @@ definitions:
                       type: object
                       additionalProperties:
                         type: string
+                      title: optional
                     public_key_multibase:
+                      type: string
+                      title: optional
+                    blockchain_account_id:
                       type: string
                       title: optional
                 reference:
@@ -76184,7 +76961,11 @@ definitions:
                       type: object
                       additionalProperties:
                         type: string
+                      title: optional
                     public_key_multibase:
+                      type: string
+                      title: optional
+                    blockchain_account_id:
                       type: string
                       title: optional
                 reference:
@@ -76202,6 +76983,18 @@ definitions:
                   type: string
                 type:
                   type: string
+                  enum:
+                    - ServiceType_UNSPECIFIED
+                    - ServiceType_DID_COMM_MESSAGING
+                    - ServiceType_ENCRYPTED_DATA_VAULT
+                  default: ServiceType_UNSPECIFIED
+                  description: >-
+                    ServiceType is the type of service used to provide a DID
+                    document.
+
+                     - ServiceType_UNSPECIFIED: No service type specified
+                     - ServiceType_DID_COMM_MESSAGING: DIDCommMessaging is the DIDCommMessaging service type as specified here: https://identity.foundation/didcomm-messaging/spec/
+                     - ServiceType_ENCRYPTED_DATA_VAULT: EncryptedDataVault is the EncryptedDataVault service type as specified here: https://identity.foundation/edv-spec/
                 service_endpoint:
                   type: string
                 service_endpoints:
@@ -76214,7 +77007,7 @@ definitions:
         items:
           type: string
         title: optional
-  sonrio.sonr.identity.v1.KeyType:
+  sonrio.sonr.identity.KeyType:
     type: string
     enum:
       - KeyType_UNSPECIFIED
@@ -76231,25 +77024,35 @@ definitions:
        - KeyType_ED25519_VERIFICATION_KEY_2018: ED25519VerificationKey2018 is the Ed25519VerificationKey2018 verification key type as specified here: https://w3c-ccg.github.io/lds-ed25519-2018/
        - KeyType_ECDSA_SECP256K1_VERIFICATION_KEY_2019: ECDSASECP256K1VerificationKey2019 is the EcdsaSecp256k1VerificationKey2019 verification key type as specified here: https://w3c-ccg.github.io/lds-ecdsa-secp256k1-2019/
        - KeyType_RSA_VERIFICATION_KEY_2018: RSAVerificationKey2018 is the RsaVerificationKey2018 verification key type as specified here: https://w3c-ccg.github.io/lds-rsa2018/
-  sonrio.sonr.identity.v1.MsgCreateDidDocumentResponse:
+  sonrio.sonr.identity.MsgCreateDidDocumentResponse:
     type: object
-  sonrio.sonr.identity.v1.MsgDeleteDidDocumentResponse:
+  sonrio.sonr.identity.MsgDeleteDidDocumentResponse:
     type: object
-  sonrio.sonr.identity.v1.MsgUpdateDidDocumentResponse:
+  sonrio.sonr.identity.MsgUpdateDidDocumentResponse:
     type: object
-  sonrio.sonr.identity.v1.Params:
+  sonrio.sonr.identity.Params:
     type: object
     properties:
       did_base_context:
         type: string
       did_implementation_context:
         type: string
+      did_method_name:
+        type: string
       ipfs_gateway:
         type: string
       ipfs_api:
         type: string
+      rp_display_name:
+        type: string
+      rp_id:
+        type: string
+      rp_origin:
+        type: string
+      rp_icon:
+        type: string
     description: Params defines the parameters for the module.
-  sonrio.sonr.identity.v1.QueryAllDidResponse:
+  sonrio.sonr.identity.QueryAllDidResponse:
     type: object
     properties:
       didDocument:
@@ -76307,7 +77110,11 @@ definitions:
                         type: object
                         additionalProperties:
                           type: string
+                        title: optional
                       public_key_multibase:
+                        type: string
+                        title: optional
+                      blockchain_account_id:
                         type: string
                         title: optional
             authentication:
@@ -76348,7 +77155,11 @@ definitions:
                             type: object
                             additionalProperties:
                               type: string
+                            title: optional
                           public_key_multibase:
+                            type: string
+                            title: optional
+                          blockchain_account_id:
                             type: string
                             title: optional
                       reference:
@@ -76391,7 +77202,11 @@ definitions:
                             type: object
                             additionalProperties:
                               type: string
+                            title: optional
                           public_key_multibase:
+                            type: string
+                            title: optional
+                          blockchain_account_id:
                             type: string
                             title: optional
                       reference:
@@ -76434,7 +77249,11 @@ definitions:
                             type: object
                             additionalProperties:
                               type: string
+                            title: optional
                           public_key_multibase:
+                            type: string
+                            title: optional
+                          blockchain_account_id:
                             type: string
                             title: optional
                       reference:
@@ -76477,7 +77296,11 @@ definitions:
                             type: object
                             additionalProperties:
                               type: string
+                            title: optional
                           public_key_multibase:
+                            type: string
+                            title: optional
+                          blockchain_account_id:
                             type: string
                             title: optional
                       reference:
@@ -76520,7 +77343,11 @@ definitions:
                             type: object
                             additionalProperties:
                               type: string
+                            title: optional
                           public_key_multibase:
+                            type: string
+                            title: optional
+                          blockchain_account_id:
                             type: string
                             title: optional
                       reference:
@@ -76538,6 +77365,18 @@ definitions:
                         type: string
                       type:
                         type: string
+                        enum:
+                          - ServiceType_UNSPECIFIED
+                          - ServiceType_DID_COMM_MESSAGING
+                          - ServiceType_ENCRYPTED_DATA_VAULT
+                        default: ServiceType_UNSPECIFIED
+                        description: >-
+                          ServiceType is the type of service used to provide a
+                          DID document.
+
+                           - ServiceType_UNSPECIFIED: No service type specified
+                           - ServiceType_DID_COMM_MESSAGING: DIDCommMessaging is the DIDCommMessaging service type as specified here: https://identity.foundation/didcomm-messaging/spec/
+                           - ServiceType_ENCRYPTED_DATA_VAULT: EncryptedDataVault is the EncryptedDataVault service type as specified here: https://identity.foundation/edv-spec/
                       service_endpoint:
                         type: string
                       service_endpoints:
@@ -76576,7 +77415,7 @@ definitions:
                    repeated Bar results = 1;
                    PageResponse page = 2;
            }
-  sonrio.sonr.identity.v1.QueryByAlsoKnownAsResponse:
+  sonrio.sonr.identity.QueryByAlsoKnownAsResponse:
     type: object
     properties:
       didDocument:
@@ -76631,7 +77470,11 @@ definitions:
                       type: object
                       additionalProperties:
                         type: string
+                      title: optional
                     public_key_multibase:
+                      type: string
+                      title: optional
+                    blockchain_account_id:
                       type: string
                       title: optional
           authentication:
@@ -76672,7 +77515,11 @@ definitions:
                           type: object
                           additionalProperties:
                             type: string
+                          title: optional
                         public_key_multibase:
+                          type: string
+                          title: optional
+                        blockchain_account_id:
                           type: string
                           title: optional
                     reference:
@@ -76715,7 +77562,11 @@ definitions:
                           type: object
                           additionalProperties:
                             type: string
+                          title: optional
                         public_key_multibase:
+                          type: string
+                          title: optional
+                        blockchain_account_id:
                           type: string
                           title: optional
                     reference:
@@ -76758,7 +77609,11 @@ definitions:
                           type: object
                           additionalProperties:
                             type: string
+                          title: optional
                         public_key_multibase:
+                          type: string
+                          title: optional
+                        blockchain_account_id:
                           type: string
                           title: optional
                     reference:
@@ -76801,7 +77656,11 @@ definitions:
                           type: object
                           additionalProperties:
                             type: string
+                          title: optional
                         public_key_multibase:
+                          type: string
+                          title: optional
+                        blockchain_account_id:
                           type: string
                           title: optional
                     reference:
@@ -76844,7 +77703,11 @@ definitions:
                           type: object
                           additionalProperties:
                             type: string
+                          title: optional
                         public_key_multibase:
+                          type: string
+                          title: optional
+                        blockchain_account_id:
                           type: string
                           title: optional
                     reference:
@@ -76862,6 +77725,18 @@ definitions:
                       type: string
                     type:
                       type: string
+                      enum:
+                        - ServiceType_UNSPECIFIED
+                        - ServiceType_DID_COMM_MESSAGING
+                        - ServiceType_ENCRYPTED_DATA_VAULT
+                      default: ServiceType_UNSPECIFIED
+                      description: >-
+                        ServiceType is the type of service used to provide a DID
+                        document.
+
+                         - ServiceType_UNSPECIFIED: No service type specified
+                         - ServiceType_DID_COMM_MESSAGING: DIDCommMessaging is the DIDCommMessaging service type as specified here: https://identity.foundation/didcomm-messaging/spec/
+                         - ServiceType_ENCRYPTED_DATA_VAULT: EncryptedDataVault is the EncryptedDataVault service type as specified here: https://identity.foundation/edv-spec/
                     service_endpoint:
                       type: string
                     service_endpoints:
@@ -76874,7 +77749,7 @@ definitions:
             items:
               type: string
             title: optional
-  sonrio.sonr.identity.v1.QueryByKeyIDResponse:
+  sonrio.sonr.identity.QueryByKeyIDResponse:
     type: object
     properties:
       didDocument:
@@ -76929,7 +77804,11 @@ definitions:
                       type: object
                       additionalProperties:
                         type: string
+                      title: optional
                     public_key_multibase:
+                      type: string
+                      title: optional
+                    blockchain_account_id:
                       type: string
                       title: optional
           authentication:
@@ -76970,7 +77849,11 @@ definitions:
                           type: object
                           additionalProperties:
                             type: string
+                          title: optional
                         public_key_multibase:
+                          type: string
+                          title: optional
+                        blockchain_account_id:
                           type: string
                           title: optional
                     reference:
@@ -77013,7 +77896,11 @@ definitions:
                           type: object
                           additionalProperties:
                             type: string
+                          title: optional
                         public_key_multibase:
+                          type: string
+                          title: optional
+                        blockchain_account_id:
                           type: string
                           title: optional
                     reference:
@@ -77056,7 +77943,11 @@ definitions:
                           type: object
                           additionalProperties:
                             type: string
+                          title: optional
                         public_key_multibase:
+                          type: string
+                          title: optional
+                        blockchain_account_id:
                           type: string
                           title: optional
                     reference:
@@ -77099,7 +77990,11 @@ definitions:
                           type: object
                           additionalProperties:
                             type: string
+                          title: optional
                         public_key_multibase:
+                          type: string
+                          title: optional
+                        blockchain_account_id:
                           type: string
                           title: optional
                     reference:
@@ -77142,7 +78037,11 @@ definitions:
                           type: object
                           additionalProperties:
                             type: string
+                          title: optional
                         public_key_multibase:
+                          type: string
+                          title: optional
+                        blockchain_account_id:
                           type: string
                           title: optional
                     reference:
@@ -77160,6 +78059,18 @@ definitions:
                       type: string
                     type:
                       type: string
+                      enum:
+                        - ServiceType_UNSPECIFIED
+                        - ServiceType_DID_COMM_MESSAGING
+                        - ServiceType_ENCRYPTED_DATA_VAULT
+                      default: ServiceType_UNSPECIFIED
+                      description: >-
+                        ServiceType is the type of service used to provide a DID
+                        document.
+
+                         - ServiceType_UNSPECIFIED: No service type specified
+                         - ServiceType_DID_COMM_MESSAGING: DIDCommMessaging is the DIDCommMessaging service type as specified here: https://identity.foundation/didcomm-messaging/spec/
+                         - ServiceType_ENCRYPTED_DATA_VAULT: EncryptedDataVault is the EncryptedDataVault service type as specified here: https://identity.foundation/edv-spec/
                     service_endpoint:
                       type: string
                     service_endpoints:
@@ -77172,7 +78083,7 @@ definitions:
             items:
               type: string
             title: optional
-  sonrio.sonr.identity.v1.QueryByMethodResponse:
+  sonrio.sonr.identity.QueryByMethodResponse:
     type: object
     properties:
       didDocument:
@@ -77230,7 +78141,11 @@ definitions:
                         type: object
                         additionalProperties:
                           type: string
+                        title: optional
                       public_key_multibase:
+                        type: string
+                        title: optional
+                      blockchain_account_id:
                         type: string
                         title: optional
             authentication:
@@ -77271,7 +78186,11 @@ definitions:
                             type: object
                             additionalProperties:
                               type: string
+                            title: optional
                           public_key_multibase:
+                            type: string
+                            title: optional
+                          blockchain_account_id:
                             type: string
                             title: optional
                       reference:
@@ -77314,7 +78233,11 @@ definitions:
                             type: object
                             additionalProperties:
                               type: string
+                            title: optional
                           public_key_multibase:
+                            type: string
+                            title: optional
+                          blockchain_account_id:
                             type: string
                             title: optional
                       reference:
@@ -77357,7 +78280,11 @@ definitions:
                             type: object
                             additionalProperties:
                               type: string
+                            title: optional
                           public_key_multibase:
+                            type: string
+                            title: optional
+                          blockchain_account_id:
                             type: string
                             title: optional
                       reference:
@@ -77400,7 +78327,11 @@ definitions:
                             type: object
                             additionalProperties:
                               type: string
+                            title: optional
                           public_key_multibase:
+                            type: string
+                            title: optional
+                          blockchain_account_id:
                             type: string
                             title: optional
                       reference:
@@ -77443,7 +78374,11 @@ definitions:
                             type: object
                             additionalProperties:
                               type: string
+                            title: optional
                           public_key_multibase:
+                            type: string
+                            title: optional
+                          blockchain_account_id:
                             type: string
                             title: optional
                       reference:
@@ -77461,6 +78396,18 @@ definitions:
                         type: string
                       type:
                         type: string
+                        enum:
+                          - ServiceType_UNSPECIFIED
+                          - ServiceType_DID_COMM_MESSAGING
+                          - ServiceType_ENCRYPTED_DATA_VAULT
+                        default: ServiceType_UNSPECIFIED
+                        description: >-
+                          ServiceType is the type of service used to provide a
+                          DID document.
+
+                           - ServiceType_UNSPECIFIED: No service type specified
+                           - ServiceType_DID_COMM_MESSAGING: DIDCommMessaging is the DIDCommMessaging service type as specified here: https://identity.foundation/didcomm-messaging/spec/
+                           - ServiceType_ENCRYPTED_DATA_VAULT: EncryptedDataVault is the EncryptedDataVault service type as specified here: https://identity.foundation/edv-spec/
                       service_endpoint:
                         type: string
                       service_endpoints:
@@ -77499,7 +78446,370 @@ definitions:
                    repeated Bar results = 1;
                    PageResponse page = 2;
            }
-  sonrio.sonr.identity.v1.QueryByServiceResponse:
+  sonrio.sonr.identity.QueryByNetworkResponse:
+    type: object
+    properties:
+      didDocument:
+        type: array
+        items:
+          type: object
+          properties:
+            context:
+              type: array
+              items:
+                type: string
+              title: optional
+            creator:
+              type: string
+              title: optional
+            iD:
+              type: string
+            controller:
+              type: array
+              items:
+                type: string
+              title: optional
+            verification_method:
+              title: optional
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      iD:
+                        type: string
+                      type:
+                        type: string
+                        enum:
+                          - KeyType_UNSPECIFIED
+                          - KeyType_JSON_WEB_KEY_2020
+                          - KeyType_ED25519_VERIFICATION_KEY_2018
+                          - KeyType_ECDSA_SECP256K1_VERIFICATION_KEY_2019
+                          - KeyType_RSA_VERIFICATION_KEY_2018
+                        default: KeyType_UNSPECIFIED
+                        description: >-
+                          KeyType is the type of key used to sign a DID
+                          document.
+
+                           - KeyType_UNSPECIFIED: No key type specified
+                           - KeyType_JSON_WEB_KEY_2020: JsonWebKey2020 is a VerificationMethod type. https://w3c-ccg.github.io/lds-jws2020/
+                           - KeyType_ED25519_VERIFICATION_KEY_2018: ED25519VerificationKey2018 is the Ed25519VerificationKey2018 verification key type as specified here: https://w3c-ccg.github.io/lds-ed25519-2018/
+                           - KeyType_ECDSA_SECP256K1_VERIFICATION_KEY_2019: ECDSASECP256K1VerificationKey2019 is the EcdsaSecp256k1VerificationKey2019 verification key type as specified here: https://w3c-ccg.github.io/lds-ecdsa-secp256k1-2019/
+                           - KeyType_RSA_VERIFICATION_KEY_2018: RSAVerificationKey2018 is the RsaVerificationKey2018 verification key type as specified here: https://w3c-ccg.github.io/lds-rsa2018/
+                      controller:
+                        type: string
+                      public_key_jwk:
+                        type: object
+                        additionalProperties:
+                          type: string
+                        title: optional
+                      public_key_multibase:
+                        type: string
+                        title: optional
+                      blockchain_account_id:
+                        type: string
+                        title: optional
+            authentication:
+              title: optional
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      verification_method:
+                        type: object
+                        properties:
+                          iD:
+                            type: string
+                          type:
+                            type: string
+                            enum:
+                              - KeyType_UNSPECIFIED
+                              - KeyType_JSON_WEB_KEY_2020
+                              - KeyType_ED25519_VERIFICATION_KEY_2018
+                              - KeyType_ECDSA_SECP256K1_VERIFICATION_KEY_2019
+                              - KeyType_RSA_VERIFICATION_KEY_2018
+                            default: KeyType_UNSPECIFIED
+                            description: >-
+                              KeyType is the type of key used to sign a DID
+                              document.
+
+                               - KeyType_UNSPECIFIED: No key type specified
+                               - KeyType_JSON_WEB_KEY_2020: JsonWebKey2020 is a VerificationMethod type. https://w3c-ccg.github.io/lds-jws2020/
+                               - KeyType_ED25519_VERIFICATION_KEY_2018: ED25519VerificationKey2018 is the Ed25519VerificationKey2018 verification key type as specified here: https://w3c-ccg.github.io/lds-ed25519-2018/
+                               - KeyType_ECDSA_SECP256K1_VERIFICATION_KEY_2019: ECDSASECP256K1VerificationKey2019 is the EcdsaSecp256k1VerificationKey2019 verification key type as specified here: https://w3c-ccg.github.io/lds-ecdsa-secp256k1-2019/
+                               - KeyType_RSA_VERIFICATION_KEY_2018: RSAVerificationKey2018 is the RsaVerificationKey2018 verification key type as specified here: https://w3c-ccg.github.io/lds-rsa2018/
+                          controller:
+                            type: string
+                          public_key_jwk:
+                            type: object
+                            additionalProperties:
+                              type: string
+                            title: optional
+                          public_key_multibase:
+                            type: string
+                            title: optional
+                          blockchain_account_id:
+                            type: string
+                            title: optional
+                      reference:
+                        type: string
+            assertion_method:
+              title: optional
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      verification_method:
+                        type: object
+                        properties:
+                          iD:
+                            type: string
+                          type:
+                            type: string
+                            enum:
+                              - KeyType_UNSPECIFIED
+                              - KeyType_JSON_WEB_KEY_2020
+                              - KeyType_ED25519_VERIFICATION_KEY_2018
+                              - KeyType_ECDSA_SECP256K1_VERIFICATION_KEY_2019
+                              - KeyType_RSA_VERIFICATION_KEY_2018
+                            default: KeyType_UNSPECIFIED
+                            description: >-
+                              KeyType is the type of key used to sign a DID
+                              document.
+
+                               - KeyType_UNSPECIFIED: No key type specified
+                               - KeyType_JSON_WEB_KEY_2020: JsonWebKey2020 is a VerificationMethod type. https://w3c-ccg.github.io/lds-jws2020/
+                               - KeyType_ED25519_VERIFICATION_KEY_2018: ED25519VerificationKey2018 is the Ed25519VerificationKey2018 verification key type as specified here: https://w3c-ccg.github.io/lds-ed25519-2018/
+                               - KeyType_ECDSA_SECP256K1_VERIFICATION_KEY_2019: ECDSASECP256K1VerificationKey2019 is the EcdsaSecp256k1VerificationKey2019 verification key type as specified here: https://w3c-ccg.github.io/lds-ecdsa-secp256k1-2019/
+                               - KeyType_RSA_VERIFICATION_KEY_2018: RSAVerificationKey2018 is the RsaVerificationKey2018 verification key type as specified here: https://w3c-ccg.github.io/lds-rsa2018/
+                          controller:
+                            type: string
+                          public_key_jwk:
+                            type: object
+                            additionalProperties:
+                              type: string
+                            title: optional
+                          public_key_multibase:
+                            type: string
+                            title: optional
+                          blockchain_account_id:
+                            type: string
+                            title: optional
+                      reference:
+                        type: string
+            capability_invocation:
+              title: optional
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      verification_method:
+                        type: object
+                        properties:
+                          iD:
+                            type: string
+                          type:
+                            type: string
+                            enum:
+                              - KeyType_UNSPECIFIED
+                              - KeyType_JSON_WEB_KEY_2020
+                              - KeyType_ED25519_VERIFICATION_KEY_2018
+                              - KeyType_ECDSA_SECP256K1_VERIFICATION_KEY_2019
+                              - KeyType_RSA_VERIFICATION_KEY_2018
+                            default: KeyType_UNSPECIFIED
+                            description: >-
+                              KeyType is the type of key used to sign a DID
+                              document.
+
+                               - KeyType_UNSPECIFIED: No key type specified
+                               - KeyType_JSON_WEB_KEY_2020: JsonWebKey2020 is a VerificationMethod type. https://w3c-ccg.github.io/lds-jws2020/
+                               - KeyType_ED25519_VERIFICATION_KEY_2018: ED25519VerificationKey2018 is the Ed25519VerificationKey2018 verification key type as specified here: https://w3c-ccg.github.io/lds-ed25519-2018/
+                               - KeyType_ECDSA_SECP256K1_VERIFICATION_KEY_2019: ECDSASECP256K1VerificationKey2019 is the EcdsaSecp256k1VerificationKey2019 verification key type as specified here: https://w3c-ccg.github.io/lds-ecdsa-secp256k1-2019/
+                               - KeyType_RSA_VERIFICATION_KEY_2018: RSAVerificationKey2018 is the RsaVerificationKey2018 verification key type as specified here: https://w3c-ccg.github.io/lds-rsa2018/
+                          controller:
+                            type: string
+                          public_key_jwk:
+                            type: object
+                            additionalProperties:
+                              type: string
+                            title: optional
+                          public_key_multibase:
+                            type: string
+                            title: optional
+                          blockchain_account_id:
+                            type: string
+                            title: optional
+                      reference:
+                        type: string
+            capability_delegation:
+              title: optional
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      verification_method:
+                        type: object
+                        properties:
+                          iD:
+                            type: string
+                          type:
+                            type: string
+                            enum:
+                              - KeyType_UNSPECIFIED
+                              - KeyType_JSON_WEB_KEY_2020
+                              - KeyType_ED25519_VERIFICATION_KEY_2018
+                              - KeyType_ECDSA_SECP256K1_VERIFICATION_KEY_2019
+                              - KeyType_RSA_VERIFICATION_KEY_2018
+                            default: KeyType_UNSPECIFIED
+                            description: >-
+                              KeyType is the type of key used to sign a DID
+                              document.
+
+                               - KeyType_UNSPECIFIED: No key type specified
+                               - KeyType_JSON_WEB_KEY_2020: JsonWebKey2020 is a VerificationMethod type. https://w3c-ccg.github.io/lds-jws2020/
+                               - KeyType_ED25519_VERIFICATION_KEY_2018: ED25519VerificationKey2018 is the Ed25519VerificationKey2018 verification key type as specified here: https://w3c-ccg.github.io/lds-ed25519-2018/
+                               - KeyType_ECDSA_SECP256K1_VERIFICATION_KEY_2019: ECDSASECP256K1VerificationKey2019 is the EcdsaSecp256k1VerificationKey2019 verification key type as specified here: https://w3c-ccg.github.io/lds-ecdsa-secp256k1-2019/
+                               - KeyType_RSA_VERIFICATION_KEY_2018: RSAVerificationKey2018 is the RsaVerificationKey2018 verification key type as specified here: https://w3c-ccg.github.io/lds-rsa2018/
+                          controller:
+                            type: string
+                          public_key_jwk:
+                            type: object
+                            additionalProperties:
+                              type: string
+                            title: optional
+                          public_key_multibase:
+                            type: string
+                            title: optional
+                          blockchain_account_id:
+                            type: string
+                            title: optional
+                      reference:
+                        type: string
+            key_agreement:
+              title: optional
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      verification_method:
+                        type: object
+                        properties:
+                          iD:
+                            type: string
+                          type:
+                            type: string
+                            enum:
+                              - KeyType_UNSPECIFIED
+                              - KeyType_JSON_WEB_KEY_2020
+                              - KeyType_ED25519_VERIFICATION_KEY_2018
+                              - KeyType_ECDSA_SECP256K1_VERIFICATION_KEY_2019
+                              - KeyType_RSA_VERIFICATION_KEY_2018
+                            default: KeyType_UNSPECIFIED
+                            description: >-
+                              KeyType is the type of key used to sign a DID
+                              document.
+
+                               - KeyType_UNSPECIFIED: No key type specified
+                               - KeyType_JSON_WEB_KEY_2020: JsonWebKey2020 is a VerificationMethod type. https://w3c-ccg.github.io/lds-jws2020/
+                               - KeyType_ED25519_VERIFICATION_KEY_2018: ED25519VerificationKey2018 is the Ed25519VerificationKey2018 verification key type as specified here: https://w3c-ccg.github.io/lds-ed25519-2018/
+                               - KeyType_ECDSA_SECP256K1_VERIFICATION_KEY_2019: ECDSASECP256K1VerificationKey2019 is the EcdsaSecp256k1VerificationKey2019 verification key type as specified here: https://w3c-ccg.github.io/lds-ecdsa-secp256k1-2019/
+                               - KeyType_RSA_VERIFICATION_KEY_2018: RSAVerificationKey2018 is the RsaVerificationKey2018 verification key type as specified here: https://w3c-ccg.github.io/lds-rsa2018/
+                          controller:
+                            type: string
+                          public_key_jwk:
+                            type: object
+                            additionalProperties:
+                              type: string
+                            title: optional
+                          public_key_multibase:
+                            type: string
+                            title: optional
+                          blockchain_account_id:
+                            type: string
+                            title: optional
+                      reference:
+                        type: string
+            service:
+              title: optional
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      iD:
+                        type: string
+                      type:
+                        type: string
+                        enum:
+                          - ServiceType_UNSPECIFIED
+                          - ServiceType_DID_COMM_MESSAGING
+                          - ServiceType_ENCRYPTED_DATA_VAULT
+                        default: ServiceType_UNSPECIFIED
+                        description: >-
+                          ServiceType is the type of service used to provide a
+                          DID document.
+
+                           - ServiceType_UNSPECIFIED: No service type specified
+                           - ServiceType_DID_COMM_MESSAGING: DIDCommMessaging is the DIDCommMessaging service type as specified here: https://identity.foundation/didcomm-messaging/spec/
+                           - ServiceType_ENCRYPTED_DATA_VAULT: EncryptedDataVault is the EncryptedDataVault service type as specified here: https://identity.foundation/edv-spec/
+                      service_endpoint:
+                        type: string
+                      service_endpoints:
+                        type: object
+                        additionalProperties:
+                          type: string
+                        title: optional
+            also_known_as:
+              type: array
+              items:
+                type: string
+              title: optional
+      pagination:
+        type: object
+        properties:
+          next_key:
+            type: string
+            format: byte
+            description: |-
+              next_key is the key to be passed to PageRequest.key to
+              query the next page most efficiently. It will be empty if
+              there are no more results.
+          total:
+            type: string
+            format: uint64
+            title: >-
+              total is total number of results available if
+              PageRequest.count_total
+
+              was set, its value is undefined otherwise
+        description: |-
+          PageResponse is to be embedded in gRPC response messages where the
+          corresponding request message has used PageRequest.
+
+           message SomeResponse {
+                   repeated Bar results = 1;
+                   PageResponse page = 2;
+           }
+  sonrio.sonr.identity.QueryByServiceResponse:
     type: object
     properties:
       didDocument:
@@ -77554,7 +78864,11 @@ definitions:
                       type: object
                       additionalProperties:
                         type: string
+                      title: optional
                     public_key_multibase:
+                      type: string
+                      title: optional
+                    blockchain_account_id:
                       type: string
                       title: optional
           authentication:
@@ -77595,7 +78909,11 @@ definitions:
                           type: object
                           additionalProperties:
                             type: string
+                          title: optional
                         public_key_multibase:
+                          type: string
+                          title: optional
+                        blockchain_account_id:
                           type: string
                           title: optional
                     reference:
@@ -77638,7 +78956,11 @@ definitions:
                           type: object
                           additionalProperties:
                             type: string
+                          title: optional
                         public_key_multibase:
+                          type: string
+                          title: optional
+                        blockchain_account_id:
                           type: string
                           title: optional
                     reference:
@@ -77681,7 +79003,11 @@ definitions:
                           type: object
                           additionalProperties:
                             type: string
+                          title: optional
                         public_key_multibase:
+                          type: string
+                          title: optional
+                        blockchain_account_id:
                           type: string
                           title: optional
                     reference:
@@ -77724,7 +79050,11 @@ definitions:
                           type: object
                           additionalProperties:
                             type: string
+                          title: optional
                         public_key_multibase:
+                          type: string
+                          title: optional
+                        blockchain_account_id:
                           type: string
                           title: optional
                     reference:
@@ -77767,7 +79097,11 @@ definitions:
                           type: object
                           additionalProperties:
                             type: string
+                          title: optional
                         public_key_multibase:
+                          type: string
+                          title: optional
+                        blockchain_account_id:
                           type: string
                           title: optional
                     reference:
@@ -77785,6 +79119,18 @@ definitions:
                       type: string
                     type:
                       type: string
+                      enum:
+                        - ServiceType_UNSPECIFIED
+                        - ServiceType_DID_COMM_MESSAGING
+                        - ServiceType_ENCRYPTED_DATA_VAULT
+                      default: ServiceType_UNSPECIFIED
+                      description: >-
+                        ServiceType is the type of service used to provide a DID
+                        document.
+
+                         - ServiceType_UNSPECIFIED: No service type specified
+                         - ServiceType_DID_COMM_MESSAGING: DIDCommMessaging is the DIDCommMessaging service type as specified here: https://identity.foundation/didcomm-messaging/spec/
+                         - ServiceType_ENCRYPTED_DATA_VAULT: EncryptedDataVault is the EncryptedDataVault service type as specified here: https://identity.foundation/edv-spec/
                     service_endpoint:
                       type: string
                     service_endpoints:
@@ -77797,7 +79143,7 @@ definitions:
             items:
               type: string
             title: optional
-  sonrio.sonr.identity.v1.QueryGetDidResponse:
+  sonrio.sonr.identity.QueryGetDidResponse:
     type: object
     properties:
       didDocument:
@@ -77852,7 +79198,11 @@ definitions:
                       type: object
                       additionalProperties:
                         type: string
+                      title: optional
                     public_key_multibase:
+                      type: string
+                      title: optional
+                    blockchain_account_id:
                       type: string
                       title: optional
           authentication:
@@ -77893,7 +79243,11 @@ definitions:
                           type: object
                           additionalProperties:
                             type: string
+                          title: optional
                         public_key_multibase:
+                          type: string
+                          title: optional
+                        blockchain_account_id:
                           type: string
                           title: optional
                     reference:
@@ -77936,7 +79290,11 @@ definitions:
                           type: object
                           additionalProperties:
                             type: string
+                          title: optional
                         public_key_multibase:
+                          type: string
+                          title: optional
+                        blockchain_account_id:
                           type: string
                           title: optional
                     reference:
@@ -77979,7 +79337,11 @@ definitions:
                           type: object
                           additionalProperties:
                             type: string
+                          title: optional
                         public_key_multibase:
+                          type: string
+                          title: optional
+                        blockchain_account_id:
                           type: string
                           title: optional
                     reference:
@@ -78022,7 +79384,11 @@ definitions:
                           type: object
                           additionalProperties:
                             type: string
+                          title: optional
                         public_key_multibase:
+                          type: string
+                          title: optional
+                        blockchain_account_id:
                           type: string
                           title: optional
                     reference:
@@ -78065,7 +79431,11 @@ definitions:
                           type: object
                           additionalProperties:
                             type: string
+                          title: optional
                         public_key_multibase:
+                          type: string
+                          title: optional
+                        blockchain_account_id:
                           type: string
                           title: optional
                     reference:
@@ -78083,6 +79453,18 @@ definitions:
                       type: string
                     type:
                       type: string
+                      enum:
+                        - ServiceType_UNSPECIFIED
+                        - ServiceType_DID_COMM_MESSAGING
+                        - ServiceType_ENCRYPTED_DATA_VAULT
+                      default: ServiceType_UNSPECIFIED
+                      description: >-
+                        ServiceType is the type of service used to provide a DID
+                        document.
+
+                         - ServiceType_UNSPECIFIED: No service type specified
+                         - ServiceType_DID_COMM_MESSAGING: DIDCommMessaging is the DIDCommMessaging service type as specified here: https://identity.foundation/didcomm-messaging/spec/
+                         - ServiceType_ENCRYPTED_DATA_VAULT: EncryptedDataVault is the EncryptedDataVault service type as specified here: https://identity.foundation/edv-spec/
                     service_endpoint:
                       type: string
                     service_endpoints:
@@ -78095,7 +79477,7 @@ definitions:
             items:
               type: string
             title: optional
-  sonrio.sonr.identity.v1.QueryParamsResponse:
+  sonrio.sonr.identity.QueryParamsResponse:
     type: object
     properties:
       params:
@@ -78106,18 +79488,51 @@ definitions:
             type: string
           did_implementation_context:
             type: string
+          did_method_name:
+            type: string
           ipfs_gateway:
             type: string
           ipfs_api:
             type: string
+          rp_display_name:
+            type: string
+          rp_id:
+            type: string
+          rp_origin:
+            type: string
+          rp_icon:
+            type: string
     description: QueryParamsResponse is response type for the Query/Params RPC method.
-  sonrio.sonr.identity.v1.Service:
+  sonrio.sonr.identity.QueryWebauthnLoginBeginResponse:
+    type: object
+  sonrio.sonr.identity.QueryWebauthnLoginFinishRequest:
+    type: object
+  sonrio.sonr.identity.QueryWebauthnLoginFinishResponse:
+    type: object
+  sonrio.sonr.identity.QueryWebauthnRegisterBeginResponse:
+    type: object
+  sonrio.sonr.identity.QueryWebauthnRegisterFinishRequest:
+    type: object
+  sonrio.sonr.identity.QueryWebauthnRegisterFinishResponse:
+    type: object
+  sonrio.sonr.identity.Service:
     type: object
     properties:
       iD:
         type: string
       type:
         type: string
+        enum:
+          - ServiceType_UNSPECIFIED
+          - ServiceType_DID_COMM_MESSAGING
+          - ServiceType_ENCRYPTED_DATA_VAULT
+        default: ServiceType_UNSPECIFIED
+        description: |-
+          ServiceType is the type of service used to provide a DID document.
+
+           - ServiceType_UNSPECIFIED: No service type specified
+           - ServiceType_DID_COMM_MESSAGING: DIDCommMessaging is the DIDCommMessaging service type as specified here: https://identity.foundation/didcomm-messaging/spec/
+           - ServiceType_ENCRYPTED_DATA_VAULT: EncryptedDataVault is the EncryptedDataVault service type as specified here: https://identity.foundation/edv-spec/
       service_endpoint:
         type: string
       service_endpoints:
@@ -78125,7 +79540,20 @@ definitions:
         additionalProperties:
           type: string
         title: optional
-  sonrio.sonr.identity.v1.Services:
+  sonrio.sonr.identity.ServiceType:
+    type: string
+    enum:
+      - ServiceType_UNSPECIFIED
+      - ServiceType_DID_COMM_MESSAGING
+      - ServiceType_ENCRYPTED_DATA_VAULT
+    default: ServiceType_UNSPECIFIED
+    description: |-
+      ServiceType is the type of service used to provide a DID document.
+
+       - ServiceType_UNSPECIFIED: No service type specified
+       - ServiceType_DID_COMM_MESSAGING: DIDCommMessaging is the DIDCommMessaging service type as specified here: https://identity.foundation/didcomm-messaging/spec/
+       - ServiceType_ENCRYPTED_DATA_VAULT: EncryptedDataVault is the EncryptedDataVault service type as specified here: https://identity.foundation/edv-spec/
+  sonrio.sonr.identity.Services:
     type: object
     properties:
       data:
@@ -78137,6 +79565,18 @@ definitions:
               type: string
             type:
               type: string
+              enum:
+                - ServiceType_UNSPECIFIED
+                - ServiceType_DID_COMM_MESSAGING
+                - ServiceType_ENCRYPTED_DATA_VAULT
+              default: ServiceType_UNSPECIFIED
+              description: >-
+                ServiceType is the type of service used to provide a DID
+                document.
+
+                 - ServiceType_UNSPECIFIED: No service type specified
+                 - ServiceType_DID_COMM_MESSAGING: DIDCommMessaging is the DIDCommMessaging service type as specified here: https://identity.foundation/didcomm-messaging/spec/
+                 - ServiceType_ENCRYPTED_DATA_VAULT: EncryptedDataVault is the EncryptedDataVault service type as specified here: https://identity.foundation/edv-spec/
             service_endpoint:
               type: string
             service_endpoints:
@@ -78144,7 +79584,7 @@ definitions:
               additionalProperties:
                 type: string
               title: optional
-  sonrio.sonr.identity.v1.VerificationMethod:
+  sonrio.sonr.identity.VerificationMethod:
     type: object
     properties:
       iD:
@@ -78172,10 +79612,14 @@ definitions:
         type: object
         additionalProperties:
           type: string
+        title: optional
       public_key_multibase:
         type: string
         title: optional
-  sonrio.sonr.identity.v1.VerificationMethods:
+      blockchain_account_id:
+        type: string
+        title: optional
+  sonrio.sonr.identity.VerificationMethods:
     type: object
     properties:
       data:
@@ -78208,10 +79652,14 @@ definitions:
               type: object
               additionalProperties:
                 type: string
+              title: optional
             public_key_multibase:
               type: string
               title: optional
-  sonrio.sonr.identity.v1.VerificationRelationship:
+            blockchain_account_id:
+              type: string
+              title: optional
+  sonrio.sonr.identity.VerificationRelationship:
     type: object
     properties:
       verification_method:
@@ -78242,12 +79690,16 @@ definitions:
             type: object
             additionalProperties:
               type: string
+            title: optional
           public_key_multibase:
+            type: string
+            title: optional
+          blockchain_account_id:
             type: string
             title: optional
       reference:
         type: string
-  sonrio.sonr.identity.v1.VerificationRelationships:
+  sonrio.sonr.identity.VerificationRelationships:
     type: object
     properties:
       data:
@@ -78283,7 +79735,11 @@ definitions:
                   type: object
                   additionalProperties:
                     type: string
+                  title: optional
                 public_key_multibase:
+                  type: string
+                  title: optional
+                blockchain_account_id:
                   type: string
                   title: optional
             reference:

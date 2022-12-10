@@ -9,10 +9,10 @@ import (
 
 	// motor "go.buf.build/grpc/go/sonr-io/motor/common/v1"
 	// v1 "go.buf.build/grpc/go/sonr-io/motor/service/v1"
-	st "github.com/sonr-io/sonr/core/protocol/discovery/types/v1"
 	"github.com/sonr-io/sonr/internal/node"
 	common "github.com/sonr-io/sonr/pkg/common"
 	ct "github.com/sonr-io/sonr/pkg/common/v1"
+	st "github.com/sonr-io/sonr/pkg/protocol/discovery/types/v1"
 )
 
 // ErrFunc is a function that returns an error

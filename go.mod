@@ -21,6 +21,7 @@ require (
 	github.com/libp2p/go-libp2p-pubsub v0.8.1
 	github.com/marstr/guid v1.1.0
 	github.com/ockam-network/did v0.1.3
+	github.com/patrickmn/go-cache v2.1.0+incompatible
 	github.com/pkg/errors v0.9.1
 	github.com/sonr-io/multi-party-sig v0.7.0
 	github.com/spf13/cast v1.5.0
@@ -246,8 +247,8 @@ require (
 	github.com/petermattis/goid v0.0.0-20180202154549-b0b1615b78e5 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/polydawn/refmt v0.0.0-20190807091052-3d65705ee9f1 // indirect
-	github.com/prometheus/client_golang v1.12.2 // indirect
-	github.com/prometheus/client_model v0.2.0 // indirect
+	github.com/prometheus/client_golang v1.14.0 // indirect
+	github.com/prometheus/client_model v0.3.0 // indirect
 	github.com/prometheus/common v0.37.0 // indirect
 	github.com/prometheus/procfs v0.8.0 // indirect
 	github.com/radovskyb/watcher v1.0.7 // indirect
@@ -286,15 +287,15 @@ require (
 	go.uber.org/atomic v1.10.0 // indirect
 	go.uber.org/multierr v1.8.0 // indirect
 	go.uber.org/zap v1.22.0 // indirect
-	golang.org/x/exp v0.0.0-20220722155223-a9213eeb770e // indirect
-	golang.org/x/mod v0.6.0-dev.0.20220419223038-86c51ed26bb4 // indirect
+	golang.org/x/exp v0.0.0-20221126150942-6ab00d035af9 // indirect
+	golang.org/x/mod v0.6.0 // indirect
 	golang.org/x/net v0.2.0 // indirect
 	golang.org/x/oauth2 v0.2.0 // indirect
 	golang.org/x/sync v0.1.0 // indirect
 	golang.org/x/sys v0.2.0 // indirect
 	golang.org/x/term v0.2.0 // indirect
 	golang.org/x/text v0.4.0 // indirect
-	golang.org/x/tools v0.1.13-0.20220803210227-8b9a1fbdf5c3 // indirect
+	golang.org/x/tools v0.2.0 // indirect
 	golang.org/x/xerrors v0.0.0-20220907171357-04be3eba64a2 // indirect
 	google.golang.org/api v0.102.0 // indirect
 	google.golang.org/appengine v1.6.7 // indirect

@@ -1,7 +1,8 @@
 syntax = "proto3";
-package sonrio.sonr.identity.v1;
+package sonrio.sonr.identity;
 
-import "sonr/identity/v1/ssi.proto";
+import "sonr/identity/ssi.proto";
+import "sonr/identity/vc.proto";
 option go_package = "github.com/sonr-io/sonr/x/identity/types";
 
 message DidDocument {
@@ -26,6 +27,7 @@ message VerificationMethod {
   map<string, string> public_key_jwk = 4; // optional
   string public_key_multibase = 5; // optional
   string blockchain_account_id = 6; // optional
+  WebauthnCredential webauthn_credential = 7; // optional
 }
 
 message VerificationRelationship {
