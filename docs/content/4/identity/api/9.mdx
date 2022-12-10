@@ -1,7 +1,12 @@
 ---
 title: "Begin Registration"
-api: GET https://v1-beta.sonr.ws
+api: GET /sonr-io/sonr/webauthn/register/begin
+description: Request a Webauthn credential registration returns Credential ID and challenge
 ---
 
-<br />
-_**🏗️ Under Construction**_
+### Parameters
+
+<ParamField body="uuid" type="string" required>
+  Unique identifier for the user
+</ParamField>
+

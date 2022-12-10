@@ -29,3 +29,46 @@ description: DenomsMetadata queries the client metadata for all registered coin 
 <ParamField path="pagination.reverse" type="boolean">
   reverse is set to true if results are to be returned in the descending order.
 </ParamField>
+
+<ResponseExample>
+
+```json Response (200)
+{
+  "metadatas": [
+    {
+      "description": "string",
+      "denom_units": [
+        {
+          "denom": "string",
+          "exponent": 0,
+          "aliases": ["string"]
+        }
+      ],
+      "base": "string",
+      "display": "string",
+      "name": "string",
+      "symbol": "string",
+      "uri": "string",
+      "uri_hash": "string"
+    }
+  ],
+  "pagination": {
+    "next_key": "string",
+    "total": "string"
+  }
+}
+```
+
+```json Error
+{
+  "code": 0,
+  "message": "string",
+  "details": [
+    {
+      "@type": "string"
+    }
+  ]
+}
+```
+
+</ResponseExample>

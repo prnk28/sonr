@@ -29,3 +29,34 @@ description: Accounts returns all the existing accounts
 <ParamField path="pagination.reverse" type="boolean">
   reverse is set to true if results are to be returned in the descending order.
 </ParamField>
+
+
+<ResponseExample>
+
+```json Response (200)
+{
+  "accounts": [
+    {
+      "@type": "string"
+    }
+  ],
+  "pagination": {
+    "next_key": "string",
+    "total": "string"
+  }
+}
+```
+
+```json Error
+{
+  "code": 0,
+  "message": "string",
+  "details": [
+    {
+      "@type": "string"
+    }
+  ]
+}
+```
+
+</ResponseExample>

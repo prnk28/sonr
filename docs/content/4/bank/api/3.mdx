@@ -33,3 +33,34 @@ description: SpendableBalances queries the spendable balance of all coins for a 
 <ParamField path="pagination.reverse" type="boolean">
   reverse is set to true if results are to be returned in the descending order.
 </ParamField>
+
+<ResponseExample>
+
+```json Response (200)
+{
+  "balances": [
+    {
+      "denom": "string",
+      "amount": "string"
+    }
+  ],
+  "pagination": {
+    "next_key": "string",
+    "total": "string"
+  }
+}
+```
+
+```json Error
+{
+  "code": 0,
+  "message": "string",
+  "details": [
+    {
+      "@type": "string"
+    }
+  ]
+}
+```
+
+</ResponseExample>

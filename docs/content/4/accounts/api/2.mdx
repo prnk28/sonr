@@ -7,3 +7,28 @@ description: Account returns account details based on address.
 <ParamField path="address" type="string" required>
   Address of the account to query.
 </ParamField>
+
+
+<ResponseExample>
+
+```json Response (200)
+{
+  "account": {
+    "@type": "string"
+  }
+}
+```
+
+```json Error
+{
+  "code": 0,
+  "message": "string",
+  "details": [
+    {
+      "@type": "string"
+    }
+  ]
+}
+```
+
+</ResponseExample>
