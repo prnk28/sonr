@@ -2,10 +2,14 @@ package types
 
 import (
 	"crypto"
+	"crypto/ed25519"
 	"encoding/json"
 	"errors"
 	fmt "fmt"
 
+	"github.com/cosmos/cosmos-sdk/crypto/keys/secp256k1"
+	"github.com/shengdoushi/base58"
+	"github.com/sonr-io/sonr/internal/crypto/jwx"
 	"github.com/sonr-io/sonr/x/identity/types/internal/marshal"
 	"github.com/sonr-io/sonr/x/identity/types/ssi"
 )
@@ -329,7 +333,7 @@ func (d *DidDocument) AddAlias(alias string) {
 func (d *DidDocument) ResolveEndpointURL(serviceType string) (endpointID string, endpointURL string, err error) {
 	var services []*Service
 	for _, service := range d.Service.Data {
-		if service.Type == serviceType {
+		if service.Type.FormatString() == serviceType {
 			services = append(services, service)
 		}
 	}
@@ -401,41 +405,76 @@ func (srs *Services) FindByID(id string) *Service {
 
 // NewVerificationMethod is a convenience method to easily create verificationMethods based on a set of given params.
 // It automatically encodes the provided public key based on the keyType.
-func NewVerificationMethod(id string, keyType KeyType, controller string, key crypto.PublicKey) (*VerificationMethod, error) {
+func NewVerificationMethod(id string, keyType KeyType, controller string, key interface{}) (*VerificationMethod, error) {
 	vm := &VerificationMethod{
 		ID:         id,
 		Type:       keyType,
 		Controller: controller,
 	}
 
-	// if keyType == KeyType_KeyType_JSON_WEB_KEY_2020 {
-	// 	keyAsJWK, err := jwx.New(key).CreateEncJWK()
-	// 	if err != nil {
-	// 		return nil, err
-	// 	}
-	// 	// Convert to JSON and back to fix encoding of key material to make sure
-	// 	// an unmarshalled and newly created VerificationMethod are equal on object level.
-	// 	// The format of PublicKeyJwk in verificationMethod is a map[string]interface{}.
-	// 	// We can't use the Key.AsMap since the values of the map will all be internal jwk lib structs.
-	// 	// After unmarshalling all the fields will be map[string]string.
-	// 	keyAsJSON, err := json.Marshal(keyAsJWK)
-	// 	if err != nil {
-	// 		return nil, err
-	// 	}
-	// 	keyAsMap := map[string]interface{}{}
-	// 	json.Unmarshal(keyAsJSON, &keyAsMap)
+	// Check for JWK
+	if keyType == KeyType_KeyType_JSON_WEB_KEY_2020 {
+		// Check if Key is crypto.PublicKey
+		if _, ok := key.(crypto.PublicKey); !ok {
+			return nil, fmt.Errorf("key is not a crypto.PublicKey")
+		}
 
-	// 	vm.PublicKeyJwk = keyAsMap
-	// }
-	// if keyType == ssi.ED25519VerificationKey2018 {
-	// 	ed25519Key, ok := key.(ed25519.PublicKey)
-	// 	if !ok {
-	// 		return nil, errors.New("wrong key type")
-	// 	}
-	// 	encodedKey := base58.Encode(ed25519Key, base58.BitcoinAlphabet)
-	// 	vm.PublicKeyBase58 = encodedKey
-	// }
+		// Convert to jwk.Key
+		keyAsJWK, err := jwx.New(key).CreateEncJWK()
+		if err != nil {
+			return nil, err
+		}
+		// Convert to JSON and back to fix encoding of key material to make sure
+		// an unmarshalled and newly created VerificationMethod are equal on object level.
+		// The format of PublicKeyJwk in verificationMethod is a map[string]interface{}.
+		// We can't use the Key.AsMap since the values of the map will all be internal jwk lib structs.
+		// After unmarshalling all the fields will be map[string]string.
+		keyAsJSON, err := json.Marshal(keyAsJWK)
+		if err != nil {
+			return nil, err
+		}
+		keyAsMap := map[string]string{}
+		json.Unmarshal(keyAsJSON, &keyAsMap)
 
+		vm.PublicKeyJwk = keyAsMap
+	}
+
+	// Check for Validator/P2P key
+	if keyType == KeyType_KeyType_ED25519_VERIFICATION_KEY_2018 {
+		// Check if Key is crypto.PublicKey
+		if _, ok := key.(crypto.PublicKey); !ok {
+			return nil, fmt.Errorf("key is not a crypto.PublicKey")
+		}
+
+		ed25519Key, ok := key.(ed25519.PublicKey)
+		if !ok {
+			return nil, errors.New("wrong key type")
+		}
+		encodedKey := base58.Encode(ed25519Key, base58.BitcoinAlphabet)
+		vm.PublicKeyMultibase = encodedKey
+	}
+
+	// Check for Webauthn key
+	if keyType == KeyType_KeyType_WEB_AUTHN_AUTHENTICATION_2018 {
+		// Check if Key is WebauthnCredential
+		if _, ok := key.(*WebauthnCredential); !ok {
+			return nil, fmt.Errorf("key is not a WebauthnCredential")
+		}
+		vm.WebauthnCredential = key.(*WebauthnCredential)
+	}
+
+	// Check for Secp256k1 key
+	if keyType == KeyType_KeyType_ECDSA_SECP256K1_VERIFICATION_KEY_2019 {
+		// Switch Interface to *secp256k1.PublicKey or string
+		switch key.(type) {
+		case *secp256k1.PubKey:
+			vm.BlockchainAccountId = key.(*secp256k1.PubKey).Address().String()
+		case string:
+			vm.BlockchainAccountId = key.(string)
+		default:
+			return nil, fmt.Errorf("key is not a secp256k1.PublicKey or string")
+		}
+	}
 	return vm, nil
 }
 

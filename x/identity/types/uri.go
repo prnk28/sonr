@@ -1,6 +1,5 @@
 package types
 
-
 import (
 	"encoding"
 	"encoding/json"
@@ -164,4 +163,3 @@ func (w ParserError) Unwrap() error {
 func (w ParserError) Error() string {
 	return w.msg
 }
-
