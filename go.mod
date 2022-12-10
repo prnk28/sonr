@@ -23,6 +23,7 @@ require (
 	github.com/ockam-network/did v0.1.3
 	github.com/patrickmn/go-cache v2.1.0+incompatible
 	github.com/pkg/errors v0.9.1
+	github.com/shengdoushi/base58 v1.0.0
 	github.com/sonr-io/multi-party-sig v0.7.0
 	github.com/spf13/cast v1.5.0
 	github.com/spf13/cobra v1.5.0
