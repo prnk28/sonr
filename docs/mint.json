@@ -1,10 +1,10 @@
 {
   "name": "Sonr Docs",
   "logo": {
-    "light": "/images/logo.svg",
-    "dark": "/images/logo-dark.svg"
+    "light": "/static/images/logo.svg",
+    "dark": "/static/images/logo-dark.svg"
   },
-  "favicon": "/images/favicon.png",
+  "favicon": "/static/images/favicon.png",
   "api": {
     "baseUrl": "http://142.93.1.89:1317"
   },
@@ -35,7 +35,7 @@
     {
       "name": "Research",
       "icon": "microscope",
-      "url": "https://snr.la/b"
+      "url": "https://snr.la/research"
     },
     {
       "name": "GitHub",
@@ -46,44 +46,57 @@
   "navigation": [
     {
       "group": "Learn the Basics",
-      "pages": ["content/1/main", "content/1/technology", "content/1/faq"]
+      "pages": [
+        "introduction/welcome",
+        "introduction/technology",
+        "introduction/faq"
+      ]
     },
     {
       "group": "Build Apps",
       "pages": [
-        "content/2/main",
+        "build-apps/quick-start",
         {
           "group": "Installation",
-          "pages": ["content/2/install/1", "content/2/install/2"]
+          "pages": [
+            "build-apps/install/flutter",
+            "build-apps/install/typescript"
+          ]
         },
         {
           "group": "Usage Guides",
-          "pages": ["content/2/guides/1", "content/2/guides/2"]
+          "pages": [
+            "build-apps/guides/did-method",
+            "build-apps/guides/creating-accounts"
+          ]
         }
       ]
     },
     {
       "group": "Run Nodes",
       "pages": [
-        "content/3/main",
+        "run-nodes/blockchain",
         {
           "group": "Setup Locally",
-          "pages": ["content/3/local/1", "content/3/local/2"]
+          "pages": [
+            "run-nodes/local/initialization",
+            "run-nodes/local/configure-validator"
+          ]
         },
         {
           "group": "Token Economics",
           "pages": [
-            "content/3/token/1",
+            "run-nodes/token/design",
             {
               "group": "Fundamentals",
               "pages": [
-                "content/3/token/2",
-                "content/3/token/3",
-                "content/3/token/4",
-                "content/3/token/5"
+                "run-nodes/token/fundamentals/payments",
+                "run-nodes/token/fundamentals/staking",
+                "run-nodes/token/fundamentals/governance",
+                "run-nodes/token/fundamentals/rewards"
               ]
             },
-            "content/3/token/6"
+            "run-nodes/token/supply"
           ]
         }
       ]
@@ -94,51 +107,61 @@
         {
           "group": "Accounts",
           "pages": [
-            "content/4/accounts/main",
-            "content/4/accounts/api/1",
-            "content/4/accounts/api/2",
-            "content/4/accounts/api/3"
+            "api-reference/accounts/overview",
+            "api-reference/accounts/api/1",
+            "api-reference/accounts/api/2",
+            "api-reference/accounts/api/3"
           ]
         },
         {
           "group": "Bank",
           "pages": [
-            "content/4/bank/main",
-            "content/4/bank/api/1",
-            "content/4/bank/api/2",
-            "content/4/bank/api/3",
-            "content/4/bank/api/4",
-            "content/4/bank/api/5",
-            "content/4/bank/api/6"
+            "api-reference/bank/overview",
+            "api-reference/bank/api/1",
+            "api-reference/bank/api/2",
+            "api-reference/bank/api/3",
+            "api-reference/bank/api/4",
+            "api-reference/bank/api/5",
+            "api-reference/bank/api/6"
           ]
         },
         {
           "group": "Identity",
           "pages": [
-            "content/4/identity/main",
-            "content/4/identity/api/1",
-            "content/4/identity/api/2",
-            "content/4/identity/api/3",
-            "content/4/identity/api/9",
-            "content/4/identity/api/10",
-            "content/4/identity/api/11",
-            "content/4/identity/api/12"
+            "api-reference/identity/overview",
+            "api-reference/identity/api/1",
+            "api-reference/identity/api/2",
+            "api-reference/identity/api/3",
+            "api-reference/identity/api/4",
+            "api-reference/identity/api/5",
+            "api-reference/identity/api/6",
+            "api-reference/identity/api/7",
+            "api-reference/identity/api/8",
+            {
+              "group": "WebAuthn API",
+              "pages": [
+                "api-reference/identity/api/9",
+                "api-reference/identity/api/10",
+                "api-reference/identity/api/11",
+                "api-reference/identity/api/12"
+              ]
+            }
           ]
         },
         {
           "group": "Tendermint",
           "pages": [
-            "content/4/tendermint/main",
-            "content/4/tendermint/api/1",
-            "content/4/tendermint/api/2",
-            "content/4/tendermint/api/3",
-            "content/4/tendermint/api/4",
-            "content/4/tendermint/api/5",
-            "content/4/tendermint/api/6",
-            "content/4/tendermint/api/9",
-            "content/4/tendermint/api/10",
-            "content/4/tendermint/api/7",
-            "content/4/tendermint/api/8"
+            "api-reference/tendermint/overview",
+            "api-reference/tendermint/api/1",
+            "api-reference/tendermint/api/2",
+            "api-reference/tendermint/api/3",
+            "api-reference/tendermint/api/4",
+            "api-reference/tendermint/api/5",
+            "api-reference/tendermint/api/6",
+            "api-reference/tendermint/api/9",
+            "api-reference/tendermint/api/10",
+            "api-reference/tendermint/api/7",
+            "api-reference/tendermint/api/8"
           ]
         }
       ]
@@ -148,9 +171,10 @@
     "discord": "https://snr.la/dev-chat",
     "github": "https://snr.la/gh-sonr",
     "twitter": "https://snr.la/tw",
-    "youtube": "https://snr.la/yt"
+    "youtube": "https://snr.la/yt",
+    "website": "https://snr.la/h"
   },
-  "backgroundImage": "/images/background.png",
+  "backgroundImage": "/static/images/background.png",
   "analytics": {
     "ga4": {
       "measurementId": "G-FY0WZBSGH8"

@@ -1,24 +1,27 @@
 ---
-title: Fetch DID Document
-api: GET /sonr-io/sonr/identity/did
-description: Fetches the DID document for the given DID.
+title: "Fetch Document by Network"
+api: GET /sonr-io/sonr/identity/key
+description: "Queries a DIDDocument for the matching network"
 ---
 
 ### Parameters
 
-<ParamField path="did" type="string" required>
-  did is the DID of the document to retrieve.
+<ParamField path="network_id" type="string">
+  The network ID to query for
 </ParamField>
 
 <ResponseExample>
-
 ```json Response (200)
 {
   "didDocument": {
-    "context": ["string"],
+    "context": [
+      "string"
+    ],
     "creator": "string",
     "iD": "string",
-    "controller": ["string"],
+    "controller": [
+      "string"
+    ],
     "verification_method": {
       "data": [
         {
@@ -30,7 +33,19 @@ description: Fetches the DID document for the given DID.
             "additionalProp2": "string",
             "additionalProp3": "string"
           },
-          "public_key_multibase": "string"
+          "public_key_multibase": "string",
+          "blockchain_account_id": "string",
+          "webauthn_credential": {
+            "id": "string",
+            "public_key": "string",
+            "attestation_type": "string",
+            "authenticator_transport": "string",
+            "authenticator": {
+              "aaguid": "string",
+              "sign_count": 0,
+              "clone_warning": true
+            }
+          }
         }
       ]
     },
@@ -46,7 +61,19 @@ description: Fetches the DID document for the given DID.
               "additionalProp2": "string",
               "additionalProp3": "string"
             },
-            "public_key_multibase": "string"
+            "public_key_multibase": "string",
+            "blockchain_account_id": "string",
+            "webauthn_credential": {
+              "id": "string",
+              "public_key": "string",
+              "attestation_type": "string",
+              "authenticator_transport": "string",
+              "authenticator": {
+                "aaguid": "string",
+                "sign_count": 0,
+                "clone_warning": true
+              }
+            }
           },
           "reference": "string"
         }
@@ -64,7 +91,19 @@ description: Fetches the DID document for the given DID.
               "additionalProp2": "string",
               "additionalProp3": "string"
             },
-            "public_key_multibase": "string"
+            "public_key_multibase": "string",
+            "blockchain_account_id": "string",
+            "webauthn_credential": {
+              "id": "string",
+              "public_key": "string",
+              "attestation_type": "string",
+              "authenticator_transport": "string",
+              "authenticator": {
+                "aaguid": "string",
+                "sign_count": 0,
+                "clone_warning": true
+              }
+            }
           },
           "reference": "string"
         }
@@ -82,7 +121,19 @@ description: Fetches the DID document for the given DID.
               "additionalProp2": "string",
               "additionalProp3": "string"
             },
-            "public_key_multibase": "string"
+            "public_key_multibase": "string",
+            "blockchain_account_id": "string",
+            "webauthn_credential": {
+              "id": "string",
+              "public_key": "string",
+              "attestation_type": "string",
+              "authenticator_transport": "string",
+              "authenticator": {
+                "aaguid": "string",
+                "sign_count": 0,
+                "clone_warning": true
+              }
+            }
           },
           "reference": "string"
         }
@@ -100,7 +151,19 @@ description: Fetches the DID document for the given DID.
               "additionalProp2": "string",
               "additionalProp3": "string"
             },
-            "public_key_multibase": "string"
+            "public_key_multibase": "string",
+            "blockchain_account_id": "string",
+            "webauthn_credential": {
+              "id": "string",
+              "public_key": "string",
+              "attestation_type": "string",
+              "authenticator_transport": "string",
+              "authenticator": {
+                "aaguid": "string",
+                "sign_count": 0,
+                "clone_warning": true
+              }
+            }
           },
           "reference": "string"
         }
@@ -118,7 +181,19 @@ description: Fetches the DID document for the given DID.
               "additionalProp2": "string",
               "additionalProp3": "string"
             },
-            "public_key_multibase": "string"
+            "public_key_multibase": "string",
+            "blockchain_account_id": "string",
+            "webauthn_credential": {
+              "id": "string",
+              "public_key": "string",
+              "attestation_type": "string",
+              "authenticator_transport": "string",
+              "authenticator": {
+                "aaguid": "string",
+                "sign_count": 0,
+                "clone_warning": true
+              }
+            }
           },
           "reference": "string"
         }
@@ -128,7 +203,7 @@ description: Fetches the DID document for the given DID.
       "data": [
         {
           "iD": "string",
-          "type": "string",
+          "type": "ServiceType_UNSPECIFIED",
           "service_endpoint": "string",
           "service_endpoints": {
             "additionalProp1": "string",
@@ -138,7 +213,9 @@ description: Fetches the DID document for the given DID.
         }
       ]
     },
-    "also_known_as": ["string"]
+    "also_known_as": [
+      "string"
+    ]
   }
 }
 ```

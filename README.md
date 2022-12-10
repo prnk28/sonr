@@ -49,6 +49,23 @@ curl https://get.ignite.com/sonr-io/sonr@latest! | sudo bash
 ```
 Learn more about [the install process](https://github.com/allinbits/starport-installer).
 
+## Documentation
+
+Sonr utilizes Mintlify to generate documentation from the source code. To run the documentation server, execute the following command:
+
+**1. Install Mintlify**
+```sh
+npm i -g mintlify
+```
+
+**2. Run the documentation server**
+```sh
+cd docs
+mintlify dev
+```
+
+For more information, see the [Mintlify documentation](https://mintlify.com/docs/quickstart).
+
 ## Learn more
 
 - [Homepage](https://snr.la/h)
