@@ -20,16 +20,28 @@ func (wvm *VerificationMethod) WebAuthnIcon() string {
 
 func (wvm *VerificationMethod) WebAuthnCredentials() []webauthn.Credential {
 	return []webauthn.Credential{
-		convertWebauthnCredential(wvm.WebauthnCredential),
+		convertToWebauthnCredential(wvm.WebauthnCredential),
 	}
 }
 
-func convertWebauthnCredential(credential *WebauthnCredential) webauthn.Credential {
+func convertToWebauthnCredential(credential *WebauthnCredential) webauthn.Credential {
 	return webauthn.Credential{
 		ID:        credential.Id,
 		PublicKey: credential.PublicKey,
 		Authenticator: webauthn.Authenticator{
 			AAGUID:       credential.Authenticator.Aaguid,
+			SignCount:    credential.Authenticator.SignCount,
+			CloneWarning: credential.Authenticator.CloneWarning,
+		},
+	}
+}
+
+func ConvertFromWebauthnCredential(credential *webauthn.Credential) *WebauthnCredential {
+	return &WebauthnCredential{
+		Id:        credential.ID,
+		PublicKey: credential.PublicKey,
+		Authenticator: &WebauthnAuthenticator{
+			Aaguid:       credential.Authenticator.AAGUID,
 			SignCount:    credential.Authenticator.SignCount,
 			CloneWarning: credential.Authenticator.CloneWarning,
 		},

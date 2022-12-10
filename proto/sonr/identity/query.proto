@@ -6,6 +6,7 @@ import "google/api/annotations.proto";
 import "cosmos/base/query/v1beta1/pagination.proto";
 import "sonr/identity/params.proto";
 import "sonr/identity/did.proto";
+import "sonr/identity/vc.proto";
 // this line is used by starport scaffolding # 1
 
 option go_package = "github.com/sonr-io/sonr/x/identity/types";
@@ -153,28 +154,36 @@ message QueryByNetworkResponse {
 }
 
 message QueryWebauthnRegisterBeginRequest {
-	string username = 1;
+	string uuid = 1;
 }
 
 message QueryWebauthnRegisterBeginResponse {
+	bytes response = 1;
 }
 
 message QueryWebauthnRegisterFinishRequest {
+	string uuid = 1;
+	bytes generated_credential = 2;
 }
 
 message QueryWebauthnRegisterFinishResponse {
+	WebauthnCredential credential = 1;
 }
 
 message QueryWebauthnLoginBeginRequest {
+	string uuid = 1;
 }
 
 message QueryWebauthnLoginBeginResponse {
+	bytes response = 1;
 }
 
 message QueryWebauthnLoginFinishRequest {
+	string uuid = 1;
 }
 
 message QueryWebauthnLoginFinishResponse {
+	DidDocument didDocument = 1;
 }
 
 
