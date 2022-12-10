@@ -1,22 +1,3 @@
-
-- Cosmos SDK: v0.46.3
-- Ignite CLI: v0.25.1
-- Golang: 1.18.8 darwin/arm64
-
-## Get started
-
-[![CodeFactor](https://www.codefactor.io/repository/github/sonr-io/sonr/badge)](https://www.codefactor.io/repository/github/sonr-io/sonr)
-  [![Status](https://img.shields.io/badge/status-active-success.svg)](https://sonr.io)
-  [![Go Reference](https://pkg.go.dev/badge/github.com/sonr-io/sonr.svg)](https://pkg.go.dev/github.com/sonr-io/sonr)
-  [![Go Report Card](https://goreportcard.com/badge/github.com/sonr-io/sonr)](https://goreportcard.com/report/github.com/sonr-io/sonr)
-  [![GitHub Issues](https://img.shields.io/github/issues/sonr-io/sonr.svg)](https://github.com/sonr-io/sonr/issues)
-  [![GitHub Pull Requests](https://img.shields.io/github/issues-pr/sonr-io/sonr.svg)](https://github.com/sonr-io/sonr/pulls)
-  [![License](https://img.shields.io/badge/license-GPLv3-blue.svg)](/LICENSE)
-
-</div>
-
----
-
 <p align="center"> Build <strong>privacy-preserving</strong>, <strong>user-centric applications</strong>, on a robust, rapid-scaling platform designed for interoperability, and total digital autonomy.
     <br>
 </p>
