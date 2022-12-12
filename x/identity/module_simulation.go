@@ -50,12 +50,12 @@ func (AppModule) GenerateGenesisState(simState *module.SimulationState) {
 
 		DidDocumentList: []types.DidDocument{
 			{
-				Creator: sample.AccAddress(),
-				ID:      "0",
+				Controller: []string{types.ConvertAccAddressToDid(sample.AccAddress())},
+				ID:         types.ConvertAccAddressToDid(sample.AccAddress()),
 			},
 			{
-				Creator: sample.AccAddress(),
-				ID:      "1",
+				Controller: []string{types.ConvertAccAddressToDid(sample.AccAddress())},
+				ID:         types.ConvertAccAddressToDid(sample.AccAddress()),
 			},
 		},
 		// this line is used by starport scaffolding # simapp/module/genesisState

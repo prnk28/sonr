@@ -7,17 +7,17 @@ option go_package = "github.com/sonr-io/sonr/x/identity/types";
 
 message DidDocument {
   repeated string context = 1; // optional
-  string creator = 2; // optional
-  string iD = 3;
-  repeated string controller = 4; //optional
-  VerificationMethods verification_method = 5; // optional
-  VerificationRelationships authentication = 6; // optional
-  VerificationRelationships assertion_method = 7; // optional
-  VerificationRelationships capability_invocation = 8; // optional
-  VerificationRelationships capability_delegation = 9; // optional
-  VerificationRelationships key_agreement = 10; // optional
-  Services service = 11; // optional
-  repeated string also_known_as = 12; // optional
+  string iD = 2;
+  repeated string controller = 3; //optional
+  VerificationMethods verification_method = 4; // optional
+  VerificationRelationships authentication = 5; // optional
+  VerificationRelationships assertion_method = 6; // optional
+  VerificationRelationships capability_invocation = 7; // optional
+  VerificationRelationships capability_delegation = 8; // optional
+  VerificationRelationships key_agreement = 9; // optional
+  Services service = 10; // optional
+  repeated string also_known_as = 11; // optional
+  map<string, string> metadata = 12; // optional
 }
 
 message VerificationMethod {
@@ -41,6 +41,7 @@ message Service {
   ServiceType type = 2;
   string service_endpoint = 3;
   map<string, string> service_endpoints = 4; // optional
+  map<string, string> metadata = 5; // optional
 }
 
 message Services {

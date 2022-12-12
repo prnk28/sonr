@@ -69,7 +69,8 @@ func SimulateMsgUpdateDidDocument(
 			found          = false
 		)
 		for _, obj := range allDidDocument {
-			simAccount, found = FindAccount(accs, obj.Creator)
+			accAddr, _ := obj.AccAddress()
+			simAccount, found = FindAccount(accs, accAddr.String())
 			if found {
 				didDocument = obj
 				break
@@ -115,7 +116,8 @@ func SimulateMsgDeleteDidDocument(
 			found          = false
 		)
 		for _, obj := range allDidDocument {
-			simAccount, found = FindAccount(accs, obj.Creator)
+			accAddr, _ := obj.AccAddress()
+			simAccount, found = FindAccount(accs, accAddr.String())
 			if found {
 				didDocument = obj
 				break

@@ -8,6 +8,7 @@ import (
 	fmt "fmt"
 
 	"github.com/cosmos/cosmos-sdk/crypto/keys/secp256k1"
+	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/shengdoushi/base58"
 	"github.com/sonr-io/sonr/internal/crypto/jwx"
 	"github.com/sonr-io/sonr/x/identity/types/internal/marshal"
@@ -49,6 +50,32 @@ func NewDocumentFromJson(b []byte) (*DidDocument, error) {
 		return nil, err
 	}
 	return &doc, nil
+}
+
+// AccAddress returns the account address of the DID
+func (d *DidDocument) AccAddress() (sdk.AccAddress, error) {
+	return ConvertDidToAccAddress(d.ID)
+}
+
+// CheckAccAddress checks if the provided sdk.AccAddress or string matches the DID ID
+func (d *DidDocument) CheckAccAddress(t interface{}) bool {
+	docAccAddr, err := d.AccAddress()
+	if err != nil {
+		return false
+	}
+
+	switch t.(type) {
+	case sdk.AccAddress:
+		return t.(sdk.AccAddress).Equals(docAccAddr)
+	case string:
+		addr, err := sdk.AccAddressFromBech32(t.(string))
+		if err != nil {
+			return false
+		}
+		return addr.Equals(docAccAddr)
+	default:
+		return false
+	}
 }
 
 func (d *DidDocument) ControllerCount() int {

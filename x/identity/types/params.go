@@ -15,11 +15,17 @@ func ParamKeyTable() paramtypes.KeyTable {
 // NewParams creates a new Params instance
 func NewParams() Params {
 	return Params{
-		DidBaseContext:           "https://www.w3.org/ns/did/v1",
-		DidImplementationContext: "https://docs.sonr.io/identity/1.0/",
-		DidMethodName:            "did:snr:",
-		IpfsGateway:              "https://ipfs.io/ipfs/",
-		IpfsApi:                  "https://ipfs.infura.io:5001/api/v0/",
+		DidBaseContext:   "https://www.w3.org/ns/did/v1",
+		DidMethodContext: "https://docs.sonr.io/identity/1.0/",
+		DidMethodName:    "snr",
+		DidMethodVersion: "1.0",
+		DidNetwork:       "devnet",
+		IpfsGateway:      "https://ipfs.io/ipfs/",
+		IpfsApi:          "https://ipfs.sonr.io",
+		HnsTlds: []string{
+			".snr",
+			".sonr",
+		},
 	}
 }
 
