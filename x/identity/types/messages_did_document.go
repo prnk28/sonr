@@ -15,8 +15,8 @@ var _ sdk.Msg = &MsgCreateDidDocument{}
 
 func NewMsgCreateDidDocument(creator string) *MsgCreateDidDocument {
 	return &MsgCreateDidDocument{
-		Creator:              creator,
-		Did:                  "",
+		Creator: creator,
+		Did:     "",
 	}
 }
 

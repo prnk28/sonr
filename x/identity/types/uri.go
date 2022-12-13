@@ -1,6 +1,5 @@
 package types
 
-
 import (
 	"encoding"
 	"encoding/json"

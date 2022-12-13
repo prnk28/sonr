@@ -3,6 +3,7 @@ package types
 import (
 	"errors"
 	"fmt"
+	"net/url"
 	"strings"
 )
 
@@ -110,7 +111,7 @@ func (w baseValidator) Validate(document *DidDocument) error {
 		return makeValidationError(ErrInvalidContext)
 	}
 	// Verify `id`
-	if document.ID == "" {
+	if u, err := url.Parse(document.ID); document.ID == "" || (err == nil && u.Scheme != "" && u.Host != "") {
 		return makeValidationError(ErrInvalidID)
 	}
 	// Verify `controller`
@@ -154,7 +155,7 @@ func validateVM(vm *VerificationMethod) bool {
 	if len(strings.TrimSpace(string(vm.Type))) == 0 {
 		return false
 	}
-	if vm.Controller != "" {
+	if vm.Controller == "" {
 		return false
 	}
 	return true
@@ -167,10 +168,10 @@ func (s serviceValidator) Validate(document *DidDocument) error {
 		if len(strings.TrimSpace(service.ID)) == 0 {
 			return makeValidationError(ErrInvalidService)
 		}
-		if len(strings.TrimSpace(service.Type)) == 0 {
+		if service.Type == 0 {
 			return makeValidationError(ErrInvalidService)
 		}
-		if len(strings.TrimSpace(service.ServiceEndpoint)) == 0{
+		if len(strings.TrimSpace(service.ServiceEndpoint)) == 0 {
 			return makeValidationError(ErrInvalidService)
 		}
 	}

@@ -4,6 +4,8 @@ import (
 	"errors"
 	"regexp"
 	"strings"
+
+	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 
 const (
@@ -217,4 +219,33 @@ func contains(s []string, e string) bool {
 		}
 	}
 	return false
+}
+
+// ConvertAccAddressToDid converts an AccAddress to a DID
+func ConvertAccAddressToDid(address interface{}) string {
+	fn := func(address string) string {
+		ptr := strings.Split(address, "snr")
+		if len(ptr) == 2 {
+			return "did:snr:" + ptr[1]
+		}
+		return "did:snr:" + address
+	}
+	// check if string or sdk.AccAddress
+	switch address.(type) {
+	case string:
+		return fn(address.(string))
+	case sdk.AccAddress:
+		return fn(address.(sdk.AccAddress).String())
+	default:
+		return ""
+	}
+}
+
+// ConvertDidToAccAddress converts a DID to an AccAddress
+func ConvertDidToAccAddress(did string) (sdk.AccAddress, error) {
+	if ok, base := ExtractBase(did); ok {
+		parts := strings.Split(base, ":")
+		return sdk.AccAddressFromBech32(parts[len(parts)-1])
+	}
+	return nil, errors.New("invalid did")
 }

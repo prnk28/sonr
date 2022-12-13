@@ -30,8 +30,10 @@ func TestDidDocumentMsgServerCreate(t *testing.T) {
 		rst, found := k.GetDidDocument(ctx,
 			expected.Did,
 		)
+		accAddr, err := rst.AccAddress()
+		require.NoError(t, err)
 		require.True(t, found)
-		require.Equal(t, expected.Creator, rst.Creator)
+		require.Equal(t, expected.Creator, accAddr)
 	}
 }
 
@@ -83,7 +85,9 @@ func TestDidDocumentMsgServerUpdate(t *testing.T) {
 					expected.Did,
 				)
 				require.True(t, found)
-				require.Equal(t, expected.Creator, rst.Creator)
+				accAddr, err := rst.AccAddress()
+				require.NoError(t, err)
+				require.Equal(t, expected.Creator, accAddr)
 			}
 		})
 	}

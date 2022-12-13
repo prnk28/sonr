@@ -1,20 +1,3 @@
-
-<h1 align="center"><bold>Sonr</bold></h1>
-
-<div align="center">
-
-[![CodeFactor](https://www.codefactor.io/repository/github/sonr-io/sonr/badge)](https://www.codefactor.io/repository/github/sonr-io/sonr)
-  [![Status](https://img.shields.io/badge/status-active-success.svg)](https://sonr.io)
-  [![Go Reference](https://pkg.go.dev/badge/github.com/sonr-io/sonr.svg)](https://pkg.go.dev/github.com/sonr-io/sonr)
-  [![Go Report Card](https://goreportcard.com/badge/github.com/sonr-io/sonr)](https://goreportcard.com/report/github.com/sonr-io/sonr)
-  [![GitHub Issues](https://img.shields.io/github/issues/sonr-io/sonr.svg)](https://github.com/sonr-io/sonr/issues)
-  [![GitHub Pull Requests](https://img.shields.io/github/issues-pr/sonr-io/sonr.svg)](https://github.com/sonr-io/sonr/pulls)
-  [![License](https://img.shields.io/badge/license-GPLv3-blue.svg)](/LICENSE)
-
-</div>
-
----
-
 <p align="center"> Build <strong>privacy-preserving</strong>, <strong>user-centric applications</strong>, on a robust, rapid-scaling platform designed for interoperability, and total digital autonomy.
     <br>
 </p>
@@ -65,7 +48,22 @@ To install the latest version of your blockchain node's binary, execute the foll
 curl https://get.ignite.com/sonr-io/sonr@latest! | sudo bash
 ```
 Learn more about [the install process](https://github.com/allinbits/starport-installer).
+## Documentation
 
+Sonr utilizes Mintlify to generate documentation from the source code. To run the documentation server, execute the following command:
+
+**1. Install Mintlify**
+```sh
+npm i -g mintlify
+```
+
+**2. Run the documentation server**
+```sh
+cd docs
+mintlify dev
+```
+
+For more information, see the [Mintlify documentation](https://mintlify.com/docs/quickstart).
 ## Learn more
 
 - [Homepage](https://snr.la/h)

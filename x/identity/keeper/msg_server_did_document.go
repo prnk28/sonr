@@ -21,8 +21,7 @@ func (k msgServer) CreateDidDocument(goCtx context.Context, msg *types.MsgCreate
 	}
 
 	var didDocument = types.DidDocument{
-		Creator:              msg.Creator,
-		ID:                   msg.Did,
+		ID:                   types.ConvertAccAddressToDid(msg.Creator),
 		Context:              []string{msg.Context},
 		Controller:           []string{msg.Controller},
 		VerificationMethod:   new(types.VerificationMethods),
@@ -55,13 +54,12 @@ func (k msgServer) UpdateDidDocument(goCtx context.Context, msg *types.MsgUpdate
 	}
 
 	// Checks if the the msg creator is the same as the current owner
-	if msg.Creator != valFound.Creator {
+	if valFound.CheckAccAddress(msg.Creator) {
 		return nil, sdkerrors.Wrap(sdkerrors.ErrUnauthorized, "incorrect owner")
 	}
 
 	var didDocument = types.DidDocument{
-		Creator:              msg.Creator,
-		ID:                   msg.Did,
+		ID:                   types.ConvertAccAddressToDid(msg.Creator),
 		Context:              []string{msg.Context},
 		Controller:           []string{msg.Controller},
 		VerificationMethod:   new(types.VerificationMethods),
@@ -91,7 +89,7 @@ func (k msgServer) DeleteDidDocument(goCtx context.Context, msg *types.MsgDelete
 	}
 
 	// Checks if the the msg creator is the same as the current owner
-	if msg.Creator != valFound.Creator {
+	if valFound.CheckAccAddress(msg.Creator) {
 		return nil, sdkerrors.Wrap(sdkerrors.ErrUnauthorized, "incorrect owner")
 	}
 
