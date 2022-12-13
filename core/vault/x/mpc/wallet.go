@@ -91,25 +91,25 @@ func (w *Wallet) Save(password string) (string, error) {
 	return p, nil
 }
 
-func (w *Wallet) Refresh() (*Wallet, error) {
-	ch, err := w.node.Join("test")
-	if err != nil {
-		return nil, err
-	}
-	var wg sync.WaitGroup
-	wg.Add(1)
-	go func(channel *node.Channel) {
-		pl := pool.NewPool(0)
-		defer pl.TearDown()
-		conf, err := cmpRefresh(&w.Config, channel, &wg, pl)
-		if err != nil {
-			return
-		}
-		w.Config = *conf
-	}(ch)
-	wg.Wait()
-	return w, nil
-}
+// func (w *Wallet) Refresh() (*Wallet, error) {
+// 	ch, err := w.node.Join("test")
+// 	if err != nil {
+// 		return nil, err
+// 	}
+// 	var wg sync.WaitGroup
+// 	wg.Add(1)
+// 	go func(channel *node.Channel) {
+// 		pl := pool.NewPool(0)
+// 		defer pl.TearDown()
+// 		conf, err := cmpRefresh(&w.Config, channel, &wg, pl)
+// 		if err != nil {
+// 			return
+// 		}
+// 		w.Config = *conf
+// 	}(ch)
+// 	wg.Wait()
+// 	return w, nil
+// }
 
 func (w *Wallet) GetPreSignature() (*ecdsa.PreSignature, error) {
 	ch, err := w.node.Join("test")

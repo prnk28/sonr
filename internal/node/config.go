@@ -11,7 +11,7 @@ import (
 	"github.com/libp2p/go-libp2p/core/peer"
 	"github.com/libp2p/go-libp2p/p2p/net/connmgr"
 	"github.com/multiformats/go-multiaddr"
-	"github.com/sonr-io/sonr/pkg/common"
+	"github.com/sonr-io/sonr/core/common"
 )
 
 // NodeOption is a function that configures a Node

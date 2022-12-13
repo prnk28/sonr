@@ -1,11 +1,35 @@
 package mpc
 
 import (
+	"context"
+
 	"github.com/kataras/golog"
+	ps "github.com/libp2p/go-libp2p-pubsub"
 	"github.com/sonr-io/multi-party-sig/pkg/party"
 	"github.com/sonr-io/multi-party-sig/pkg/protocol"
 	"github.com/sonr-io/sonr/internal/node"
 )
+
+func handlerLoopTopic(id party.ID, h protocol.Handler, topic *ps.Topic) {
+	ctx := context.Background()
+	sub, err := topic.Subscribe()
+	if err != nil {
+		golog.Warnf("error: %v", err) // nolint: errcheck
+		return
+	}
+	go func() {
+		for {
+			msg, err := sub.Next(ctx)
+			if err != nil {
+				return
+			}
+			var m protocol.Message
+			err = m.UnmarshalBinary(msg.Data)
+			checkErr(err)
+			h.Accept(&m)
+		}
+	}()
+}
 
 func handlerLoopChannel(id party.ID, h protocol.Handler, channel *node.Channel) {
 	for {

@@ -12,7 +12,7 @@ import (
 	ps "github.com/libp2p/go-libp2p-pubsub"
 	pubsub "github.com/libp2p/go-libp2p-pubsub"
 	"github.com/libp2p/go-libp2p/core/host"
-	"github.com/sonr-io/sonr/pkg/common"
+	"github.com/sonr-io/sonr/core/common"
 )
 
 var (
